@@ -15,6 +15,7 @@ class CreateAvailableFood extends Migration
     {
         Schema::create('available_foods', function (Blueprint $table) {
             $table->id();
+            $table->tinyInteger('type_id')->unsigned();
             $table->bigInteger('food_id')->unsigned();
             $table->tinyInteger('meal_id')->unsigned();
             $table->date('reserve_day');
