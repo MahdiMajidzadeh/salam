@@ -10,16 +10,12 @@
 
 <body class="rtl">
 
-<main role="main" class="container">
-    <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser's viewport.</p>
-        <a class="btn btn-lg btn-primary" href="../../components/navbar/" role="button">View navbar docs &raquo;</a>
-    </div>
+<main class="container">
+   @yield('content')
 </main>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="js/vendor/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="{{ mix('js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ mix('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ mix('js/shards.min.js') }}"></script>
 </body>
 </html>
