@@ -5,7 +5,7 @@
  */
 
 // Bootstrap 4 dependencies
-@import "functions";
+@import "node_modules/bootstrap/scss/functions";
 
 // Core
 @import "mixins";
@@ -43,5 +43,3 @@
 @import "custom-sliders";
 @import "custom-datepicker";
 @import "utilities";
-
-@import "rtl";

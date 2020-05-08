@@ -11,6 +11,5 @@ const mix = require('laravel-mix');
  |js('resources/js/app.js', 'public/js')
  */
 
-mix.sass('resources/scss/shards.scss', 'public/css')
-    .copy('resources/js/shards.min.js', 'public/js/shards.min.js')
+mix.sass('resources/scss/nahar.scss', 'public/css')
     .version();

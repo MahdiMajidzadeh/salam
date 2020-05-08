@@ -85,6 +85,27 @@
     background-size: $custom-select-bg-size;
   }
 
+  .custom-switch {
+    padding-right: $custom-switch-width + $custom-control-gutter; 
+    padding-left: inherit;
+
+    .custom-control-label {
+      &::before {
+        right: -($custom-switch-width + $custom-control-gutter); 
+      }
+
+      &::after {
+        right: calc(#{-($custom-switch-width + $custom-control-gutter)} + #{$custom-control-indicator-border-width * 2}); 
+      }
+    }
+
+    .custom-control-input:checked~.custom-control-label {
+      &::after {
+        transform: translateX(- $custom-switch-width + $custom-control-indicator-size);
+      }
+    }
+  }
+
   .input-group > .input-group-append:last-child > .btn:not(:last-child):not(.dropdown-toggle),
   .input-group > .input-group-append:last-child > .input-group-text:not(:last-child),
   .input-group > .input-group-append:not(:last-child) > .btn,
@@ -124,6 +145,21 @@
   .checkbox-inline input {
     margin-right: -1.25rem;
     margin-left: inherit;
+  }
+
+  .breadcrumb-item {
+    + .breadcrumb-item {
+      padding-right: $breadcrumb-item-padding;
+      padding-left: 0;
+
+      &::before {
+        padding-right: 0;
+        padding-left: $breadcrumb-item-padding;
+      }
+
+      color: $breadcrumb-divider-color;
+      content: $breadcrumb-divider;
+    }
   }
 
   .list-group {
@@ -208,7 +244,7 @@
     margin-left: 0;
   }
 
-  @mixin make-grid-columns($columns: 12, $gutter: 30px, $breakpoints: $grid-breakpoints) {
+  @mixin make-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
     @each $breakpoint in map-keys($breakpoints) {
       $infix: breakpoint-infix($breakpoint, $breakpoints);
       @include media-breakpoint-up($breakpoint, $breakpoints) {
@@ -222,8 +258,9 @@
       }
     }
   }
-
-  @include make-grid-columns();
+  @if $enable-grid-classes {
+    @include make-grid-columns();
+  }
 
   // stylelint-disable declaration-no-important
   @each $breakpoint in map-keys($grid-breakpoints) {

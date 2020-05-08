@@ -984,19 +984,3 @@ $datepicker-range-highlighted-bg: $gray-200 !default;
 $datepicker-dropdown-border: lighten($blueish-grey, 40%) !default;
 $datepicker-dropdown-bg: $white !default;
 $datepicker-highlighted-bg: $datepicker-active-background !default;
-
-
-$spacer: 1rem !default;
-$spacers: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$spacers: map-merge(
-  (
-    0: 0,
-    1: ($spacer * .25),
-    2: ($spacer * .5),
-    3: $spacer,
-    4: ($spacer * 1.5),
-    5: ($spacer * 3)
-  ),
-  $spacers
-);
