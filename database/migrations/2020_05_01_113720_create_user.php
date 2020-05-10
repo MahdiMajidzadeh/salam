@@ -18,6 +18,7 @@ class CreateUser extends Migration
             $table->string('mobile');
             $table->string('password');
             $table->string('name');
+            $table->tinyInteger('role_id')->unsigned();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

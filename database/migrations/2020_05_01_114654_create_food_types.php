@@ -14,7 +14,7 @@ class CreateFoodTypes extends Migration
     public function up()
     {
         Schema::create('food_types', function (Blueprint $table) {
-            $table->tinyIncrements();
+            $table->tinyIncrements('id');
             $table->string('name');
         });
     }
