@@ -5,7 +5,7 @@
  */
 
 // Bootstrap 4 dependencies
-@import "../bootstrap/functions";
+@import "functions";
 
 // Core
 @import "mixins";
@@ -14,14 +14,14 @@
 @import "reboot";
 @import "type";
 @import "images";
-@import "code";
+//@import "code";
 @import "tables";
 @import "forms";
 @import "buttons";
 @import "transitions";
 
 //  Components
-@import "icons";
+//@import "icons";
 @import "dropdown";
 @import "button-group";
 @import "input-group";
@@ -38,8 +38,8 @@
 @import "close";
 @import "modal";
 @import "tooltip";
-@import "popover";
-@import "carousel";
+//@import "popover";
+//@import "carousel";
 @import "custom-sliders";
 @import "custom-datepicker";
 @import "utilities";

@@ -10,7 +10,7 @@
 
 <body class="rtl">
 
-<main class="container">
+<main class="container @yield('css-box')">
    @yield('content')
 </main>
 
