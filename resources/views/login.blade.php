@@ -4,19 +4,20 @@
 
 
 @section('content')
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-center h100">
         <div class="col-12 col-md-4">
             {{--<div class="center-box">--}}
+            @if (session('msg-error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('msg-error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
                 <div class="card">
                     <div class="card-body">
-                        @if (session('msg-error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                {{ session('msg-error') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
+
                         <form action="{{ url('/') }}" method="post">
                             @csrf
                             <div class="form-group">
