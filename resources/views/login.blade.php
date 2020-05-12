@@ -2,7 +2,6 @@
 
 @section('title', 'ورود')
 
-
 @section('content')
     <div class="row justify-content-center align-items-center h100">
         <div class="col-12 col-md-4">
