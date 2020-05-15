@@ -17,7 +17,7 @@ class CreateFood extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price')->unsigned();
-            $table->tinyInteger('type_id');
+            $table->integer('restaurant_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
