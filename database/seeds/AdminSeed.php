@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Admin extends Seeder
+class AdminSeed extends Seeder
 {
     public function run()
     {
