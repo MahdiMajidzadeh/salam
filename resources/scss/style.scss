@@ -5,6 +5,17 @@ body{
   min-height: 100vh;
 }
 
+//rtl
+.rtl .custom-control-label::before{
+  right: -5px;
+}
+.rtl .custom-radio .custom-control-label::after{
+  left:inherit;
+  right: 0;
+}
+
+// end-rtl
+
 .h100{
   min-height: 100vh;
 }
