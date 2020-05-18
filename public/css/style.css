@@ -15,6 +15,7 @@
 body {
   font-family: estedad;
   min-height: 100vh;
+  padding: 70px 0;
 }
 
 .rtl .custom-control-label::before {
@@ -24,6 +25,10 @@ body {
 .rtl .custom-radio .custom-control-label::after {
   left: inherit;
   right: 0;
+}
+
+.ltr {
+  direction: ltr;
 }
 
 .h100 {

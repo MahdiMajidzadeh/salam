@@ -3,6 +3,7 @@
 body{
   font-family: estedad;
   min-height: 100vh;
+  padding: 70px 0;
 }
 
 //rtl
@@ -15,6 +16,10 @@ body{
 }
 
 // end-rtl
+
+.ltr{
+  direction: ltr;
+}
 
 .h100{
   min-height: 100vh;
