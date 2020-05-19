@@ -4,6 +4,7 @@
 
 @section('inner-content')
     <form action="{{ url('/dashboard/reserve') }}" method="post">
+        @csrf
         @foreach($foodByDay as $day => $foods)
             <div class="card my-3">
                 <div class="card-body">

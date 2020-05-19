@@ -8,5 +8,6 @@ Route::post('/', 'AccountsController@loginSubmit');
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function(){
     Route::get('/', 'PagesController@dashboard');
     Route::get('/reserve', 'ReservationsController@foodList');
+    Route::post('/reserve', 'ReservationsController@foodListSubmit');
 
 });

@@ -20,6 +20,8 @@ class CreateReservation extends Migration
             $table->tinyInteger('meal_id')->unsigned();
             $table->bigInteger('price')->unsigned();
             $table->bigInteger('default_price')->unsigned();
+            $table->bigInteger('available_id')->unsigned();
+            $table->date('reserve_day');
             $table->timestamps();
             $table->softDeletes();
         });
