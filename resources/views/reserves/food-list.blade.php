@@ -12,9 +12,10 @@
                     <p class="card-text">
                     @foreach($booking->foods as $food)
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="" name="" value=""
+                            <input type="radio" id="{{ $booking->id.'-'.$food->id }}" name="b-{{ $booking->id }}"
+                                   value="{{ $food->id }}"
                                    class="custom-control-input">
-                            <label class="custom-control-label pb-3" for="">
+                            <label class="custom-control-label pb-3" for="{{ $booking->id.'-'.$food->id }}">
                                 <span class="h6 font-weight-bold">{{ $food->name }}</span>
                                 <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
                                 <span class="mx-2">/</span>
@@ -33,10 +34,10 @@
                 </div>
             </div>
         @endforeach
-            <nav class="navbar fixed-bottom navbar-light bg-light">
-                <div class="container text-left">
-                    <button class="btn btn-primary ml-auto" type="submit">ثبت</button>
-                </div>
-            </nav>
+        <nav class="navbar fixed-bottom navbar-light bg-light">
+            <div class="container text-left">
+                <button class="btn btn-primary ml-auto" type="submit">ثبت</button>
+            </div>
+        </nav>
     </form>
 @endsection

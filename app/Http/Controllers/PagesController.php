@@ -8,7 +8,7 @@ class PagesController extends Controller
 {
     public function dashboard()
     {
-//        dd($data);
+        
         return view('pages.dashboard');
     }
 }
