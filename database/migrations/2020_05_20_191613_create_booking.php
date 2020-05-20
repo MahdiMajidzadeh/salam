@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAvailableFood extends Migration
+class CreateBooking extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAvailableFood extends Migration
      */
     public function up()
     {
-        Schema::create('available_foods', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('type_id')->unsigned();
-            $table->bigInteger('food_id')->unsigned();
-            $table->tinyInteger('meal_id')->unsigned();
-            $table->date('reserve_day');
+            $table->unsignedTinyInteger('meal_id');
+            $table->date('booking_date');
+            $table->unsignedInteger('default_food_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +30,6 @@ class CreateAvailableFood extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('available_foods');
+        Schema::dropIfExists('bookings');
     }
 }

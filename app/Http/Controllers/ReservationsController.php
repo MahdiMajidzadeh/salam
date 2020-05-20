@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Model\AvailableFood;
 use App\Model\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservationsController extends Controller
 {
     public function foodList()
     {
-        $availableFood     = AvailableFood::with(['food', 'meal', 'type', 'food.restaurant'])->get();
+        $reservations    = Reservation::where('user_id', auth()->id())
+            ->where('reserve_day', '<', Carbon::now()->subDays(3))
+            ->get();
+        $reservations_id = $reservations->pluck('available_id');
+
+        $availableFood = AvailableFood::with(['food', 'meal', 'type', 'food.restaurant'])
+            ->whereNotIn('id', $reservations_id)
+            ->where('reserve_day', '<', Carbon::now()->subDays(3))
+            ->get();
+
         $data['foodByDay'] = $availableFood->groupBy('reserve_day');
 //        dd($data);
         return view('reserves.food-list', $data);
@@ -33,7 +43,7 @@ class ReservationsController extends Controller
             if ($available->type_id == 1) {
                 $reservation->default_price = $available->food->price;
             } else {
-                $default = AvailableFood::where('meal_id', $available->meal_id)
+                $default                    = AvailableFood::where('meal_id', $available->meal_id)
                     ->where('reserve_day', $available->reserve_day)
                     ->where('type_id', 1)
                     ->first();
