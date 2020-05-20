@@ -8,8 +8,8 @@ class Meal extends Model
 {
     public $timestamps = false;
 
-    public function Available()
+    public function bookings()
     {
-        return $this->hasMany(AvailableFood::class);
+        return $this->hasMany(Booking::class);
     }
 }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    public function Available()
+    public function bookings()
     {
-        return $this->hasMany(AvailableFood::class);
+        return $this->belongsToMany(Booking::class);
     }
 
     public function Restaurant()

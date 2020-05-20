@@ -5,26 +5,26 @@
 @section('inner-content')
     <form action="{{ url('/dashboard/reserve') }}" method="post">
         @csrf
-        @foreach($foodByDay as $day => $foods)
+        @foreach($bookings as $booking)
             <div class="card my-3">
                 <div class="card-body">
-                    <h3 class="card-title">{{ jdfw($day) }}</h3>
+                    <h3 class="card-title">{{ jdfw($booking->booking_date) }}</h3>
                     <p class="card-text">
-                    @foreach($foods as $key => $item)
+                    @foreach($booking->foods as $food)
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="{{ jdf($day). $key }}" name="{{ jdf($day) }}" value="{{ $item->id }}"
+                            <input type="radio" id="" name="" value=""
                                    class="custom-control-input">
-                            <label class="custom-control-label pb-3" for="{{ jdf($day). $key }}">
-                                <span class="h6 font-weight-bold">{{ $item->food->name }}</span>
-                                <span class="badge badge-dark mx-1">{{ $item->food->price }} تومان </span>
+                            <label class="custom-control-label pb-3" for="">
+                                <span class="h6 font-weight-bold">{{ $food->name }}</span>
+                                <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
                                 <span class="mx-2">/</span>
-                                {{ $item->food->restaurant->name }}
-                                @if($item->type_id == 1)
+                                {{ $food->restaurant->name }}
+                                @if($booking->default_food_id == $food->id)
                                     <span class="pl-2"> </span>
-                                    <span class="badge badge-pill badge-light text-dark">{{ $item->type->name }}</span>
+                                    <span class="badge badge-pill badge-light text-dark">غذای پایه</span>
                                 @else
                                     <span class="pl-2"> </span>
-                                    <span class="badge badge-pill badge-light text-dark ltr">{{ sprintf("%+d", ($item->food->price - $foods->where('type_id', 1)[0]->food->price)) }}</span>
+                                    <span class="badge badge-pill badge-light text-dark ltr">{{ sprintf("%+d", ($food->price - $booking->defaultFood->price)) }}</span>
                                 @endif
                             </label>
                         </div>
