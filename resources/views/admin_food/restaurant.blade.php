@@ -1,6 +1,6 @@
 @extends('master-dashboard')
 
-@section('title', 'تغییر رمز')
+@section('title', 'افزودن رستوران')
 
 @section('inner-content')
     <div class="row">
