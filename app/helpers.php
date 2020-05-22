@@ -22,3 +22,12 @@ if (!function_exists('allowed')) {
         }
     }
 }
+
+if (!function_exists('to_en')) {
+    function to_en($number)
+    {
+        $fmt = numfmt_create('en', NumberFormatter::DECIMAL);
+
+        return (int)$fmt->parse($number);
+    }
+}

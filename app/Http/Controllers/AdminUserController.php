@@ -30,9 +30,9 @@ class AdminUserController extends Controller
 
             $user           = new User();
             $user->name     = $name;
-            $user->mobile   = $mobile;
-            $user->password = Hash::make($mobile);
-            $user->role_id     = Role::USER;
+            $user->mobile   = to_en($mobile);
+            $user->password = to_en(Hash::make($mobile));
+            $user->role_id  = Role::USER;
             $user->save();
             $count++;
         }
@@ -55,9 +55,9 @@ class AdminUserController extends Controller
 
         $user           = new User();
         $user->name     = $request->get('name');
-        $user->mobile   = $request->get('mobile');
-        $user->password = Hash::make($request->get('mobile'));
-        $user->role_id     = Role::USER;
+        $user->mobile   = to_en($request->get('mobile'));
+        $user->password = Hash::make(to_en($request->get('mobile')));
+        $user->role_id  = Role::USER;
         $user->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));

@@ -47,7 +47,7 @@ class AdminFoodController extends Controller
         $food                = new Food();
         $food->name          = $request->get('name');
         $food->restaurant_id = $request->get('restaurant');
-        $food->price         = $request->get('price'); //todo convert number
+        $food->price         = to_en($request->get('price')); //todo convert number
         $food->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));

@@ -13,6 +13,7 @@
             <div class="card-body p-3">
                 <a href="{{ url('admin/restaurant/add') }}" class="btn btn-secondary">افزودن رستوران</a>
                 <a href="{{ url('admin/food/add') }}" class="btn btn-secondary">افزودن غذا</a>
+                <a href="{{ url('admin/booking/add') }}" class="btn btn-secondary">افزودن روزغذا</a>
             </div>
         </div>
     @endif
