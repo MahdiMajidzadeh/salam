@@ -60,6 +60,6 @@ class AdminUserController extends Controller
         $user->role_id     = Role::USER;
         $user->save();
 
-        return redirect()->back()->with('msg-ok', __('msg.user_add_ok', ['name' => $request->get('name')]));
+        return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
 }

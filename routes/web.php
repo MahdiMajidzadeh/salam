@@ -21,4 +21,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
     Route::post('/user/add', 'AdminUserController@addSubmit');
     Route::get('/user/bulk', 'AdminUserController@bulk');
     Route::post('/user/bulk', 'AdminUserController@bulkSubmit');
+    Route::get('/restaurant/add', 'AdminFoodController@addRestaurant');
+    Route::post('/restaurant/add', 'AdminFoodController@addRestaurantSubmit');
+    Route::get('/food/add', 'AdminFoodController@addFood');
+    Route::post('/food/add', 'AdminFoodController@addFoodSubmit');
+
 });
