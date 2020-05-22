@@ -174,5 +174,9 @@ return [
         'size'                  => 'اندازه',
         'terms'                 => 'شرایط',
         'province'              => 'استان',
+
+        'password_old' => 'رمز عبور فعلی',
+        'password_new' => 'رمز جدید',
+        'password_double_new' => 'تکرار رمز',
     ],
 ];

@@ -1,6 +1,6 @@
 @extends('master-dashboard')
 
-@section('title', 'داشبورد')
+@section('title', 'تاریخچه')
 
 @section('inner-content')
     <table class="table table-striped">

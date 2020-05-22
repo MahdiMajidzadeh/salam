@@ -17,7 +17,7 @@ if (!function_exists('jdfw')) {
 if (!function_exists('allowed')) {
     function allowed($role)
     {
-        if (auth()->user()->role_id <= $role) {
+        if (!auth()->user()->role_id >= $role) {
             abort(403);
         }
     }

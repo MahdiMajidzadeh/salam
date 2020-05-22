@@ -20,7 +20,7 @@
             @if(auth()->user()->role_id > 1)
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">مدیریت</a>
+                        <a class="nav-link" href="{{ url('admin') }}">مدیریت</a>
                     </li>
                 </ul>
             @endif
