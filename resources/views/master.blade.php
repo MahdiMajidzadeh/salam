@@ -8,6 +8,7 @@
     <link href="{{ mix('css/bootstrap-rtl.css') }}" rel="stylesheet">
     <link href="{{ mix('css/shards.css') }}" rel="stylesheet">
     <link href="{{ mix('css/style.css') }}" rel="stylesheet">
+    @stack('css')
     {{--<link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">--}}
 </head>
 
@@ -20,5 +21,6 @@
 <script src="{{ mix('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ mix('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ mix('js/shards.min.js') }}"></script>
+@stack('js')
 </body>
 </html>

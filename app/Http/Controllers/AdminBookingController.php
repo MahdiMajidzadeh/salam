@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Model\Food;
 use App\Model\Meal;
 use Illuminate\Http\Request;
-use Morilog\Jalali\CalendarUtils;
 
 class AdminBookingController extends Controller
 {
@@ -19,7 +18,7 @@ class AdminBookingController extends Controller
 
     public function addSubmit(Request $request)
     {
-       
+
 
         dd(to_en($request->get('date')));
     }
