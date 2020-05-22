@@ -13,3 +13,12 @@ if (!function_exists('jdfw')) {
         return \Morilog\Jalali\CalendarUtils::strftime('l Y/m/d', strtotime($date));
     }
 }
+
+if (!function_exists('allowed')) {
+    function allowed($role)
+    {
+        if (auth()->user()->role_id <= $role) {
+            abort(403);
+        }
+    }
+}

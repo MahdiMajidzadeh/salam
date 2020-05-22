@@ -53,4 +53,15 @@ class ReservationsController extends Controller
 
         return redirect('dashboard');
     }
+
+    public function history(Request $request)
+    {
+        $data['reservations'] = Reservation::with(['food', 'booking' => function($q) {
+            $q->orderBy('booking_date', 'desc');
+        }])
+            ->where('user_id', auth()->id())
+            ->get();
+
+        return view('reserves.history', $data);
+    }
 }
