@@ -17,4 +17,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function(){
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function(){
     Route::get('/', 'PagesController@adminDashboard');
+    Route::get('/user/add', 'AdminUserController@add');
+    Route::post('/user/add', 'AdminUserController@addSubmit');
+    Route::get('/user/bulk', 'AdminUserController@bulk');
+    Route::post('/user/bulk', 'AdminUserController@bulkSubmit');
 });
