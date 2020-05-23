@@ -30,8 +30,8 @@ class AdminUserController extends Controller
 
             $user           = new User();
             $user->name     = $name;
-            $user->mobile   = to_en($mobile);
-            $user->password = to_en(Hash::make($mobile));
+            $user->mobile   = $mobile;
+            $user->password = Hash::make($mobile);
             $user->role_id  = Role::USER;
             $user->save();
             $count++;
@@ -55,8 +55,8 @@ class AdminUserController extends Controller
 
         $user           = new User();
         $user->name     = $request->get('name');
-        $user->mobile   = to_en($request->get('mobile'));
-        $user->password = Hash::make(to_en($request->get('mobile')));
+        $user->mobile   = $request->get('mobile');
+        $user->password = Hash::make($request->get('mobile'));
         $user->role_id  = Role::USER;
         $user->save();
 

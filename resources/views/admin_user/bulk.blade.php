@@ -4,7 +4,7 @@
 
 @section('inner-content')
     <div class="row">
-        <div class="col-6 mx-auto">
+        <div class="col-12 col-md-6 mx-auto">
             @include('messages')
             <div class="card my-4">
                 <div class="card-body">

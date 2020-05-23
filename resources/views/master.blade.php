@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title')</title>
+    <title>@yield('title') - سامانه ته دیگ</title>
 {{--    <link href="{{ mix('css/nahar.css') }}" rel="stylesheet">--}}
     <link href="{{ mix('css/bootstrap-rtl.css') }}" rel="stylesheet">
     <link href="{{ mix('css/shards.css') }}" rel="stylesheet">
