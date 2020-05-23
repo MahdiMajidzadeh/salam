@@ -41,4 +41,28 @@ class AdminBookingController extends Controller
 
         return redirect('admin');
     }
+
+    public function dayList(Request $request)
+    {
+        $data['meals']   = Meal::all();
+        $data['hasData'] = false;
+
+        if ($request->has('meal') && $request->has('date_alt')) {
+            $booking = Booking::with(['foods','reservations'])
+                ->where(
+                    'booking_date', gmdate('Y-m-d', (int)$request->get('date_alt'))
+                )
+                ->where('meal_id', $request->get('meal'))
+                ->first();
+
+            if ($booking) {
+                $data['hasData'] = true;
+
+                $data['booking'] = $booking;
+                $data['foods'] = $booking->reservations->groupBy('food_id');
+            }
+        }
+
+        return view('admin_booking.day_list', $data);
+    }
 }
