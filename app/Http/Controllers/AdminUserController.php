@@ -6,6 +6,7 @@ use App\Enum\Role;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AdminUserController extends Controller
 {
@@ -26,13 +27,11 @@ class AdminUserController extends Controller
 
         foreach ($lines as $line) {
             list($name, $mobile) = explode('|', $line);
+            $response = $this->createUser(compact('name', 'mobile'));
 
-            $user           = new User();
-            $user->name     = $name;
-            $user->mobile   = $mobile;
-            $user->password = Hash::make($mobile);
-            $user->role_id  = Role::USER;
-            $user->save();
+            if ($response) {
+                return $response;
+            }
         }
 
         return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
@@ -49,15 +48,33 @@ class AdminUserController extends Controller
     {
         allowed(Role::USER_MANAGER);
 
-        // todo: validation
+        $response = $this->createUser($request->all());
 
-        $user           = new User();
-        $user->name     = $request->get('name');
-        $user->mobile   = $request->get('mobile');
-        $user->password = Hash::make($request->get('mobile'));
-        $user->role_id  = Role::USER;
-        $user->save();
+        if ($response) {
+            return $response;
+        }
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
+    private function createUser($data)
+    {
+        $validator = Validator::make($data, [
+            'name' => 'required|alpha',
+            'mobile' => 'required|digits:11'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->mobile = $data['mobile'];
+        $user->password = Hash::make($data['mobile']);
+        $user->role_id = Role::USER;
+        $user->save();
+
+        return null;
     }
 }
