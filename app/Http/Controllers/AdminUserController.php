@@ -61,7 +61,7 @@ class AdminUserController extends Controller
     {
         $validator = Validator::make($data, [
             'name' => 'required|alpha',
-            'mobile' => 'required|digits:11'
+            'mobile' => 'required|digits:11|unique:users,mobile'
         ]);
 
         if ($validator->fails()) {
@@ -80,7 +80,7 @@ class AdminUserController extends Controller
 
     public function usersList()
     {
-        $users = User::query()->orderByDesc('id')->paginate(3);
+        $users = User::query()->orderByDesc('id')->paginate(30);
 
         return view('admin_user.users_list', compact('users'));
     }
