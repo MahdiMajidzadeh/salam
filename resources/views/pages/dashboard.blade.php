@@ -24,6 +24,7 @@
             <a href="{{ url('dashboard/reserve') }}" class="btn btn-secondary">رزرو</a>
             <a href="{{ url('dashboard/history') }}" class="btn btn-secondary">تاریخچه</a>
             <a href="{{ url('dashboard/password-reset') }}" class="btn btn-secondary">تغییر رمز</a>
+            <a href="{{ url('logout') }}" class="btn btn-secondary">خروج</a>
         </div>
     </div>
 @endsection

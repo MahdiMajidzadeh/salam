@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'login')->name('login');
 Route::post('/', 'AccountsController@loginSubmit');
+Route::get('/logout', 'AccountsController@logout');
 
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
     Route::get('/', 'PagesController@dashboard');
