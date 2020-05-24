@@ -15,7 +15,7 @@
                 </select>
                 <div class="form-group ml-3">
                     <label>تاریخ: </label>
-                    <input type="text" class="form-control" name="date" id="date">
+                    <input type="text" class="form-control" id="date">
                     <input type="hidden" class="form-control" name="date_alt" id="date_alt">
                 </div>
 
