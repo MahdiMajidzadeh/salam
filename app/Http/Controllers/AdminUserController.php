@@ -22,9 +22,8 @@ class AdminUserController extends Controller
 
         $users = $request->get('users');
 
-        $lines = explode("\r\n", $users);
+        $lines = preg_split('/\R/', $users);
 
-        $count = 0;
         foreach ($lines as $line) {
             list($name, $mobile) = explode('|', $line);
 
@@ -34,10 +33,9 @@ class AdminUserController extends Controller
             $user->password = Hash::make($mobile);
             $user->role_id  = Role::USER;
             $user->save();
-            $count++;
         }
 
-        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => $count]));
+        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
     }
 
     public function add(Request $request)
