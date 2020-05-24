@@ -31,3 +31,18 @@ if (!function_exists('to_en')) {
         return (int)$fmt->parse($number);
     }
 }
+
+if (!function_exists('roleName')) {
+    function roleName($roleId)
+    {
+        $roles = [
+            \App\Enum\Role::USER => 'کاربر',
+            \App\Enum\Role::ADMIN => 'ادمین',
+            \App\Enum\Role::FOOD_MANAGER => 'مدیر غذا',
+            \App\Enum\Role::USER_MANAGER => 'مدیر کاربران',
+            \App\Enum\Role::SUPER_ADMIN => 'سوپر ادمین',
+        ];
+
+        return \Illuminate\Support\Arr::get($roles, $roleId);
+    }
+}
