@@ -77,4 +77,11 @@ class AdminUserController extends Controller
 
         return null;
     }
+
+    public function usersList()
+    {
+        $users = User::query()->orderByDesc('id')->paginate(3);
+
+        return view('admin_user.users_list', compact('users'));
+    }
 }

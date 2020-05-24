@@ -7,6 +7,7 @@
         <div class="card my-4">
             <div class="card-body p-3">
                 <a href="{{ url('admin/booking/day-list') }}" class="btn btn-secondary">لیست روز</a>
+                <a href="{{ url('admin/users') }}" class="btn btn-secondary">لیست کاربران</a>
             </div>
         </div>
         <div class="card my-4">
