@@ -8,6 +8,7 @@
             @include('messages')
             <div class="card my-4">
                 <div class="card-body">
+                    <div class="mb-1">نام و موبایل را با | جدا کنید, در هر خط یک کاربر را وارد کنید</div>
                     <form method="post" action="{{ url('admin/user/bulk') }}">
                         @csrf
                         <div class="form-group">

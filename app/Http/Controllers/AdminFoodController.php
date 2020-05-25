@@ -20,13 +20,22 @@ class AdminFoodController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        // todo: validation
+        $request->validate([
+            'name' => 'required|string|unique:restaurants,name'
+        ]);
 
         $restaurant       = new Restaurant();
         $restaurant->name = $request->get('name');
         $restaurant->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
+    public function restaurantsList()
+    {
+        allowed(Role::FOOD_MANAGER);
+
+        return view('admin_food.restaurants_list', ['restaurants' => Restaurant::all()]);
     }
 
     public function addFood(Request $request)
@@ -42,7 +51,11 @@ class AdminFoodController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        // todo: validation
+        $request->validate([
+            'name' => 'required|string',
+            'restaurant' => 'required|exists:restaurants,id',
+            'price' => 'required|numeric'
+        ]);
 
         $food                = new Food();
         $food->name          = $request->get('name');
@@ -51,5 +64,17 @@ class AdminFoodController extends Controller
         $food->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
+    public function foodsList()
+    {
+        allowed(Role::FOOD_MANAGER);
+
+        $data['foods'] = Food::query()
+            ->orderBy('restaurant_id')
+            ->with('Restaurant')
+            ->get();
+
+        return view('admin_food.foods_list', $data);
     }
 }

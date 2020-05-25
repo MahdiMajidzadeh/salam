@@ -8,7 +8,7 @@
         @foreach($bookings as $booking)
             <div class="card my-3">
                 <div class="card-body">
-                    <h3 class="card-title">{{ jdfw($booking->booking_date) }}</h3>
+                    <h3 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h3>
                     <p class="card-text">
                     @foreach($booking->foods as $food)
                         <div class="custom-control custom-radio">

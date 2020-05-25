@@ -26,4 +26,11 @@ class AccountsController extends Controller
 
         return redirect()->back()->with('msg-error', __('msg.login_wrong'));
     }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect()->route('login');
+    }
 }

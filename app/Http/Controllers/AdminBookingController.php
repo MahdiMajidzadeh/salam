@@ -6,7 +6,6 @@ use App\Enum\Role;
 use App\Model\Booking;
 use App\Model\Food;
 use App\Model\Meal;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdminBookingController extends Controller
@@ -24,6 +23,13 @@ class AdminBookingController extends Controller
     public function addSubmit(Request $request)
     {
         allowed(Role::FOOD_MANAGER);
+
+        $request->validate([
+            'meal' => 'required|exists:meals,id',
+            'food_main' => 'required|exists:foods,id',
+            'foods' => 'array',
+            'foods.*' => 'distinct|exists:foods,id|different:food_main'
+        ]);
 
         $booking                  = new Booking();
         $booking->booking_date    = gmdate('Y-m-d', (int)$request->get('date_alt'));
