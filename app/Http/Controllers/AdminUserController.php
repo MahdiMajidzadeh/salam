@@ -33,6 +33,21 @@ class AdminUserController extends Controller
         return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
     }
 
+    private function createUser($data)
+    {
+        Validator::make($data, [
+            'name'   => 'required|alpha',
+            'mobile' => 'required|digits:11|unique:users,mobile',
+        ])->validate();
+
+        $user           = new User();
+        $user->name     = $data['name'];
+        $user->mobile   = $data['mobile'];
+        $user->password = Hash::make($data['mobile']);
+        $user->role_id  = Role::USER;
+        $user->save();
+    }
+
     public function add(Request $request)
     {
         allowed(Role::USER_MANAGER);
@@ -49,39 +64,21 @@ class AdminUserController extends Controller
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
 
-    private function createUser($data)
-    {
-        Validator::make($data, [
-            'name' => 'required|alpha',
-            'mobile' => 'required|digits:11|unique:users,mobile'
-        ])->validate();
-
-        $user = new User();
-        $user->name = $data['name'];
-        $user->mobile = $data['mobile'];
-        $user->password = Hash::make($data['mobile']);
-        $user->role_id = Role::USER;
-        $user->save();
-    }
-
     public function usersList(Request $request)
     {
         allowed(Role::USER_MANAGER);
 
-        $users = User::query();
+        $query = User::query();
 
         if ($request->filled('mobile')) {
-
-            $users->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-
-        } elseif ($request->filled('name')) {
-
-            $users->where('name', 'like', '%' . $request->get('name') . '%');
-
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
-        $users = $users->orderByDesc('id')->paginate(30);
+        $data['users'] = $query->orderBy('name', 'asc')
+            ->paginate(30);
 
-        return view('admin_user.users_list', compact('users'));
+        return view('admin_user.users_list', $data);
     }
 }
