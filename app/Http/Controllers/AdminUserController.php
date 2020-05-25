@@ -80,6 +80,8 @@ class AdminUserController extends Controller
 
     public function usersList()
     {
+        allowed(Role::USER_MANAGER);
+
         $users = User::query()->orderByDesc('id')->paginate(30);
 
         return view('admin_user.users_list', compact('users'));
