@@ -16,7 +16,7 @@ class ReservationsController extends Controller
             ->get()
             ->pluck('booking_id');
 
-        $data['bookings'] = Booking::with(['foods', 'defaultFood', 'meal'])
+        $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
             ->where('booking_date', '>', Carbon::now()->subDays(2)->startOfDay())
             ->whereNotIn('id', $oldReservation)
             ->get();
