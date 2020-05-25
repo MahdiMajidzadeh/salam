@@ -41,14 +41,18 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($booking->reservations as $reservation)
-                <tr>
-                    <td>{{ $reservation->user->name }}</td>
-                    <td>{{ $reservation->food->name }}</td>
-                    <td>{{ $reservation->food->restaurant->name }}</td>
-                    <td></td>
-                </tr>
+            @foreach($foods as $food)
+
+                @foreach($food as $reservation)
+                    <tr>
+                        <td>{{ $reservation->user->name }}</td>
+                        <td>{{ $reservation->food->name }}</td>
+                        <td>{{ $reservation->food->restaurant->name }}</td>
+                        <td></td>
+                    </tr>
+                @endforeach
             @endforeach
+
             </tbody>
         </table>
     @endif
