@@ -22,7 +22,7 @@ class AdminFoodController extends Controller
         allowed(Role::FOOD_MANAGER);
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string'
+            'name' => 'required|string|unique:restaurants,name'
         ]);
 
         if ($validator->fails()) {
