@@ -29,6 +29,13 @@ class AdminFoodController extends Controller
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
 
+    public function restaurantsList()
+    {
+        allowed(Role::FOOD_MANAGER);
+
+        return view('admin_food.restaurants_list', ['restaurants' => Restaurant::all()]);
+    }
+
     public function addFood(Request $request)
     {
         allowed(Role::FOOD_MANAGER);
@@ -51,5 +58,14 @@ class AdminFoodController extends Controller
         $food->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
+    public function foodsList()
+    {
+        allowed(Role::FOOD_MANAGER);
+
+        $data['foods'] = Food::query()->orderBy('restaurant_id')->get();
+
+        return view('admin_food.foods_list', $data);
     }
 }
