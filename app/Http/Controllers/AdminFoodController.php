@@ -70,7 +70,10 @@ class AdminFoodController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        $data['foods'] = Food::query()->orderBy('restaurant_id')->get();
+        $data['foods'] = Food::query()
+            ->orderBy('restaurant_id')
+            ->with('Restaurant')
+            ->get();
 
         return view('admin_food.foods_list', $data);
     }
