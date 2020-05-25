@@ -6,6 +6,7 @@
     <table class="table table-striped">
         <thead>
         <tr>
+            <th scope="col">شناسه</th>
             <th scope="col">نام غذا</th>
             <th scope="col">قیمت</th>
             <th scope="col">رستوران</th>
@@ -14,6 +15,7 @@
         <tbody>
         @foreach($foods as $food)
             <tr>
+                <td>{{ $food->id }}</td>
                 <td>{{ $food->name }}</td>
                 <td>{{ $food->price }}</td>
                 <td>{{ $food->Restaurant->name }}</td>
