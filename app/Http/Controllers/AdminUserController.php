@@ -64,11 +64,23 @@ class AdminUserController extends Controller
         $user->save();
     }
 
-    public function usersList()
+    public function usersList(Request $request)
     {
         allowed(Role::USER_MANAGER);
 
-        $users = User::query()->orderByDesc('id')->paginate(30);
+        $users = User::query();
+
+        if ($request->filled('mobile')) {
+
+            $users->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+
+        } elseif ($request->filled('name')) {
+
+            $users->where('name', 'like', '%' . $request->get('name') . '%');
+
+        }
+
+        $users = $users->orderByDesc('id')->paginate(30);
 
         return view('admin_user.users_list', compact('users'));
     }
