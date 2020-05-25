@@ -180,5 +180,7 @@ return [
         'password_double_new' => 'تکرار رمز',
         'price' => 'قیمت',
         'restaurant' => 'رستوران',
+        'foods.*' => 'غذای فرعی',
+        'food_main' => 'غذای اصلی',
     ],
 ];
