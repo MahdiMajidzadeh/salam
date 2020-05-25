@@ -178,5 +178,7 @@ return [
         'password_old' => 'رمز عبور فعلی',
         'password_new' => 'رمز جدید',
         'password_double_new' => 'تکرار رمز',
+        'price' => 'قیمت',
+        'restaurant' => 'رستوران',
     ],
 ];
