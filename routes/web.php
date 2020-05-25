@@ -24,8 +24,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::post('/user/bulk', 'AdminUserController@bulkSubmit');
     Route::get('/restaurant/add', 'AdminFoodController@addRestaurant');
     Route::post('/restaurant/add', 'AdminFoodController@addRestaurantSubmit');
+    Route::get('/restaurants', 'AdminFoodController@restaurantsList');
     Route::get('/food/add', 'AdminFoodController@addFood');
     Route::post('/food/add', 'AdminFoodController@addFoodSubmit');
+    Route::get('/foods', 'AdminFoodController@foodsList');
     Route::get('/booking/add', 'AdminBookingController@add');
     Route::post('/booking/add', 'AdminBookingController@addSubmit');
     Route::get('/booking/day-list', 'AdminBookingController@dayList');
