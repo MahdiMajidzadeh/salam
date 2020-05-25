@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>قیمت</label>
-                            <input type="text" class="form-control" name="price">
+                            <input type="number" class="form-control" name="price">
                         </div>
                         <button type="submit" class="btn btn-primary">افزودن</button>
                     </form>
