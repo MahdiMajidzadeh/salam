@@ -6,6 +6,7 @@ use App\Enum\Role;
 use App\Model\Food;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AdminFoodController extends Controller
 {
@@ -20,7 +21,13 @@ class AdminFoodController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        // todo: validation
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
 
         $restaurant       = new Restaurant();
         $restaurant->name = $request->get('name');
@@ -49,7 +56,15 @@ class AdminFoodController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        // todo: validation
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'restaurant' => 'required|exists:restaurants,id',
+            'price' => 'required|numeric'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
 
         $food                = new Food();
         $food->name          = $request->get('name');
