@@ -71,7 +71,8 @@ class AdminFoodController extends Controller
         allowed(Role::FOOD_MANAGER);
 
         $data['foods'] = Food::query()
-            ->orderBy('restaurant_id')
+            ->orderBy('restaurant_id', 'asc')
+            ->orderBy('name', 'asc')
             ->with('Restaurant')
             ->get();
 

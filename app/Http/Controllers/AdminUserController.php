@@ -92,20 +92,17 @@ class AdminUserController extends Controller
     {
         allowed(Role::USER_MANAGER);
 
-        $users = User::query();
+        $query = User::query();
 
         if ($request->filled('mobile')) {
-
-            $users->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-
-        } elseif ($request->filled('name')) {
-
-            $users->where('name', 'like', '%' . $request->get('name') . '%');
-
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
-        $users = $users->orderByDesc('id')->paginate(30);
+        $data['users'] = $query->orderBy('name', 'asc')
+            ->paginate(30);
 
-        return view('admin_user.users_list', compact('users'));
+        return view('admin_user.users_list', $data);
     }
 }
