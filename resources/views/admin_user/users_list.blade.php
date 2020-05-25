@@ -15,6 +15,7 @@
                     <input type="text" class="form-control" id="mobile" name="mobile">
                 </div>
                 <button type="submit" class="btn btn-primary ml-3">جستجو</button>
+                <a href="{{ url('admin/users') }}" class="btn btn-secondary ml-3">پاک کردن فیلتر</a>
             </form>
         </div>
     </div>
