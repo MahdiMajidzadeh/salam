@@ -11,14 +11,13 @@ class ReservationsController extends Controller
 {
     public function foodList()
     {
-        $oldReservation = Reservation::with(['booking'])
+        $data['reserved'] = Reservation::query()
             ->where('user_id', auth()->id())
-            ->get()
-            ->pluck('booking_id');
+            ->where('created_at', '>', Carbon::now()->subWeek()->startOfDay())
+            ->get();
 
         $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
             ->where('booking_date', '>', Carbon::now()->subDays(2)->startOfDay())
-            ->whereNotIn('id', $oldReservation)
             ->get();
 
         return view('reserves.food-list', $data);
@@ -42,9 +41,9 @@ class ReservationsController extends Controller
                 continue;
             }
 
-            $reservation                = new Reservation();
-            $reservation->user_id       = auth()->id();
-            $reservation->booking_id    = $booking->id;
+            $reservation = Reservation::query()
+                ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
+
             $reservation->food_id       = $food->id;
             $reservation->price         = $food->price;
             $reservation->price_default = $booking->defaultFood->price;
@@ -58,8 +57,7 @@ class ReservationsController extends Controller
     {
         $data['reservations'] = Reservation::with(['food', 'booking' => function($q) {
             $q->orderBy('booking_date', 'desc');
-        }])
-            ->where('user_id', auth()->id())
+        }])->where('user_id', auth()->id())
             ->get();
 
         return view('reserves.history', $data);
