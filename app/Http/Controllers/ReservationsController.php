@@ -62,4 +62,16 @@ class ReservationsController extends Controller
 
         return view('reserves.history', $data);
     }
+
+    /**
+     * @param Reservation $reservation
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteReservation(Reservation $reservation)
+    {
+        $reservation->delete();
+
+        return back();
+    }
 }
