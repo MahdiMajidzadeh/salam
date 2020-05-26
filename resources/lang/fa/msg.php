@@ -6,4 +6,5 @@ return [
     'password_ok'    => 'رمز با موفقیت تغییر کرد.',
     'user_bulk_ok'   => 'تعداد :count نفر اضافه شد',
     'add_ok'   => ':name اضافه شد.',
+    'add_failed'   => ':name با مقدار :value به مشکل خورد.',
 ];
