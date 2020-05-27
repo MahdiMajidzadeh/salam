@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminUserController extends Controller
 {
+    private $isFailed = false;
+
+    private $errors = [];
+
     public function bulk(Request $request)
     {
         allowed(Role::USER_MANAGER);
@@ -30,7 +34,9 @@ class AdminUserController extends Controller
             $this->createUser(compact('name', 'mobile'));
         }
 
-        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
+        if ($this->isFailed) {
+            return redirect()->back()->withErrors($this->errors);
+        }
     }
 
     private function createUser($data)
@@ -46,6 +52,7 @@ class AdminUserController extends Controller
         $user->password = Hash::make($data['mobile']);
         $user->role_id  = Role::USER;
         $user->save();
+        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
     }
 
     public function add(Request $request)
@@ -61,7 +68,38 @@ class AdminUserController extends Controller
 
         $this->createUser($request->all());
 
+        if ($this->isFailed) {
+            return redirect()->back()->withErrors($this->errors);
+        }
+
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
+    private function createUser($data)
+    {
+        $validator = Validator::make($data, [
+            'name' => 'required|alpha',
+            'mobile' => 'required|digits:11|unique:users,mobile'
+        ]);
+
+        if ($validator->fails()) {
+            $this->isFailed = true;
+
+            $this->errors = $validator->errors()
+                ->add('data', __('msg.add_failed', [
+                    'name' => $data['name'],
+                    'value' => $data['mobile']
+                ]))->merge($this->errors);
+
+            return;
+        }
+
+        $user = new User();
+        $user->name = $data['name'];
+        $user->mobile = $data['mobile'];
+        $user->password = Hash::make($data['mobile']);
+        $user->role_id = Role::USER;
+        $user->save();
     }
 
     public function usersList(Request $request)

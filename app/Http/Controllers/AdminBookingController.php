@@ -7,6 +7,7 @@ use App\Model\Booking;
 use App\Model\Food;
 use App\Model\Meal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class AdminBookingController extends Controller
 {
@@ -28,11 +29,11 @@ class AdminBookingController extends Controller
             'meal' => 'required|exists:meals,id',
             'food_main' => 'required|exists:foods,id',
             'foods' => 'array',
-            'foods.*' => 'distinct|exists:foods,id|different:food_main'
+            'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main'
         ]);
 
         $booking                  = new Booking();
-        $booking->booking_date    = gmdate('Y-m-d', (int)$request->get('date_alt'));
+        $booking->booking_date    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
         $booking->meal_id         = $request->get('meal');
         $booking->default_food_id = $request->get('food_main');
         $booking->save();
@@ -56,9 +57,8 @@ class AdminBookingController extends Controller
         if ($request->has('meal') && $request->has('date_alt')) {
             $booking = Booking::with(['foods','reservations'])
                 ->where(
-                    'booking_date', gmdate('Y-m-d', (int)$request->get('date_alt'))
-                )
-                ->where('meal_id', $request->get('meal'))
+                    'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
+                )->where('meal_id', $request->get('meal'))
                 ->first();
 
             if ($booking) {
