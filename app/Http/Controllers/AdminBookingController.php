@@ -29,19 +29,19 @@ class AdminBookingController extends Controller
             'meal' => 'required|exists:meals,id',
             'food_main' => 'required|exists:foods,id',
             'foods' => 'array',
-            'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main'
+            'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main',
         ]);
 
-        $booking                  = new Booking();
-        $booking->booking_date    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
-        $booking->meal_id         = $request->get('meal');
+        $booking = new Booking();
+        $booking->booking_date = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
+        $booking->meal_id = $request->get('meal');
         $booking->default_food_id = $request->get('food_main');
         $booking->save();
 
         $booking->foods()->attach($request->get('food_main'));
 
         foreach ($request->get('foods') as $food) {
-            if (!is_null($food)) {
+            if (! is_null($food)) {
                 $booking->foods()->attach($food);
             }
         }
@@ -51,11 +51,11 @@ class AdminBookingController extends Controller
 
     public function dayList(Request $request)
     {
-        $data['meals']   = Meal::all();
+        $data['meals'] = Meal::all();
         $data['hasData'] = false;
 
         if ($request->has('meal') && $request->has('date_alt')) {
-            $booking = Booking::with(['foods','reservations'])
+            $booking = Booking::with(['foods', 'reservations'])
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))

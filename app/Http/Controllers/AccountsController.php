@@ -16,8 +16,8 @@ class AccountsController extends Controller
 
         $user = User::where('mobile', $mobile)->first();
 
-        if($user) {
-            if (Hash::check($password,$user->password)) {
+        if ($user) {
+            if (Hash::check($password, $user->password)) {
                 Auth::login($user, true);
 
                 return redirect('dashboard');

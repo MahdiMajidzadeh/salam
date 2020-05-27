@@ -33,14 +33,14 @@ class PagesController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (!Hash::check(
+        if (! Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
             return redirect()->back()->with('msg-error', __('msg.password_wrong'));
         }
 
-        $user           = auth()->user();
+        $user = auth()->user();
         $user->password = Hash::make($request->get('password_new'));
         $user->save();
 
