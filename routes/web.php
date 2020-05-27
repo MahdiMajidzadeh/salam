@@ -12,7 +12,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
     Route::post('/password-reset', 'PagesController@passwordResetSubmit');
     Route::get('/reserve', 'ReservationsController@foodList');
     Route::post('/reserve', 'ReservationsController@foodListSubmit');
-    Route::delete('/reserve/{reservation}', 'ReservationsController@deleteReservation');
+    Route::get('/reserve/delete/{reservation}', 'ReservationsController@deleteReservation');
     Route::get('/history', 'ReservationsController@history');
 });
 

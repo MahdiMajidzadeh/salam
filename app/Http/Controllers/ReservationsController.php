@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class ReservationsController extends Controller
@@ -56,22 +57,31 @@ class ReservationsController extends Controller
 
     public function history(Request $request)
     {
-        $data['reservations'] = Reservation::with(['food', 'booking' => function($q) {
-            $q->orderBy('booking_date', 'desc');
-        }])->where('user_id', auth()->id())
-            ->get();
+        $data['reservations'] = Reservation::with(['food'])
+            ->join('bookings', 'reservations.booking_id', 'bookings.id')
+            ->where('user_id', auth()->id())
+            ->orderBy('bookings.booking_date', 'desc')
+            ->get([
+                DB::raw('reservations.*'),
+                'bookings.booking_date'
+            ]);
 
         return view('reserves.history', $data);
     }
 
     /**
      * @param Reservation $reservation
+     *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
     public function deleteReservation(Reservation $reservation)
     {
-        if (Gate::allows('delete-reservation', $reservation)) {
+        if (
+            (auth()->id() === $reservation->user_id)
+            &&
+            ($reservation->booking->booking_date > now()->addDays(config('nahar.gap_day'))->startOfDay())
+        ) {
             $reservation->delete();
         }
 
