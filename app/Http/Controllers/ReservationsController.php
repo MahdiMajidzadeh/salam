@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ReservationsController extends Controller
 {
@@ -70,7 +71,9 @@ class ReservationsController extends Controller
      */
     public function deleteReservation(Reservation $reservation)
     {
-        $reservation->delete();
+        if (Gate::allows('delete-reservation', $reservation)) {
+            $reservation->delete();
+        }
 
         return back();
     }
