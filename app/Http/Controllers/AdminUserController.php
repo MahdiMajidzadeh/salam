@@ -64,7 +64,7 @@ class AdminUserController extends Controller
     private function createUser($data)
     {
         $validator = Validator::make($data, [
-            'name' => 'required|alpha',
+            'name' => 'required',
             'mobile' => 'required|digits:11|unique:users,mobile'
         ]);
 

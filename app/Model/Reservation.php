@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
+    protected $guarded = ['_token'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -20,6 +22,4 @@ class Reservation extends Model
     {
         return $this->belongsTo(Food::class);
     }
-
-    protected $guarded = ['_token'];
 }
