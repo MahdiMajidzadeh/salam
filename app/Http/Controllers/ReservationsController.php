@@ -6,19 +6,19 @@ use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ReservationsController extends Controller
 {
     public function foodList()
     {
-        $oldReservation = Reservation::with(['booking'])
+        $data['reserved'] = Reservation::query()
             ->where('user_id', auth()->id())
-            ->get()
-            ->pluck('booking_id');
+            ->where('created_at', '>', Carbon::now()->subWeek()->startOfDay())
+            ->get();
 
         $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
             ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
-            ->whereNotIn('id', $oldReservation)
             ->get();
 
         return view('reserves.food-list', $data);
@@ -42,9 +42,9 @@ class ReservationsController extends Controller
                 continue;
             }
 
-            $reservation                = new Reservation();
-            $reservation->user_id       = auth()->id();
-            $reservation->booking_id    = $booking->id;
+            $reservation = Reservation::query()
+                ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
+
             $reservation->food_id       = $food->id;
             $reservation->price         = $food->price;
             $reservation->price_default = $booking->defaultFood->price;
@@ -58,10 +58,23 @@ class ReservationsController extends Controller
     {
         $data['reservations'] = Reservation::with(['food', 'booking' => function($q) {
             $q->orderBy('booking_date', 'desc');
-        }])
-            ->where('user_id', auth()->id())
+        }])->where('user_id', auth()->id())
             ->get();
 
         return view('reserves.history', $data);
+    }
+
+    /**
+     * @param Reservation $reservation
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     */
+    public function deleteReservation(Reservation $reservation)
+    {
+        if (Gate::allows('delete-reservation', $reservation)) {
+            $reservation->delete();
+        }
+
+        return back();
     }
 }

@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('delete-reservation', function ($user, $reservation) {
+            return ($user->id === $reservation->user_id)
+                && ($reservation->booking->booking_date > now()->addDays(config('nahar.gap_day'))->startOfDay());
+        });
     }
 }

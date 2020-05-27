@@ -14,6 +14,13 @@
                         <div class="custom-control custom-radio">
                             <input type="radio" id="{{ $booking->id.'-'.$food->id }}" name="b-{{ $booking->id }}"
                                    value="{{ $food->id }}"
+                                   @if(
+                                   $reserved->where('booking_id',$booking->id)
+                                   ->where('food_id',$food->id)
+                                   ->isNotEmpty()
+                                   )
+                                   checked
+                                   @endif
                                    class="custom-control-input">
                             <label class="custom-control-label pb-3" for="{{ $booking->id.'-'.$food->id }}">
                                 <span class="h6 font-weight-bold">{{ $food->name }}</span>

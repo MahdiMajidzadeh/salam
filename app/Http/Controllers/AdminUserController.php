@@ -37,6 +37,8 @@ class AdminUserController extends Controller
         if ($this->isFailed) {
             return redirect()->back()->withErrors($this->errors);
         }
+
+        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
     }
 
     public function add(Request $request)

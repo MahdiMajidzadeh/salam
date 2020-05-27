@@ -20,4 +20,6 @@ class Reservation extends Model
     {
         return $this->belongsTo(Food::class);
     }
+
+    protected $guarded = ['_token'];
 }
