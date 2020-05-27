@@ -39,22 +39,6 @@ class AdminUserController extends Controller
         }
     }
 
-    private function createUser($data)
-    {
-        Validator::make($data, [
-            'name'   => 'required',
-            'mobile' => 'required|digits:11|unique:users,mobile',
-        ])->validate();
-
-        $user           = new User();
-        $user->name     = $data['name'];
-        $user->mobile   = $data['mobile'];
-        $user->password = Hash::make($data['mobile']);
-        $user->role_id  = Role::USER;
-        $user->save();
-        return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
-    }
-
     public function add(Request $request)
     {
         allowed(Role::USER_MANAGER);
