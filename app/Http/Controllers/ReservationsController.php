@@ -17,7 +17,7 @@ class ReservationsController extends Controller
             ->get();
 
         $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
-            ->where('booking_date', '>', Carbon::now()->subDays(2)->startOfDay())
+            ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
             ->get();
 
         return view('reserves.food-list', $data);
