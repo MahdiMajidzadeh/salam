@@ -21,10 +21,10 @@ class AdminFoodController extends Controller
         allowed(Role::FOOD_MANAGER);
 
         $request->validate([
-            'name' => 'required|string|unique:restaurants,name'
+            'name' => 'required|string|unique:restaurants,name',
         ]);
 
-        $restaurant       = new Restaurant();
+        $restaurant = new Restaurant();
         $restaurant->name = $request->get('name');
         $restaurant->save();
 
@@ -54,13 +54,13 @@ class AdminFoodController extends Controller
         $request->validate([
             'name' => 'required|string',
             'restaurant' => 'required|exists:restaurants,id',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
         ]);
 
-        $food                = new Food();
-        $food->name          = $request->get('name');
+        $food = new Food();
+        $food->name = $request->get('name');
         $food->restaurant_id = $request->get('restaurant');
-        $food->price         = to_en($request->get('price')); //todo convert number
+        $food->price = to_en($request->get('price')); //todo convert number
         $food->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));

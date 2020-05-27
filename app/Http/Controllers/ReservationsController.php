@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
@@ -31,7 +31,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking   = Booking::find($bookingId);
+            $booking = Booking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -46,8 +46,8 @@ class ReservationsController extends Controller
             $reservation = Reservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
-            $reservation->food_id       = $food->id;
-            $reservation->price         = $food->price;
+            $reservation->food_id = $food->id;
+            $reservation->price = $food->price;
             $reservation->price_default = $booking->defaultFood->price;
             $reservation->save();
         }
@@ -63,7 +63,7 @@ class ReservationsController extends Controller
             ->orderBy('bookings.booking_date', 'desc')
             ->get([
                 DB::raw('reservations.*'),
-                'bookings.booking_date'
+                'bookings.booking_date',
             ]);
 
         return view('reserves.history', $data);

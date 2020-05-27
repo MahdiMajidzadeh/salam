@@ -30,7 +30,7 @@ class AdminUserController extends Controller
         $lines = preg_split('/\R/', $users);
 
         foreach ($lines as $line) {
-            list($name, $mobile) = explode('|', $line);
+            [$name, $mobile] = explode('|', $line);
             $this->createUser(compact('name', 'mobile'));
         }
 
@@ -65,7 +65,7 @@ class AdminUserController extends Controller
     {
         $validator = Validator::make($data, [
             'name' => 'required',
-            'mobile' => 'required|digits:11|unique:users,mobile'
+            'mobile' => 'required|digits:11|unique:users,mobile',
         ]);
 
         if ($validator->fails()) {
@@ -74,7 +74,7 @@ class AdminUserController extends Controller
             $this->errors = $validator->errors()
                 ->add('data', __('msg.add_failed', [
                     'name' => $data['name'],
-                    'value' => $data['mobile']
+                    'value' => $data['mobile'],
                 ]))->merge($this->errors);
 
             return;
@@ -95,9 +95,9 @@ class AdminUserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
