@@ -42,7 +42,9 @@
             </thead>
             <tbody>
             @foreach($foods as $food)
-
+                @php
+                    $food = $food->sortBy('user.name')
+                @endphp
                 @foreach($food as $reservation)
                     <tr>
                         <td>{{ $reservation->user->name }}</td>
