@@ -19,6 +19,9 @@
             لطفا توجه داشته باشید که عدم ثبت وعده‌ها در سامانه ته‌دیگ، به منزله «انصراف» از سفارش و دریافت غذا خواهد بود.
         </div>
     </div>
+    @isset($todayReserved)
+        <div class="alert alert-secondary"> <غ></غ>ذای رزرو شده امروز : {{$todayReserved->food->name}} </div>
+    @endisset
     <div class="card my-4">
         <div class="card-body p-3">
             <a href="{{ url('dashboard/reserve') }}" class="btn btn-secondary">رزرو</a>
