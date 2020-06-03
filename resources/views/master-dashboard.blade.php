@@ -11,10 +11,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="{{ url('dashboard/reserve') }}">رزرو</a>--}}
+                {{--<a class="nav-link" href="{{ url('dashboard/reserve') }}">رزرو</a>--}}
                 {{--</li>--}}
                 {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">تاریخچه</a>--}}
+                {{--<a class="nav-link" href="#">تاریخچه</a>--}}
                 {{--</li>--}}
             </ul>
             @if(auth()->user()->role_id > 1)
@@ -26,6 +26,7 @@
             @endif
         </div>
     </nav>
-    <span class="my-3"> </span>
-    @yield('inner-content')
+    <div class="content">
+        @yield('inner-content')
+    </div>
 @endsection

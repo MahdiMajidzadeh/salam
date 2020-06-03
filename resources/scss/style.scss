@@ -3,7 +3,6 @@
 body{
   font-family: estedad;
   min-height: 100vh;
-  padding: 70px 0;
 }
 
 //rtl
@@ -13,6 +12,10 @@ body{
 .rtl .custom-radio .custom-control-label::after{
   left:inherit;
   right: 0;
+}
+
+.content{
+  padding: 70px 0;
 }
 
 // end-rtl
