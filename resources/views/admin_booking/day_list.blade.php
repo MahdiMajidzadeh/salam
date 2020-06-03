@@ -37,7 +37,6 @@
                 <th scope="col">اسم</th>
                 <th scope="col">غذا</th>
                 <th scope="col">رستوران</th>
-                <th scope="col">گرفته</th>
             </tr>
             </thead>
             <tbody>
@@ -50,7 +49,6 @@
                         <td>{{ $reservation->user->name }}</td>
                         <td>{{ $reservation->food->name }}</td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
-                        <td></td>
                     </tr>
                 @endforeach
             @endforeach
