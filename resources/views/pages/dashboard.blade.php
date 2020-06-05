@@ -20,7 +20,7 @@
         </div>
     </div>
     @isset($todayReserved)
-        <div class="alert alert-secondary"> <غ></غ>ذای رزرو شده امروز : {{$todayReserved->food->name}} </div>
+        <div class="alert alert-secondary"> غذای رزرو شده امروز : {{$todayReserved->food->name}} </div>
     @endisset
     <div class="card my-4">
         <div class="card-body p-3">
