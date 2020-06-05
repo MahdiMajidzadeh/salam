@@ -36,7 +36,9 @@ $jmonths=[
                     <label>سال: </label>
                     <select class="custom-select" name="year">
                         @foreach(range(1399,1450) as $yearNumber)
-                            <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>{{ $yearNumber }}</option>
+                            <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>
+                                {{ $yearNumber }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
