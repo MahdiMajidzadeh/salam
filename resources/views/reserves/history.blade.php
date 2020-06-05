@@ -42,7 +42,7 @@ $jmonths=[
                         @endforeach
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary ml-3">جستجو</button>
+                <button type="submit" class="btn btn-primary ml-3">فیلتر کن</button>
             </form>
         </div>
     </div>
