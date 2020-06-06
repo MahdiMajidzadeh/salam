@@ -2,49 +2,40 @@
 
 @section('title', 'تاریخچه')
 
-@php(
-$jmonths=[
-'فروردین',
-'اردیبهشت',
-'خرداد',
-'تیر',
-'مرداد',
-'شهریور',
-'مهر',
-'آبان',
-'آذر',
-'دی',
-'بهمن',
-'اسفند',
-]
-)
 @section('inner-content')
-    <div class="card  d-print-none">
-        <div class="card-body">
-            <form class="form-inline">
-                <div class="form-group ml-3">
-                    <label>ماه: </label>
-                    <select class="custom-select" name="month">
-                        @foreach(range(1,12) as $monthNumber)
-                            <option value="{{$monthNumber}}" {{$monthNumber==$month ?'selected':''}}>
-                                {{ $jmonths[$monthNumber-1] }}
-                            </option>
-                        @endforeach
-                    </select>
+    <div class="card my-4">
+        <div class="card-body p-3">
+            <div class="row">
+                <div class="col-12 col-md-6 my-auto">
+                    جمع ما به التفاوت این ماه:
+                    <span style="font-weight: bold;">{{ $sum }}</span>
                 </div>
-                <div class="form-group ml-3">
-                    <label>سال: </label>
-                    <select class="custom-select" name="year">
-                        @foreach(range(1399,1450) as $yearNumber)
-                            <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>
-                                {{ $yearNumber }}
-                            </option>
-                        @endforeach
-                    </select>
+                <div class="col-12 col-md-6">
+                    <form class="form-inline">
+                        <div class="form-group ml-3">
+                            <label>ماه: </label>
+                            <select class="custom-select form-control-sm" name="month">
+                                @foreach(range(1,12) as $monthNumber)
+                                    <option value="{{ $monthNumber }}" {{$monthNumber == $month ? 'selected' : '' }}>
+                                        {{ $jMonths[$monthNumber - 1] }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group ml-3">
+                            <label>سال: </label>
+                            <select class="custom-select form-control-sm" name="year">
+                                @foreach(range(1399,1450) as $yearNumber)
+                                    <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>
+                                        {{ $yearNumber }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-3 btn-sm">فیلتر کن</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary ml-3">فیلتر کن</button>
-            </form>
-            <div class="">جمع ما به التفاوت این ماه: {{$reservations->sum(function ($reservation){return $reservation->price - $reservation->price_default;})}}</div>
+            </div>
         </div>
     </div>
     <table class="table table-striped">

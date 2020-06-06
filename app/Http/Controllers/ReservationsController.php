@@ -91,6 +91,25 @@ class ReservationsController extends Controller
                 'bookings.booking_date',
             ]);
 
+        $data['sum'] = $data['reservations']->sum(function ($reservation){
+            return $reservation->price - $reservation->price_default;
+        });
+
+        $data['jMonths'] = [
+            'فروردین',
+            'اردیبهشت',
+            'خرداد',
+            'تیر',
+            'مرداد',
+            'شهریور',
+            'مهر',
+            'آبان',
+            'آذر',
+            'دی',
+            'بهمن',
+            'اسفند',
+        ];
+
         return view('reserves.history', $data);
     }
 
