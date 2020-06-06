@@ -44,6 +44,7 @@ $jmonths=[
                 </div>
                 <button type="submit" class="btn btn-primary ml-3">فیلتر کن</button>
             </form>
+            <div class="">جمع ما به التفاوت این ماه: {{$reservations->sum(function ($reservation){return $reservation->price - $reservation->price_default;})}}</div>
         </div>
     </div>
     <table class="table table-striped">
