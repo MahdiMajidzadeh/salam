@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enum\Role;
+use App\Model\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,7 +11,18 @@ class PagesController extends Controller
 {
     public function dashboard(Request $request)
     {
-        return view('pages.dashboard');
+        $data = [];
+        $booking = Booking::query()
+            ->where('booking_date', now()->toDateString())
+            ->first();
+
+        if ($booking !== null) {
+            $data['todayReserved'] = $booking->reservations()
+                ->where('user_id', auth()->id())
+                ->first();
+        }
+
+        return view('pages.dashboard', $data);
     }
 
     public function adminDashboard(Request $request)

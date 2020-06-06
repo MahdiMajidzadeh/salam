@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
-use Carbon\Carbon;
+use Morilog\Jalali\Jalalian;
 use Illuminate\Http\Request;
+use Morilog\Jalali\CalendarUtils;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 
 class ReservationsController extends Controller
 {
@@ -57,9 +58,33 @@ class ReservationsController extends Controller
 
     public function history(Request $request)
     {
+        $year = jdate(now())->getYear();
+        $month = jdate(now())->getMonth();
+        $daysOfMonth = 31;
+
+        if ($request->filled('month')) {
+            $month = $request->get('month');
+        }
+        if ($request->filled('year')) {
+            $year = $request->get('year');
+        }
+
+        if ($month > 6) {
+            $daysOfMonth = 30;
+        }
+        if (!CalendarUtils::isLeapJalaliYear($year) && $month === 12) {
+            $daysOfMonth = 29;
+        }
+
+        $firstDayOfMonth = (new Jalalian($year, $month, 1))->toCarbon()->toDateString();
+        $lastDayOfMonth = (new Jalalian($year, $month, $daysOfMonth))->toCarbon()->toDateString();
+
+        $data['year'] = $year;
+        $data['month'] = $month;
         $data['reservations'] = Reservation::with(['food'])
             ->join('bookings', 'reservations.booking_id', 'bookings.id')
             ->where('user_id', auth()->id())
+            ->whereBetween('bookings.booking_date', [$firstDayOfMonth, $lastDayOfMonth])
             ->orderBy('bookings.booking_date', 'desc')
             ->get([
                 DB::raw('reservations.*'),
