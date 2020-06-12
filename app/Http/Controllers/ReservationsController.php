@@ -58,57 +58,21 @@ class ReservationsController extends Controller
 
     public function history(Request $request)
     {
-        $year = jdate(now())->getYear();
-        $month = jdate(now())->getMonth();
-        $daysOfMonth = 31;
+        $data = faldom();
 
-        if ($request->filled('month')) {
-            $month = $request->get('month');
-        }
-        if ($request->filled('year')) {
-            $year = $request->get('year');
-        }
-
-        if ($month > 6) {
-            $daysOfMonth = 30;
-        }
-        if (!CalendarUtils::isLeapJalaliYear($year) && $month === 12) {
-            $daysOfMonth = 29;
-        }
-
-        $firstDayOfMonth = (new Jalalian($year, $month, 1))->toCarbon()->toDateString();
-        $lastDayOfMonth = (new Jalalian($year, $month, $daysOfMonth))->toCarbon()->toDateString();
-
-        $data['year'] = $year;
-        $data['month'] = $month;
         $data['reservations'] = Reservation::with(['food'])
             ->join('bookings', 'reservations.booking_id', 'bookings.id')
             ->where('user_id', auth()->id())
-            ->whereBetween('bookings.booking_date', [$firstDayOfMonth, $lastDayOfMonth])
+            ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
             ->orderBy('bookings.booking_date', 'desc')
             ->get([
                 DB::raw('reservations.*'),
                 'bookings.booking_date',
             ]);
 
-        $data['sum'] = $data['reservations']->sum(function ($reservation){
+        $data['sum'] = $data['reservations']->sum(function ($reservation) {
             return $reservation->price - $reservation->price_default;
         });
-
-        $data['jMonths'] = [
-            'فروردین',
-            'اردیبهشت',
-            'خرداد',
-            'تیر',
-            'مرداد',
-            'شهریور',
-            'مهر',
-            'آبان',
-            'آذر',
-            'دی',
-            'بهمن',
-            'اسفند',
-        ];
 
         return view('reserves.history', $data);
     }
