@@ -24,10 +24,17 @@
     @endisset
     <div class="card my-4">
         <div class="card-body p-3">
-            <a href="{{ url('dashboard/reserve') }}" class="btn btn-secondary">رزرو</a>
-            <a href="{{ url('dashboard/history') }}" class="btn btn-secondary">تاریخچه</a>
-            <a href="{{ url('dashboard/password-reset') }}" class="btn btn-secondary">تغییر رمز</a>
-            <a href="{{ url('logout') }}" class="btn btn-secondary">خروج</a>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="font-weight-bold text-center">شناسه کاربری شما: {{auth()->id()}}</div>
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ url('dashboard/reserve') }}" class="btn btn-secondary">رزرو</a>
+                    <a href="{{ url('dashboard/history') }}" class="btn btn-secondary">تاریخچه</a>
+                    <a href="{{ url('dashboard/password-reset') }}" class="btn btn-secondary">تغییر رمز</a>
+                    <a href="{{ url('logout') }}" class="btn btn-secondary">خروج</a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
