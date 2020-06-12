@@ -18,6 +18,12 @@
                 <a href="{{ url('admin/booking/add') }}" class="btn btn-secondary">افزودن روزغذا</a>
             </div>
         </div>
+        <div class="card my-4">
+            <div class="card-body p-3">
+                <a href="{{ url('admin/users-bill') }}" class="btn btn-secondary">حساب ماهیانه کاربران</a>
+                <a href="{{ url('admin/restaurants-bill') }}" class="btn btn-secondary">حساب ماهیانه رستوران ها</a>
+            </div>
+        </div>
     @endif
     @if(auth()->user()->role_id >= \App\Enum\Role::USER_MANAGER)
     <div class="card my-4">
