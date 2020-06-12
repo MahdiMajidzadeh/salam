@@ -5,6 +5,10 @@ body{
   min-height: 100vh;
 }
 
+.card{
+  overflow: auto;
+}
+
 //rtl
 .rtl .custom-control-label::before{
   right: -5px;

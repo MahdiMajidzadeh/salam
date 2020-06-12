@@ -3,6 +3,13 @@
 @section('title', 'داشبورد')
 
 @section('inner-content')
+    @isset($todayReserved)
+        <div class="bg-info card text-white my-3">
+            <div class="card-body">
+                <h4 class="text-white m-0"> غذای امروز : <span class="font-weight-bold">{{$todayReserved->food->name}}</span></h4>
+            </div>
+        </div>
+    @endisset
     <div class="card overflow-hidden my-4">
         <div class="card-img">
             <img src="{{ asset('img/desktop.jpg') }}" class="img-fluid">
@@ -19,9 +26,6 @@
             لطفا توجه داشته باشید که عدم ثبت وعده‌ها در سامانه ته‌دیگ، به منزله «انصراف» از سفارش و دریافت غذا خواهد بود.
         </div>
     </div>
-    @isset($todayReserved)
-        <div class="alert alert-secondary"> غذای رزرو شده امروز : {{$todayReserved->food->name}} </div>
-    @endisset
     <div class="card my-4">
         <div class="card-body p-3">
             <a href="{{ url('dashboard/reserve') }}" class="btn btn-secondary">رزرو</a>
