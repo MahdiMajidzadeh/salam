@@ -34,6 +34,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">اسم</th>
                 <th scope="col">غذا</th>
                 <th scope="col">رستوران</th>
@@ -42,10 +43,11 @@
             <tbody>
             @foreach($foods as $food)
                 @php
-                    $food = $food->sortBy('user.name')
+                    $food = $food->sortBy('user.id')
                 @endphp
                 @foreach($food as $reservation)
                     <tr>
+                        <td>{{ $reservation->user->id }}</td>
                         <td>{{ $reservation->user->name }}</td>
                         <td>{{ $reservation->food->name }}</td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
