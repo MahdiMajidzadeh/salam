@@ -12,7 +12,7 @@ class AdminBillController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        $data = faldom();
+        $data = getMonthDays();
 
         $data['usersBill'] = Reservation::query()
             ->with('user')
@@ -29,7 +29,7 @@ class AdminBillController extends Controller
     {
         allowed(Role::FOOD_MANAGER);
 
-        $data = faldom();
+        $data = getMonthDays();
 
         $data['restaurantsBill'] = Reservation::query()
             ->with('food.restaurant')

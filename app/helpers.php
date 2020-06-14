@@ -47,12 +47,12 @@ if (! function_exists('roleName')) {
     }
 }
 
-if (!function_exists('faldom')) {
+if (!function_exists('getMonthDays')) {
     /**
      * First And Last Day of Month with Year and Month
      * @return array
      */
-    function faldom()
+    function getMonthDays() : array
     {
         $jdate = jdate(now());
         $year = $jdate->getYear();
@@ -74,7 +74,10 @@ if (!function_exists('faldom')) {
 }
 
 if (!function_exists('jMonths')) {
-    function jMonths()
+    /**
+     * @return array
+     */
+    function jMonths() : array
     {
         return [
             1 => 'فروردین',

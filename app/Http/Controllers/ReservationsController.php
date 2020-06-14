@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
-use Morilog\Jalali\Jalalian;
 use Illuminate\Http\Request;
-use Morilog\Jalali\CalendarUtils;
 use Illuminate\Support\Facades\DB;
 
 class ReservationsController extends Controller
@@ -58,7 +56,7 @@ class ReservationsController extends Controller
 
     public function history(Request $request)
     {
-        $data = faldom();
+        $data = getMonthDays();
 
         $data['reservations'] = Reservation::with(['food'])
             ->join('bookings', 'reservations.booking_id', 'bookings.id')
