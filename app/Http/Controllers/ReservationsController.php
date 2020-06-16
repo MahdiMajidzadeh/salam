@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

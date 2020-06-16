@@ -6,7 +6,6 @@ use App\Enum\Role;
 use App\Model\Reservation;
 
 class AdminBillController extends Controller
-
 {
     public function usersBill()
     {
