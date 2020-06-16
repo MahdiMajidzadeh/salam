@@ -47,12 +47,12 @@ if (! function_exists('roleName')) {
     }
 }
 
-if (!function_exists('getMonthDays')) {
+if (! function_exists('getMonthDays')) {
     /**
-     * First And Last Day of Month with Year and Month
+     * First And Last Day of Month with Year and Month.
      * @return array
      */
-    function getMonthDays() : array
+    function getMonthDays(): array
     {
         $jdate = jdate(now());
         $year = $jdate->getYear();
@@ -73,11 +73,11 @@ if (!function_exists('getMonthDays')) {
     }
 }
 
-if (!function_exists('jMonths')) {
+if (! function_exists('jMonths')) {
     /**
      * @return array
      */
-    function jMonths() : array
+    function jMonths(): array
     {
         return [
             1 => 'فروردین',
