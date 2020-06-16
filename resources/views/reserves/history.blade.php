@@ -15,9 +15,9 @@
                         <div class="form-group ml-3">
                             <label>ماه: </label>
                             <select class="custom-select form-control-sm" name="month">
-                                @foreach(range(1,12) as $monthNumber)
+                                @foreach(jMonths() as $monthNumber=>$monthName)
                                     <option value="{{ $monthNumber }}" {{$monthNumber == $month ? 'selected' : '' }}>
-                                        {{ $jMonths[$monthNumber - 1] }}
+                                        {{ $monthName }}
                                     </option>
                                 @endforeach
                             </select>
