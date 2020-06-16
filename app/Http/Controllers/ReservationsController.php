@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
-use Morilog\Jalali\Jalalian;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Morilog\Jalali\CalendarUtils;
 use Illuminate\Support\Facades\DB;
+use Morilog\Jalali\CalendarUtils;
+use Morilog\Jalali\Jalalian;
 
 class ReservationsController extends Controller
 {
@@ -72,7 +72,7 @@ class ReservationsController extends Controller
         if ($month > 6) {
             $daysOfMonth = 30;
         }
-        if (!CalendarUtils::isLeapJalaliYear($year) && $month === 12) {
+        if (! CalendarUtils::isLeapJalaliYear($year) && $month === 12) {
             $daysOfMonth = 29;
         }
 
@@ -91,7 +91,7 @@ class ReservationsController extends Controller
                 'bookings.booking_date',
             ]);
 
-        $data['sum'] = $data['reservations']->sum(function ($reservation){
+        $data['sum'] = $data['reservations']->sum(function ($reservation) {
             return $reservation->price - $reservation->price_default;
         });
 
