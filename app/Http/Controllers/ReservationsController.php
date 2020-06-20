@@ -14,7 +14,7 @@ class ReservationsController extends Controller
     {
         $data['reserved'] = Reservation::query()
             ->where('user_id', auth()->id())
-            ->where('created_at', '>', Carbon::now()->subWeek()->startOfDay())
+            ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
             ->get();
 
         $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
