@@ -21,11 +21,12 @@ class AdminBillController extends Controller
             ->get()
             ->groupBy('user_id');
 
-        $data['sum'] = $data['usersBill']->sum(function($userBill) {
-            return $userBill->sum(function($reservation) {
+        $data['sum'] = $data['usersBill']->sum(function ($userBill) {
+            return $userBill->sum(function ($reservation) {
                 if (($reservation->price - $reservation->price_default) < 0) {
                     return 0;
                 }
+
                 return $reservation->price - $reservation->price_default;
             });
         });
