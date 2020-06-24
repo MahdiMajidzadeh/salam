@@ -9,7 +9,7 @@ class AdminBillController extends Controller
 {
     public function usersBill()
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed(Role::ACCOUNTANT_MANAGER);
 
         $data = getMonthDays();
 
@@ -26,7 +26,7 @@ class AdminBillController extends Controller
 
     public function restaurantsBill()
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed(Role::ACCOUNTANT_MANAGER);
 
         $data = getMonthDays();
 
