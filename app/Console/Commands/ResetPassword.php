@@ -13,14 +13,14 @@ class ResetPassword extends Command
      *
      * @var string
      */
-    protected $signature = 'nahar:reset-password {mobile}';
+    protected $signature = 'password:reset {mobile}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'reset password for user';
 
     /**
      * Create a new command instance.
