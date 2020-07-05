@@ -6,7 +6,11 @@
     @isset($todayReserved)
         <div class="bg-info card text-white my-3">
             <div class="card-body">
-                <h4 class="text-white m-0"> غذای امروز : <span class="font-weight-bold">{{$todayReserved->food->name}}</span></h4>
+                <h4 class="text-white m-0">
+                    غذای امروز : <span class="font-weight-bold">
+                        {{$todayReserved->food->name}} ({{$todayReserved->food->restaurant->name}})
+                    </span>
+                </h4>
             </div>
         </div>
     @endisset
