@@ -11,7 +11,7 @@ class BillExport implements FromArray, WithHeadings
 {
     use Exportable;
 
-    public function array() :array
+    public function array(): array
     {
         $data = getMonthDays();
 
