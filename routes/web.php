@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::post('/user/add', 'AdminUserController@addSubmit');
     Route::get('/users', 'AdminUserController@usersList');
     Route::get('/users-bill', 'AdminBillController@usersBill');
+    Route::get('/users-bill-export', 'AdminBillController@exportUsersBill');
     Route::get('/user/bulk', 'AdminUserController@bulk');
     Route::post('/user/bulk', 'AdminUserController@bulkSubmit');
     Route::get('/restaurant/add', 'AdminFoodController@addRestaurant');

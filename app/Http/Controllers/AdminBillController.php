@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enum\Role;
+use App\Exports\BillExport;
 use App\Model\Reservation;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminBillController extends Controller
 {
@@ -22,6 +24,11 @@ class AdminBillController extends Controller
             ->groupBy('user_id');
 
         return view('admin_bill.users-bill', $data);
+    }
+
+    public function exportUsersBill()
+    {
+        return Excel::download(new BillExport(), 'tahdig.xlsx');
     }
 
     public function restaurantsBill()
