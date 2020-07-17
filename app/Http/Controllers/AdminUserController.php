@@ -27,8 +27,8 @@ class AdminUserController extends Controller
 
         $users = $request->get('users');
 
-        $lines = preg_split('/\R/', $users);
-
+        $lines = explode("\r\n", $users);
+        
         foreach ($lines as $line) {
             [$name, $mobile] = explode('|', $line);
             $this->createUser(compact('name', 'mobile'));
@@ -64,7 +64,7 @@ class AdminUserController extends Controller
     private function createUser($data)
     {
         $validator = Validator::make($data, [
-            'name' => 'required',
+            'name'   => 'required',
             'mobile' => 'required|digits:11|unique:users,mobile',
         ]);
 
@@ -73,18 +73,18 @@ class AdminUserController extends Controller
 
             $this->errors = $validator->errors()
                 ->add('data', __('msg.add_failed', [
-                    'name' => $data['name'],
+                    'name'  => $data['name'],
                     'value' => $data['mobile'],
                 ]))->merge($this->errors);
 
             return;
         }
 
-        $user = new User();
-        $user->name = $data['name'];
-        $user->mobile = $data['mobile'];
+        $user           = new User();
+        $user->name     = $data['name'];
+        $user->mobile   = $data['mobile'];
         $user->password = Hash::make($data['mobile']);
-        $user->role_id = Role::USER;
+        $user->role_id  = Role::USER;
         $user->save();
     }
 
@@ -95,9 +95,9 @@ class AdminUserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
-        } elseif ($request->filled('name')) {
-            $query->where('name', 'like', '%'.$request->get('name').'%');
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
