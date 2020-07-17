@@ -5,10 +5,11 @@
 @section('inner-content')
     <form action="{{ url('/dashboard/reserve') }}" method="post">
         @csrf
-        <div class="row">
+        <div class="row row-cols-1 row-cols-md-2 mt-4">
             @foreach($bookings as $booking)
-                <div class="col-md-6">
-                    <div class="card my-3">
+
+                <div class="col mb-4">
+                    <div class="card h-100">
                         <div class="card-body">
                             <h3 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h3>
                             <p class="card-text">

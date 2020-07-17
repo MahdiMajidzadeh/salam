@@ -20,7 +20,7 @@ class AccountsController extends Controller
             if (Hash::check($password, $user->password)) {
                 Auth::login($user, true);
 
-                return redirect('dashboard');
+                return redirect()->intended('/dashboard');
             }
         }
 
