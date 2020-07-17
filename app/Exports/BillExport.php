@@ -32,6 +32,8 @@ WHERE
 	b.booking_date BETWEEN '2020-06-21' 
 	AND '2020-07-21' 
 GROUP BY
+    u.employment_id,
+	u.NAME,
 	r.user_id
 	order by 1 asc");
     }
