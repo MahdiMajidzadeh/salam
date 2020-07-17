@@ -28,7 +28,7 @@ class AdminUserController extends Controller
         $users = $request->get('users');
 
         $lines = explode("\r\n", $users);
-        
+
         foreach ($lines as $line) {
             [$name, $mobile] = explode('|', $line);
             $this->createUser(compact('name', 'mobile'));
@@ -80,11 +80,11 @@ class AdminUserController extends Controller
             return;
         }
 
-        $user           = new User();
-        $user->name     = $data['name'];
-        $user->mobile   = $data['mobile'];
+        $user = new User();
+        $user->name = $data['name'];
+        $user->mobile = $data['mobile'];
         $user->password = Hash::make($data['mobile']);
-        $user->role_id  = Role::USER;
+        $user->role_id = Role::USER;
         $user->save();
     }
 
@@ -95,9 +95,9 @@ class AdminUserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
