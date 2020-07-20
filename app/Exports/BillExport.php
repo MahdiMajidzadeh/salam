@@ -29,8 +29,8 @@ FROM
 	JOIN users u ON u.id = r.user_id
 	JOIN bookings b ON b.id = r.booking_id 
 WHERE
-	b.booking_date BETWEEN '". $data['firstDayOfMonth'] .
-	"' AND '".$data['lastDayOfMonth']."' 
+	b.booking_date BETWEEN '".$data['firstDayOfMonth'].
+    "' AND '".$data['lastDayOfMonth']."' 
 GROUP BY
     u.employment_id,
 	u.NAME,
