@@ -19,6 +19,7 @@ class ReservationsController extends Controller
 
         $data['bookings'] = Booking::with(['foods.restaurant', 'defaultFood', 'meal'])
             ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
+            ->orderBy('booking_date', 'asc')
             ->get();
 
         return view('reserves.food-list', $data);
@@ -30,7 +31,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking = Booking::find($bookingId);
+            $booking   = Booking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -45,8 +46,8 @@ class ReservationsController extends Controller
             $reservation = Reservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
-            $reservation->food_id = $food->id;
-            $reservation->price = $food->price;
+            $reservation->food_id       = $food->id;
+            $reservation->price         = $food->price;
             $reservation->price_default = $booking->defaultFood->price;
             $reservation->save();
         }
@@ -59,7 +60,7 @@ class ReservationsController extends Controller
         $data = getMonthDays();
 
         $data['reservations'] = Reservation::with(['food'])
-            ->join('bookings', 'reservations.booking_id', 'bookings.id')
+            ->join('bookings', 'reservations.booking_id', '=','bookings.id')
             ->where('user_id', auth()->id())
             ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
             ->orderBy('bookings.booking_date', 'desc')
@@ -68,7 +69,7 @@ class ReservationsController extends Controller
                 'bookings.booking_date',
             ]);
 
-        $data['sum'] = $data['reservations']->sum(function ($reservation) {
+        $data['sum'] = $data['reservations']->sum(function($reservation) {
             return $reservation->price - $reservation->price_default;
         });
 

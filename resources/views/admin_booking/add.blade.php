@@ -54,6 +54,16 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label>غذا چهارم</label>
+                            <select class="form-control" name="foods[]">
+                                <option value="">----</option>
+                                @foreach($foods as $food)
+                                    <option value="{{ $food->id }}">{{ $food->name }}
+                                        - {{ $food->restaurant->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-primary">افزودن</button>
                     </form>
                 </div>
