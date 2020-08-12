@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 
 class ZoomMessage extends Command
 {
-
     protected $signature = 'zoom:message';
 
     protected $description = 'Send message to zoom';
@@ -31,10 +30,7 @@ class ZoomMessage extends Command
     public function handle()
     {
         $users = User::whereNotNull('zoom_url')->whereNotNull('zoom_auth')->get();
-        foreach ($users as $user){
-
+        foreach ($users as $user) {
         }
     }
-
-    
 }
