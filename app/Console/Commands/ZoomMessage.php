@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Model\User;
 use App\Model\Booking;
+use App\Model\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
@@ -23,7 +23,7 @@ class ZoomMessage extends Command
         foreach ($users as $user) {
             $reservation = $this->getToday($user->id);
 
-            if (!is_null($reservation)) {
+            if (! is_null($reservation)) {
                 $this->sendRequest(
                     $user->zoom_url,
                     $user->zoom_auth,
@@ -51,8 +51,8 @@ class ZoomMessage extends Command
 
     public function sendRequest($url, $auth, $food, $restaurant)
     {
-        $client   = new Client();
-        $response = $client->post($url . '?format=fields', [
+        $client = new Client();
+        $response = $client->post($url.'?format=fields', [
             'headers' => [
                 'debug'         => true,
                 'Authorization' => $auth,
@@ -61,6 +61,6 @@ class ZoomMessage extends Command
                 'food'       => $food,
                 'restaurant' => $restaurant,
             ],
-        ]);;
+        ]);
     }
 }
