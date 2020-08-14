@@ -9,37 +9,26 @@ use Illuminate\Console\Command;
 
 class ZoomMessage extends Command
 {
-
     protected $signature = 'zoom:message';
-
     protected $description = 'Send message to zoom';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $users = User::whereNotNull('zoom_url')->whereNotNull('zoom_auth')->get();
         foreach ($users as $user) {
-            $food = $this->getToday($user->id);
-            if (!is_null($food)) {
+            $reservation = $this->getToday($user->id);
+
+            if (!is_null($reservation)) {
                 $this->sendRequest(
                     $user->zoom_url,
                     $user->zoom_auth,
-                    $food->food->name,
-                    $food->restaurant->name
+                    $reservation->food->name,
+                    $reservation->food->restaurant->name
                 );
             }
         }
@@ -65,11 +54,12 @@ class ZoomMessage extends Command
         $client   = new Client();
         $response = $client->post($url . '?format=fields', [
             'headers' => [
+                'debug'         => true,
                 'Authorization' => $auth,
-                'body'          => json_encode([
-                    'food'       => $food,
-                    'restaurant' => $restaurant,
-                ]),
+            ],
+            'json'    => [
+                'food'       => $food,
+                'restaurant' => $restaurant,
             ],
         ]);;
     }
