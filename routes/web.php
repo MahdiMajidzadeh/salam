@@ -11,13 +11,13 @@ Route::get('/logout', [C\AccountsController::class, 'logout']);
 Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
     Route::get('/', [C\PagesController::class, 'dashboard']);
     Route::get('/password-reset', [C\PagesController::class, 'passwordReset']);
-    Route::post('/password-reset',[C\PagesController::class, 'passwordResetSubmit']);
+    Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
 
     Route::group(['prefix' => 'tagdig'], function() {
-    Route::get('/reserve', [C\TahDig\ReservationsController::class, 'foodList']);
-    Route::post('/reserve', [C\TahDig\ReservationsController::class, 'foodListSubmit']);
-    Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);
-    Route::get('/history', [C\TahDig\ReservationsController::class, 'history']);
+        Route::get('/reserve', [C\TahDig\ReservationsController::class, 'foodList']);
+        Route::post('/reserve', [C\TahDig\ReservationsController::class, 'foodListSubmit']);
+        Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);
+        Route::get('/history', [C\TahDig\ReservationsController::class, 'history']);
     });
 });
 
@@ -38,6 +38,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::post('/food/add', [C\Admin\FoodController::class, 'addFoodSubmit']);
     Route::get('/foods', [C\Admin\FoodController::class, 'foodsList']);
     Route::get('/booking/add', [C\Admin\FoodBookingController::class, 'add']);
-    Route::post('/booking/add',[C\Admin\FoodBookingController::class, 'addSubmit']);
+    Route::post('/booking/add', [C\Admin\FoodBookingController::class, 'addSubmit']);
     Route::get('/booking/day-list', [C\Admin\FoodBookingController::class, 'dayList']);
+
+    Route::group(['prefix' => 'acl'], function() {
+        Route::get('/', [C\Admin\AdminController::class, 'adminList']);
+        Route::get('/{id}', [C\Admin\AdminController::class, 'adminPermissions']);
+        Route::post('/', [C\Admin\AdminController::class, 'adminPermissionsSubmit']);
+    });
+
+    Route::group(['prefix' => 'ajax'], function() {
+        Route::get('users/list', [C\Ajax\UserController::class, 'userList']);
+    });
 });

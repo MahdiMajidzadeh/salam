@@ -1,1 +1,90 @@
-@font-face{font-family:estedad;src:url(/fonts/Estedad-FD-Thin.woff?52346309ad6585379b7424c471f1fea3) format("woff"),url(/fonts/Estedad-FD-Thin.ttf?470392dde8ecd1273a2ba7cee5bdcb3a) format("truetype");font-style:normal;font-weight:400}@font-face{font-family:estedad;src:url(/fonts/Estedad-FD-Black.woff?7d7cabcd93ffa5c0a643b2634ffe54fc) format("woff"),url(/fonts/Estedad-FD-Black.ttf?63ff9cc94b0a44c225abb5060ef90fa1) format("truetype");font-style:normal;font-weight:700}body{font-family:estedad;min-height:100vh}.card{overflow:auto}.rtl .custom-control-label:before{right:-5px}.rtl .custom-radio .custom-control-label:after{left:inherit;right:0}.content{padding:70px 0}.ltr{direction:ltr}.h100{min-height:100vh}.center-box{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+@font-face {
+  font-family: "estedad";
+  src: url(/fonts/Estedad-FD-Thin.woff?52346309ad6585379b7424c471f1fea3) format("woff"), url(/fonts/Estedad-FD-Thin.ttf?470392dde8ecd1273a2ba7cee5bdcb3a) format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "estedad";
+  src: url(/fonts/Estedad-FD-Black.woff?7d7cabcd93ffa5c0a643b2634ffe54fc) format("woff"), url(/fonts/Estedad-FD-Black.ttf?63ff9cc94b0a44c225abb5060ef90fa1) format("truetype");
+  font-style: normal;
+  font-weight: bold;
+}
+
+body {
+  font-family: estedad;
+  min-height: 100vh;
+}
+
+.card {
+  overflow: auto;
+}
+
+.rtl .custom-control-label::before {
+  right: -5px;
+}
+
+.rtl .custom-radio .custom-control-label::after {
+  left: inherit;
+  right: 0;
+}
+
+.content {
+  padding: 70px 0;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.h100 {
+  min-height: 100vh;
+}
+
+.center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-img-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #FFF;
+  overflow: auto;
+}
+
+.autocomplete-suggestion {
+  padding: 2px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.autocomplete-selected {
+  background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #3399FF;
+}
+
+.autocomplete-group {
+  padding: 2px 5px;
+}
+
+.autocomplete-group strong {
+  display: block;
+  border-bottom: 1px solid #000;
+}
+
+.custom-checkbox .custom-control-label::after {
+  right: 2px;
+  left: 0;
+}
+

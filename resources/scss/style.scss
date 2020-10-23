@@ -38,3 +38,19 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.card-img-overlay {
+  background: rgb(0 0 0 / 50%);
+}
+
+.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #F0F0F0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+
+.custom-checkbox .custom-control-label::after {
+  right: 2px;
+  left: 0;
+}

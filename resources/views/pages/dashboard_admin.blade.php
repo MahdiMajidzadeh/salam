@@ -3,7 +3,7 @@
 @section('title', 'ادمین')
 
 @section('inner-content')
-    @if(auth()->user()->role_id >= \App\Enum\Role::FOOD_MANAGER)
+    @if(allowed('food-view'))
         <div class="card my-4">
             <div class="card-body p-3">
                 <a href="{{ url('admin/booking/day-list') }}" class="btn btn-secondary">لیست روز</a>
@@ -19,15 +19,15 @@
             </div>
         </div>
     @endif
-    @if(auth()->user()->role_id >= \App\Enum\Role::ACCOUNTANT_MANAGER)
+    {{--@if()--}}
         <div class="card my-4">
             <div class="card-body p-3">
                 <a href="{{ url('admin/users-bill') }}" class="btn btn-secondary">حساب ماهیانه کاربران</a>
                 <a href="{{ url('admin/restaurants-bill') }}" class="btn btn-secondary">حساب ماهیانه رستوران ها</a>
             </div>
         </div>
-    @endif
-    @if(auth()->user()->role_id >= \App\Enum\Role::USER_MANAGER)
+    {{--@endif--}}
+    @if(allowed('user-view'))
     <div class="card my-4">
         <div class="card-body p-3">
             <a href="{{ url('admin/user/bulk') }}" class="btn btn-secondary">افزودن دست جمعی کاربر</a>

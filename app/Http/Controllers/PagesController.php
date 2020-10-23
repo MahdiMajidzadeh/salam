@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Enum\Role;
 use App\Model\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +26,9 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        allowed(Role::ADMIN);
+        if(! is_admin()){
+            abort(403);
+        }
 
         return view('pages.dashboard_admin');
     }

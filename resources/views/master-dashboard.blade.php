@@ -17,7 +17,7 @@
                 {{--<a class="nav-link" href="#">تاریخچه</a>--}}
                 {{--</li>--}}
             </ul>
-            @if(auth()->user()->role_id > 1)
+            @if(is_admin())
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('admin') }}">مدیریت</a>
