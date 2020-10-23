@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
+use App\Http\Controllers\Controller;
+use App\Model\Booking;
 use App\Model\Food;
 use App\Model\Meal;
-use App\Model\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Http\Controllers\Controller;
 
 class FoodBookingController extends Controller
 {

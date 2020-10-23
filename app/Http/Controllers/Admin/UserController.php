@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
+use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
