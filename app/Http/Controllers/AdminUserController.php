@@ -101,7 +101,7 @@ class AdminUserController extends Controller
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
-            ->paginate(30);
+            ->paginate(60);
 
         return view('admin_user.users_list', $data);
     }

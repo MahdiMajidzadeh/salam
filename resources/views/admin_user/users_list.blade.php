@@ -30,8 +30,9 @@
         </thead>
         <tbody>
         @foreach($users as $user)
-            <tr>
+            <tr class="@if(!is_null($user->deactivated_at)) text-muted @endif">
                 <td>{{ $user->id }}</td>
+                <td>{{ $user->employment_id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->mobile }}</td>
                 <td>{{ roleName($user->role_id) }}</td>
