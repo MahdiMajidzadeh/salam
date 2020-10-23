@@ -4,14 +4,10 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        $this->call(AdminSeed::class);
+//        $this->call(AdminSeed::class);
         $this->call(MealSeed::class);
+        $this->call(PermissionSeed::class);
     }
 }

@@ -1,34 +1,47 @@
 <?php
 
+use App\Model\Meal;
+use App\Traits\SeederTrait;
 use Illuminate\Database\Seeder;
 
 class MealSeed extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use SeederTrait;
+
+    protected function classModel()
+    {
+        return Meal::class;
+    }
+
     public function run()
     {
-        $meal1 = new \App\Model\Meal();
-        $meal1->name = 'صبحانه';
-        $meal1->save();
+        $items = [
+            [
+                'id' => 1,
+                'name' => 'صبحانه',
+            ],
+            [
+                'id' => 2,
+                'name' => 'ناهار',
+            ],
+            [
+                'id' => 3,
+                'name' => 'شام',
+            ],
+            [
+                'id' => 4,
+                'name' => 'سحر',
+            ],
+            [
+                'id' => 5,
+                'name' => 'افطار',
+            ],
+            [
+                'id' => 6,
+                'name' => 'دسر',
+            ],
+        ];
 
-        $meal2 = new \App\Model\Meal();
-        $meal2->name = 'ناهار';
-        $meal2->save();
-
-        $meal3 = new \App\Model\Meal();
-        $meal3->name = 'شام';
-        $meal3->save();
-
-        $meal4 = new \App\Model\Meal();
-        $meal4->name = 'سحر';
-        $meal4->save();
-
-        $meal5 = new \App\Model\Meal();
-        $meal5->name = 'افطار';
-        $meal5->save();
+        $this->save($items);
     }
 }
