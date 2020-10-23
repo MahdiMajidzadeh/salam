@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TahDig;
 
+use Carbon\Carbon;
 use App\Model\Booking;
 use App\Model\Reservation;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
 {
@@ -76,12 +77,6 @@ class ReservationsController extends Controller
         return view('reserves.history', $data);
     }
 
-    /**
-     * @param Reservation $reservation
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
     public function deleteReservation(Reservation $reservation)
     {
         if (

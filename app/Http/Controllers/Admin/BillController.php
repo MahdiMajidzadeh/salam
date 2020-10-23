@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
-use App\Exports\BillExport;
 use App\Model\Reservation;
+use App\Exports\BillExport;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
-class AdminBillController extends Controller
+class BillController extends Controller
 {
     public function usersBill()
     {

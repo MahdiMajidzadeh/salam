@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
 use App\Model\Food;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class AdminFoodController extends Controller
+class FoodController extends Controller
 {
     public function addRestaurant(Request $request)
     {
