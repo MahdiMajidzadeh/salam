@@ -11,15 +11,14 @@ class AccountsController extends Controller
 {
     public function loginSubmit(Request $request)
     {
-        $mobile   = $request->get('mobile');
+        $mobile = $request->get('mobile');
         $password = $request->get('password');
 
         $user = User::where('mobile', $mobile)->first();
 
         if ($user) {
             if (Hash::check($password, $user->password)) {
-
-                if (!is_null($user->deactivated_at)) {
+                if (! is_null($user->deactivated_at)) {
                     return redirect()->back()->with('msg-error', __('msg.login_wrong_deactivate'));
                 }
 

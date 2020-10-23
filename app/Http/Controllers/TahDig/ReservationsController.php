@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\TahDig;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Model\Booking;
 use App\Model\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
-use App\Model\Reservation;
 use App\Exports\BillExport;
 use App\Http\Controllers\Controller;
+use App\Model\Reservation;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
