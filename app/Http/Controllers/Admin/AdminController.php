@@ -18,7 +18,7 @@ class AdminController extends Controller
 
     public function adminPermissions($id)
     {
-        $data['user']        = User::find($id);
+        $data['user'] = User::find($id);
         $data['permissions'] = Permission::all();
         $data['userPermissions'] = $data['user']->permissions->pluck('id');
 
@@ -30,6 +30,6 @@ class AdminController extends Controller
         $user = User::find($request->get('user_id'));
         $user->permissions()->sync($request->get('permissions'));
 
-        return redirect('admin/acl/' . $user->id);
+        return redirect('admin/acl/'.$user->id);
     }
 }
