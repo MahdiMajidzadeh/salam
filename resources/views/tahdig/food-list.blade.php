@@ -3,7 +3,7 @@
 @section('title', 'رزرو')
 
 @section('inner-content')
-    <form action="{{ url('/dashboard/reserve') }}" method="post">
+    <form action="{{ url('/tahdig/reserve') }}" method="post">
         @csrf
         <div class="row row-cols-1 row-cols-md-2 mt-4">
             @foreach($bookings as $booking)

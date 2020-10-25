@@ -5,13 +5,13 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Booking extends Model
+class TahdingBooking extends Model
 {
     use SoftDeletes;
 
     public function foods()
     {
-        return $this->belongsToMany(Food::class);
+        return $this->belongsToMany(Food::class, 'food_tahding_booking', 'booking_id');
     }
 
     public function defaultFood()
@@ -26,6 +26,6 @@ class Booking extends Model
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(TahdingReservation::class, 'booking_id');
     }
 }

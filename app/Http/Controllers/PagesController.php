@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Booking;
+use App\Model\TahdingBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,7 +11,7 @@ class PagesController extends Controller
     public function dashboard(Request $request)
     {
         $data = [];
-        $booking = Booking::query()
+        $booking = TahdingBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
 

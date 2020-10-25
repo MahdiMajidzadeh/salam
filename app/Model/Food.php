@@ -10,7 +10,7 @@ class Food extends Model
 
     public function bookings()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(TahdingBooking::class);
     }
 
     public function Restaurant()

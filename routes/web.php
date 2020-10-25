@@ -8,12 +8,14 @@ Route::view('/login', 'login')->name('login');
 Route::post('/', [C\AccountsController::class, 'loginSubmit']);
 Route::get('/logout', [C\AccountsController::class, 'logout']);
 
-Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
-    Route::get('/', [C\PagesController::class, 'dashboard']);
-    Route::get('/password-reset', [C\PagesController::class, 'passwordReset']);
-    Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
-
-    Route::group(['prefix' => 'tagdig'], function() {
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['prefix' => 'dashboard'], function() {
+        Route::get('/', [C\PagesController::class, 'dashboard']);
+        Route::get('/password-reset', [C\PagesController::class, 'passwordReset']);
+        Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
+    });
+    Route::group(['prefix' => 'tahdig'], function() {
+        Route::get('/', [C\TahDig\PageController::class, 'index']);
         Route::get('/reserve', [C\TahDig\ReservationsController::class, 'foodList']);
         Route::post('/reserve', [C\TahDig\ReservationsController::class, 'foodListSubmit']);
         Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);

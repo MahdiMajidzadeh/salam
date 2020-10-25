@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\Role;
-use App\Model\Reservation;
+use App\Model\TahdingReservation;
 use App\Exports\BillExport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,7 +16,7 @@ class BillController extends Controller
 
         $data = getMonthDays();
 
-        $data['usersBill'] = Reservation::query()
+        $data['usersBill'] = TahdingReservation::query()
             ->with('user')
             ->join('bookings', 'reservations.booking_id', 'bookings.id')
             ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
@@ -38,7 +38,7 @@ class BillController extends Controller
 
         $data = getMonthDays();
 
-        $data['restaurantsBill'] = Reservation::query()
+        $data['restaurantsBill'] = TahdingReservation::query()
             ->with('food.restaurant')
             ->join('bookings', 'reservations.booking_id', 'bookings.id')
             ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
