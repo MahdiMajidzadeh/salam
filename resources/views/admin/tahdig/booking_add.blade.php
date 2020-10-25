@@ -25,8 +25,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>غذا اصلی</label>
-                            <select class="form-control" name="food_main">
+                            <label>غذا اول</label>
+                            <select class="form-control" name="foods[]">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}

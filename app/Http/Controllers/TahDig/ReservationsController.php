@@ -18,7 +18,7 @@ class ReservationsController extends Controller
             ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
             ->get();
 
-        $data['bookings'] = TahdingBooking::with(['foods.restaurant', 'defaultFood', 'meal'])
+        $data['bookings'] = TahdingBooking::with(['foods.restaurant','meal'])
             ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
             ->orderBy('booking_date', 'asc')
             ->get();
@@ -49,7 +49,7 @@ class ReservationsController extends Controller
 
             $reservation->food_id = $food->id;
             $reservation->price = $food->price;
-            $reservation->price_default = $booking->defaultFood->price;
+            $reservation->price_default = 0;
             $reservation->save();
         }
 

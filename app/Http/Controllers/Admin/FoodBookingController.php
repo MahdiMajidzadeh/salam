@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enum\Role;
 use App\Model\Food;
 use App\Model\Meal;
-use App\Model\Booking;
 use Illuminate\Http\Request;
+use App\Model\TahdingBooking;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
@@ -14,26 +13,23 @@ class FoodBookingController extends Controller
 {
     public function add(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
-
         $data['meals'] = Meal::all();
         $data['foods'] = Food::with(['restaurant'])->get();
 
-        return view('admin_booking.add', $data);
+        return view('admin.tahdig.booking_add', $data);
     }
 
     public function addSubmit(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
+//        allowed(Role::FOOD_MANAGER);
 
         $request->validate([
             'meal' => 'required|exists:meals,id',
-            'food_main' => 'required|exists:foods,id',
             'foods' => 'array',
             'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main',
         ]);
 
-        $booking = new Booking();
+        $booking = new TahdingBooking();
         $booking->booking_date = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
         $booking->meal_id = $request->get('meal');
         $booking->default_food_id = $request->get('food_main');
@@ -56,7 +52,7 @@ class FoodBookingController extends Controller
         $data['hasData'] = false;
 
         if ($request->has('meal') && $request->has('date_alt')) {
-            $booking = Booking::with(['foods', 'reservations'])
+            $booking = TahdingBooking::with(['foods', 'reservations'])
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))

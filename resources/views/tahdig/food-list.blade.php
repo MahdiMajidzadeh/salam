@@ -31,13 +31,7 @@
                                         <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
                                         <span class="mx-2">/</span>
                                         {{ $food->restaurant->name }}
-                                        @if($booking->default_food_id == $food->id)
-                                            <span class="pl-2"> </span>
-                                            <span class="badge badge-pill badge-light text-dark">غذای پایه</span>
-                                        @else
-                                            <span class="pl-2"> </span>
-                                            <span class="badge badge-pill badge-light text-dark ltr">{{ sprintf("%+d", ($food->price - $booking->defaultFood->price)) }}</span>
-                                        @endif
+                                       
                                     </label>
                                 </div>
                                 @endforeach

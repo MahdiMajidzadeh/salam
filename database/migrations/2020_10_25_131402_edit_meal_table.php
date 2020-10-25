@@ -15,7 +15,7 @@ class EditMealTable extends Migration
 
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('meals', function (Blueprint $table) {
             $table->dropColumn('is_active');
         });
     }
