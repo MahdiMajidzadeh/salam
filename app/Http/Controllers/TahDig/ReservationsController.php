@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\TahDig;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Model\TahdingBooking;
 use App\Model\TahdingReservation;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
 {
@@ -18,7 +18,7 @@ class ReservationsController extends Controller
             ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
             ->get();
 
-        $data['bookings'] = TahdingBooking::with(['foods.restaurant','meal'])
+        $data['bookings'] = TahdingBooking::with(['foods.restaurant', 'meal'])
             ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
             ->orderBy('booking_date', 'asc')
             ->get();
