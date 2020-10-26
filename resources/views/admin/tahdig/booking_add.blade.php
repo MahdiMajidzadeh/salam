@@ -26,43 +26,60 @@
                         </div>
                         <div class="form-group">
                             <label>غذا اول</label>
-                            <select class="form-control" name="foods[]">
+                            <select class="form-control" name="food_1">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
                                         - {{ $food->restaurant->name }} - {{ $food->price }}</option>
                                 @endforeach
                             </select>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="food_inter_1" id="food-inter-1">
+                                <label class="custom-control-label" for="food-inter-1">غذای کارآموزی</label>
+                            </div>
                         </div>
+
                         <div class="form-group">
                             <label>غذا دوم</label>
-                            <select class="form-control" name="foods[]">
+                            <select class="form-control" name="food_2">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
                                         - {{ $food->restaurant->name }} - {{ $food->price }}</option>
                                 @endforeach
                             </select>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="food_inter_2" id="food-inter-2">
+                                <label class="custom-control-label" for="food-inter-2">غذای کارآموزی</label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>غذا سوم</label>
-                            <select class="form-control" name="foods[]">
+                            <select class="form-control" name="food_3">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
                                         - {{ $food->restaurant->name }} - {{ $food->price }}</option>
                                 @endforeach
                             </select>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="food_inter_3" id="food-inter-3">
+                                <label class="custom-control-label" for="food-inter-3">غذای کارآموزی</label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>غذا چهارم</label>
-                            <select class="form-control" name="foods[]">
+                            <select class="form-control" name="food_4">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
                                         - {{ $food->restaurant->name }}</option>
                                 @endforeach
                             </select>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="food_inter_4" id="food-inter-4">
+                                <label class="custom-control-label" for="food-inter-4">غذای کارآموزی</label>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">افزودن</button>
                     </form>

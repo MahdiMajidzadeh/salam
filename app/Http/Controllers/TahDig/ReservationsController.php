@@ -18,11 +18,19 @@ class ReservationsController extends Controller
             ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
             ->get();
 
-        $data['bookings'] = TahdingBooking::with(['foods.restaurant','meal'])
-            ->where('booking_date', '>', Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d'))
-            ->orderBy('booking_date', 'asc')
-            ->get();
+        $bookings = TahdingBooking::where('booking_date', '>',
+            Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d')
+        );
 
+        if (auth()->user()->is_inter) {
+            $bookings->with(['foodsForInter.restaurant', 'meal']);
+        } else {
+            $bookings->with(['foods.restaurant', 'meal']);
+        }
+
+        $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
+
+        return $data;
         return view('tahdig.food-list', $data);
     }
 
@@ -32,7 +40,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking = TahdingBooking::find($bookingId);
+            $booking   = TahdingBooking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -47,8 +55,8 @@ class ReservationsController extends Controller
             $reservation = TahdingReservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
-            $reservation->food_id = $food->id;
-            $reservation->price = $food->price;
+            $reservation->food_id       = $food->id;
+            $reservation->price         = $food->price;
             $reservation->price_default = 0;
             $reservation->save();
         }
@@ -70,7 +78,7 @@ class ReservationsController extends Controller
                 'tahding_bookings.booking_date',
             ]);
 
-        $data['sum'] = $data['reservations']->sum(function ($reservation) {
+        $data['sum'] = $data['reservations']->sum(function($reservation) {
             return $reservation->price - $reservation->price_default;
         });
 

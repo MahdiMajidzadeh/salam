@@ -53,7 +53,7 @@ if (!function_exists('is_admin')) {
             return true;
         }
 
-        return false();
+        return false;
     }
 }
 

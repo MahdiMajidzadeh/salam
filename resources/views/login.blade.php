@@ -15,9 +15,9 @@
                 </div>
             @endif
                 <div class="card overflow-hidden">
-                    <div class="card-img-top">
-                        <img src="{{ asset('img/login.jpg') }}" class="img-fluid">
-                    </div>
+                    {{--<div class="card-img-top">--}}
+                        {{--<img src="{{ asset('img/login.jpg') }}" class="img-fluid">--}}
+                    {{--</div>--}}
                     <div class="card-body">
                         <form action="{{ url('/') }}" method="post">
                             @csrf
