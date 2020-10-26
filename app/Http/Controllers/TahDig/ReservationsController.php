@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\TahDig;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Model\TahdingBooking;
 use App\Model\TahdingReservation;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
 {
@@ -31,6 +31,7 @@ class ReservationsController extends Controller
         $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
 
         return $data;
+
         return view('tahdig.food-list', $data);
     }
 
@@ -40,7 +41,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking   = TahdingBooking::find($bookingId);
+            $booking = TahdingBooking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -55,8 +56,8 @@ class ReservationsController extends Controller
             $reservation = TahdingReservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
-            $reservation->food_id       = $food->id;
-            $reservation->price         = $food->price;
+            $reservation->food_id = $food->id;
+            $reservation->price = $food->price;
             $reservation->price_default = 0;
             $reservation->save();
         }
@@ -78,7 +79,7 @@ class ReservationsController extends Controller
                 'tahding_bookings.booking_date',
             ]);
 
-        $data['sum'] = $data['reservations']->sum(function($reservation) {
+        $data['sum'] = $data['reservations']->sum(function ($reservation) {
             return $reservation->price - $reservation->price_default;
         });
 

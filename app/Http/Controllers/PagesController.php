@@ -26,7 +26,7 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        if(! is_admin()){
+        if (! is_admin()) {
             abort(403);
         }
 
