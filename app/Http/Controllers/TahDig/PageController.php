@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\TahDig;
 
 use App\Http\Controllers\Controller;
-use App\Model\TahdingBooking;
+use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,7 +11,7 @@ class PageController extends Controller
     public function index()
     {
         $data    = [];
-        $booking = TahdingBooking::query()
+        $booking = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
 

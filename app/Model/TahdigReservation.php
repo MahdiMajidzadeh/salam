@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TahdingReservation extends Model
+class TahdigReservation extends Model
 {
     protected $guarded = ['_token'];
 
@@ -15,7 +15,7 @@ class TahdingReservation extends Model
 
     public function booking()
     {
-        return $this->belongsTo(TahdingBooking::class);
+        return $this->belongsTo(TahdigBooking::class);
     }
 
     public function food()

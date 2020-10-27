@@ -51,6 +51,11 @@ class PermissionSeed extends Seeder
                 'name' => 'مشاهده لیست رزرو',
                 'slug' => 'reservation_view',
             ],
+            [
+                'id' => 8,
+                'name' => 'مشاهده مالی',
+                'slug' => 'billing_view',
+            ],
         ];
 
         $this->save($items);

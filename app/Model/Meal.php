@@ -15,6 +15,6 @@ class Meal extends Model
 
     public function bookings()
     {
-        return $this->hasMany(TahdingBooking::class);
+        return $this->hasMany(TahdigBooking::class);
     }
 }

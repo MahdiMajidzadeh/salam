@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enum\Role;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,16 +14,22 @@ class UserController extends Controller
 
     private $errors = [];
 
+    /**
+     * @deprecated
+     */
     public function bulk(Request $request)
     {
-        allowed(Role::USER_MANAGER);
+        is_allowed('user_management');
 
         return view('admin_user.bulk');
     }
 
+    /**
+     * @deprecated
+     */
     public function bulkSubmit(Request $request)
     {
-        allowed(Role::USER_MANAGER);
+        is_allowed('user_management');
 
         $users = $request->get('users');
 
@@ -42,29 +47,9 @@ class UserController extends Controller
         return redirect()->back()->with('msg-ok', __('msg.user_bulk_ok', ['count' => count($lines)]));
     }
 
-    public function add(Request $request)
-    {
-        allowed(Role::USER_MANAGER);
-
-        return view('admin_user.add');
-    }
-
-    public function addSubmit(Request $request)
-    {
-        allowed(Role::USER_MANAGER);
-
-        $this->createUser($request->all());
-
-        if ($this->isFailed) {
-            return redirect()->back()->withErrors($this->errors);
-        }
-
-        return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
-    }
-
     private function createUser($data)
     {
-        $validator = Validator::make($data, [
+        $validator = Validator::make($data->all(), [
             'name'   => 'required',
             'mobile' => 'required|digits:11|unique:users,mobile',
         ]);
@@ -74,31 +59,51 @@ class UserController extends Controller
 
             $this->errors = $validator->errors()
                 ->add('data', __('msg.add_failed', [
-                    'name'  => $data['name'],
-                    'value' => $data['mobile'],
+                    'name'  => $data->get('name'),
+                    'value' => $data->get('mobile'),
                 ]))->merge($this->errors);
 
             return;
         }
 
-        $user = new User();
-        $user->name = $data['name'];
-        $user->mobile = $data['mobile'];
-        $user->password = Hash::make($data['mobile']);
-        $user->role_id = Role::USER;
+        $user           = new User();
+        $user->name     = $data->get('name');
+        $user->mobile   = $data->get('mobile');
+        $user->password = Hash::make($data->get('mobile'));
+        $user->is_inter = $data->has('is_inter');
         $user->save();
+    }
+
+    public function add(Request $request)
+    {
+        is_allowed('user_management');
+
+        return view('admin_user.add');
+    }
+
+    public function addSubmit(Request $request)
+    {
+        is_allowed('user_management');
+
+        $this->createUser($request);
+
+        if ($this->isFailed) {
+            return redirect()->back()->withErrors($this->errors);
+        }
+
+        return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
 
     public function usersList(Request $request)
     {
-        allowed(Role::USER_MANAGER);
+        is_allowed('user_view');
 
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
-        } elseif ($request->filled('name')) {
-            $query->where('name', 'like', '%'.$request->get('name').'%');
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\TahDig;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Model\TahdingBooking;
-use App\Model\TahdingReservation;
+use App\Model\TahdigBooking;
+use App\Model\TahdigReservation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -13,12 +13,12 @@ class ReservationsController extends Controller
 {
     public function foodList()
     {
-        $data['reserved'] = TahdingReservation::query()
+        $data['reserved'] = TahdigReservation::query()
             ->where('user_id', auth()->id())
             ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
             ->get();
 
-        $bookings = TahdingBooking::where('booking_date', '>',
+        $bookings = TahdigBooking::where('booking_date', '>',
             Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d')
         );
 
@@ -30,7 +30,6 @@ class ReservationsController extends Controller
 
         $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
 
-        return $data;
         return view('tahdig.food-list', $data);
     }
 
@@ -40,7 +39,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking   = TahdingBooking::find($bookingId);
+            $booking   = TahdigBooking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -52,7 +51,7 @@ class ReservationsController extends Controller
                 continue;
             }
 
-            $reservation = TahdingReservation::query()
+            $reservation = TahdigReservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
             $reservation->food_id       = $food->id;
@@ -68,14 +67,14 @@ class ReservationsController extends Controller
     {
         $data = getMonthDays();
 
-        $data['reservations'] = TahdingReservation::with(['food'])
-            ->join('tahding_bookings', 'tahding_reservations.booking_id', '=', 'tahding_bookings.id')
+        $data['reservations'] = TahdigReservation::with(['food'])
+            ->join('tahdig_bookings', 'tahdig_reservations.booking_id', '=', 'tahdig_bookings.id')
             ->where('user_id', auth()->id())
-            ->whereBetween('tahding_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
-            ->orderBy('tahding_bookings.booking_date', 'desc')
+            ->whereBetween('tahdig_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
+            ->orderBy('tahdig_bookings.booking_date', 'desc')
             ->get([
-                DB::raw('tahding_reservations.*'),
-                'tahding_bookings.booking_date',
+                DB::raw('tahdig_reservations.*'),
+                'tahdig_bookings.booking_date',
             ]);
 
         $data['sum'] = $data['reservations']->sum(function($reservation) {
@@ -85,7 +84,7 @@ class ReservationsController extends Controller
         return view('tahdig.history', $data);
     }
 
-    public function deleteReservation(TahdingReservation $reservation)
+    public function deleteReservation(TahdigReservation $reservation)
     {
         if (
             (auth()->id() === $reservation->user_id)

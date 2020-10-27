@@ -37,6 +37,27 @@ if (!function_exists('allowed')) {
     }
 }
 
+if (!function_exists('is_allowed')) {
+    function is_allowed($action)
+    {
+        $userId = auth()->id();
+
+        $permissions = Cache::remember('u_per_' . $userId, 60 * 60, function() {
+            return auth()
+                ->user()
+                ->permissions()
+                ->pluck('slug')
+                ->toArray();
+        });
+
+        if (!in_array($action, $permissions)) {
+            return abort(403);
+        }
+
+        return true;
+    }
+}
+
 if (!function_exists('is_admin')) {
     function is_admin()
     {

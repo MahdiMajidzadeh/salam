@@ -5,7 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TahdingBooking extends Model
+class TahdigBooking extends Model
 {
     use SoftDeletes;
 
@@ -32,6 +32,6 @@ class TahdingBooking extends Model
 
     public function reservations()
     {
-        return $this->hasMany(TahdingReservation::class, 'booking_id');
+        return $this->hasMany(TahdigReservation::class, 'booking_id');
     }
 }

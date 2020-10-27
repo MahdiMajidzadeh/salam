@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enum\Role;
-use App\Model\TahdingReservation;
 use App\Exports\BillExport;
+use App\Model\TahdigReservation;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -12,14 +11,14 @@ class BillController extends Controller
 {
     public function usersBill()
     {
-        allowed(Role::ACCOUNTANT_MANAGER);
+        is_allowed('billing_view');
 
         $data = getMonthDays();
 
-        $data['usersBill'] = TahdingReservation::query()
+        $data['usersBill'] = TahdigReservation::query()
             ->with('user')
-            ->join('bookings', 'reservations.booking_id', 'bookings.id')
-            ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
+            ->join('tahdig_bookings', 'tahdig_reservations.booking_id', 'tahdig_bookings.id')
+            ->whereBetween('tahdig_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
             ->orderBy('user_id')
             ->get()
             ->groupBy('user_id');
@@ -29,19 +28,21 @@ class BillController extends Controller
 
     public function exportUsersBill()
     {
+        is_allowed('billing_view');
+
         return Excel::download(new BillExport(), 'tahdig.xlsx');
     }
 
     public function restaurantsBill()
     {
-        allowed(Role::ACCOUNTANT_MANAGER);
+        is_allowed('billing_view');
 
         $data = getMonthDays();
 
-        $data['restaurantsBill'] = TahdingReservation::query()
+        $data['restaurantsBill'] = TahdigReservation::query()
             ->with('food.restaurant')
-            ->join('bookings', 'reservations.booking_id', 'bookings.id')
-            ->whereBetween('bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
+            ->join('tahdig_bookings', 'tahdig_reservations.booking_id', 'tahdig_bookings.id')
+            ->whereBetween('tahdig_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
             ->get()
             ->groupBy('food.restaurant_id');
 

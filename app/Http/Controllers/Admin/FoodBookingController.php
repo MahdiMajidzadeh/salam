@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Food;
 use App\Model\Meal;
 use Illuminate\Http\Request;
-use App\Model\TahdingBooking;
+use App\Model\TahdigBooking;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 
@@ -28,7 +28,7 @@ class FoodBookingController extends Controller
             'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main',
         ]);
 
-        $booking                  = new TahdingBooking();
+        $booking                  = new TahdigBooking();
         $booking->booking_date    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
         $booking->meal_id         = $request->get('meal');
         $booking->default_food_id = 0;
@@ -48,7 +48,7 @@ class FoodBookingController extends Controller
         $data['hasData'] = false;
 
         if ($request->has('meal') && $request->has('date_alt')) {
-            $booking = TahdingBooking::with(['foods', 'reservations'])
+            $booking = TahdigBooking::with(['foods', 'reservations'])
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))

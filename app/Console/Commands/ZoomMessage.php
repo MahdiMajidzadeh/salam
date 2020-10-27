@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Model\TahdingBooking;
+use App\Model\TahdigBooking;
 use App\Model\User;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -36,7 +36,7 @@ class ZoomMessage extends Command
 
     public function getToday($userId)
     {
-        $booking = TahdingBooking::query()
+        $booking = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
 
