@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -66,9 +66,9 @@ class UserController extends Controller
             return;
         }
 
-        $user           = new User();
-        $user->name     = $data->get('name');
-        $user->mobile   = $data->get('mobile');
+        $user = new User();
+        $user->name = $data->get('name');
+        $user->mobile = $data->get('mobile');
         $user->password = Hash::make($data->get('mobile'));
         $user->is_inter = $data->has('is_inter');
         $user->save();
@@ -101,9 +101,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')

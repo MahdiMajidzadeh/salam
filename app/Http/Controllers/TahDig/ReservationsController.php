@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\TahDig;
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Model\TahdigBooking;
 use App\Model\TahdigReservation;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
 {
@@ -39,7 +39,7 @@ class ReservationsController extends Controller
 
         foreach ($reserves as $key => $foodId) {
             $bookingId = substr($key, 2);
-            $booking   = TahdigBooking::find($bookingId);
+            $booking = TahdigBooking::find($bookingId);
 
             if (is_null($booking)) {
                 continue;
@@ -54,8 +54,8 @@ class ReservationsController extends Controller
             $reservation = TahdigReservation::query()
                 ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
 
-            $reservation->food_id       = $food->id;
-            $reservation->price         = $food->price;
+            $reservation->food_id = $food->id;
+            $reservation->price = $food->price;
             $reservation->price_default = 0;
             $reservation->save();
         }
@@ -69,13 +69,13 @@ class ReservationsController extends Controller
 
         $data['reservations'] = TahdigReservation::with(['booking.meal', 'food.restaurant'])
             ->where('user_id', auth()->id())
-            ->whereHas('booking', function($query) use ($data) {
+            ->whereHas('booking', function ($query) use ($data) {
                 $query->whereBetween('booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']]);
             })
             ->get()
             ->sortByDesc('booking.booking_date');
 
-        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function ($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
             ->sum('price');
