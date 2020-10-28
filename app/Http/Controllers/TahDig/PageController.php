@@ -10,7 +10,7 @@ class PageController extends Controller
 {
     public function index()
     {
-        $data    = [];
+        $data = [];
         $booking = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
