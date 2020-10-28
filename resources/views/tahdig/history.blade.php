@@ -7,8 +7,8 @@
         <div class="card-body p-3">
             <div class="row">
                 <div class="col-12 col-md-6 my-auto">
-                    جمع ما به التفاوت این ماه:
-                    <span style="font-weight: bold;">{{ $sum }}</span>
+                    تراز حساب:
+                    <span style="font-weight: bold;">{{ number_format($sum,0,".",",") }}</span>
                 </div>
                 <div class="col-12 col-md-6">
                     <form class="form-inline">

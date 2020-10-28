@@ -67,19 +67,18 @@ class ReservationsController extends Controller
     {
         $data = getMonthDays();
 
-        $data['reservations'] = TahdigReservation::with(['food'])
-            ->join('tahdig_bookings', 'tahdig_reservations.booking_id', '=', 'tahdig_bookings.id')
+        $data['reservations'] = TahdigReservation::with(['booking.meal', 'food.restaurant'])
             ->where('user_id', auth()->id())
-            ->whereBetween('tahdig_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
-            ->orderBy('tahdig_bookings.booking_date', 'desc')
-            ->get([
-                DB::raw('tahdig_reservations.*'),
-                'tahdig_bookings.booking_date',
-            ]);
+            ->whereHas('booking', function($query) use ($data) {
+                $query->whereBetween('booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']]);
+            })
+            ->get()
+        ->sortByDesc('booking.booking_date');
 
-        $data['sum'] = $data['reservations']->sum(function($reservation) {
-            return $reservation->price - $reservation->price_default;
-        });
+        $data['sum'] = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+            $query->where('booking_date', '>', auth()->user()->settlement_at);
+        })->where('user_id', auth()->id())
+            ->sum('price');
 
         return view('tahdig.history', $data);
     }
