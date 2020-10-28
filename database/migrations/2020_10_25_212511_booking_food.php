@@ -8,7 +8,7 @@ class BookingFood extends Migration
 {
     public function up()
     {
-        Schema::table('food_tahding_booking', function(Blueprint $table) {
+        Schema::table('food_tahdig_booking', function(Blueprint $table) {
             $table->boolean('for_inter')->default(false);
             $table->dropTimestamps();
         });
@@ -16,7 +16,7 @@ class BookingFood extends Migration
 
     public function down()
     {
-        Schema::table('food_tahding_booking', function(Blueprint $table) {
+        Schema::table('food_tahdig_booking', function(Blueprint $table) {
             $table->dropColumn('for_inter');
             $table->timestamps();
         });

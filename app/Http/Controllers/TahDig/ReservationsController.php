@@ -73,12 +73,14 @@ class ReservationsController extends Controller
                 $query->whereBetween('booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']]);
             })
             ->get()
-        ->sortByDesc('booking.booking_date');
+            ->sortByDesc('booking.booking_date');
 
-        $data['sum'] = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
             ->sum('price');
+
+        $data['sum'] = auth()->user()->tahdig_credits - $totalCost;
 
         return view('tahdig.history', $data);
     }
