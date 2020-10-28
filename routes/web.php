@@ -36,12 +36,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::get('/restaurants-bill', [C\Admin\BillController::class, 'restaurantsBill']);
     Route::post('/restaurant/add', [C\Admin\FoodController::class, 'addRestaurantSubmit']);
     Route::get('/restaurants', [C\Admin\FoodController::class, 'restaurantsList']);
-    Route::get('/food/add', [C\Admin\FoodController::class, 'addFood']);
-    Route::post('/food/add', [C\Admin\FoodController::class, 'addFoodSubmit']);
-    Route::get('/foods', [C\Admin\FoodController::class, 'foodsList']);
+
     Route::get('/booking/add', [C\Admin\FoodBookingController::class, 'add']);
     Route::post('/booking/add', [C\Admin\FoodBookingController::class, 'addSubmit']);
     Route::get('/booking/day-list', [C\Admin\FoodBookingController::class, 'dayList']);
+
+    Route::group(['prefix' => 'foods'], function() {
+        Route::get('/', [C\Admin\FoodController::class, 'foodsList']);
+        Route::get('/add', [C\Admin\FoodController::class, 'addFood']);
+        Route::post('/add', [C\Admin\FoodController::class, 'addFoodSubmit']);
+        Route::get('/{id}', [C\Admin\FoodController::class, 'editFood']);
+        Route::post('/edit', [C\Admin\FoodController::class, 'editFoodSubmit']);
+    });
 
     Route::group(['prefix' => 'acl'], function() {
         Route::get('/', [C\Admin\AdminController::class, 'adminList']);

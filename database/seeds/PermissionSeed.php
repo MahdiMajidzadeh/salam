@@ -34,12 +34,12 @@ class PermissionSeed extends Seeder
             [
                 'id' => 4,
                 'name' => 'مدیریت غذا',
-                'slug' => 'food-management',
+                'slug' => 'food_management',
             ],
             [
                 'id' => 5,
                 'name' => 'مشاهده لیست غذا',
-                'slug' => 'food-view',
+                'slug' => 'food_view',
             ],
             [
                 'id' => 6,

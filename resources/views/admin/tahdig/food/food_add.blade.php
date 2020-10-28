@@ -8,7 +8,7 @@
             @include('messages')
             <div class="card my-4">
                 <div class="card-body">
-                    <form method="post" action="{{ url('admin/food/add') }}">
+                    <form method="post" action="{{ url('admin/foods/add') }}">
                         @csrf
                         <div class="form-group">
                             <label>رستوران</label>

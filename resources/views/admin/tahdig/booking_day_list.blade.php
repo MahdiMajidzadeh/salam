@@ -31,13 +31,14 @@
                 @endforeach
             </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" id="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">اسم</th>
                 <th scope="col">غذا</th>
                 <th scope="col">رستوران</th>
+                <th scope="col">دریافت</th>
             </tr>
             </thead>
             <tbody>
@@ -51,6 +52,7 @@
                         <td>{{ $reservation->user->name }}</td>
                         <td>{{ $reservation->food->name }}</td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
+                        <td><button class="btn btn-info" disabled>دریافت</button></td>
                     </tr>
                 @endforeach
             @endforeach
@@ -62,16 +64,21 @@
 
 @push('css')
     <link href="{{ mix('css/persian-datepicker.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 @endpush
 
 @push('js')
     <script src="{{ mix('js/persian-date.min.js') }}"></script>
     <script src="{{ mix('js/persian-datepicker.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#date").pDatepicker({
                 altField: '#date_alt',
                 altFormat: 'X'
+            });
+            $('#table').DataTable({
+                paging:false
             });
         });
     </script>

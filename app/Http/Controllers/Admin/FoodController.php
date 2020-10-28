@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enum\Role;
 use App\Model\Food;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
@@ -12,14 +11,14 @@ class FoodController extends Controller
 {
     public function addRestaurant(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_management');
 
-        return view('admin_food.restaurant');
+        return view('admin.tahdig.food.restaurant_add');
     }
 
     public function addRestaurantSubmit(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_management');
 
         $request->validate([
             'name' => 'required|string|unique:restaurants,name',
@@ -34,23 +33,32 @@ class FoodController extends Controller
 
     public function restaurantsList()
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_view');
 
-        return view('admin_food.restaurants_list', ['restaurants' => Restaurant::all()]);
+        return view('admin.tahdig.food.restaurant_list', ['restaurants' => Restaurant::all()]);
     }
 
     public function addFood(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_management');
 
         $data['restaurants'] = Restaurant::all();
 
-        return view('admin_food.food', $data);
+        return view('admin.tahdig.food.food_add', $data);
+    }
+
+    public function editFood(Request $request, $foodId)
+    {
+        allowed('food_management');
+
+        $data['food'] = Food::findOrFail($foodId);
+
+        return view('admin.tahdig.food.food_edit', $data);
     }
 
     public function addFoodSubmit(Request $request)
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_management');
 
         $request->validate([
             'name' => 'required|string',
@@ -67,9 +75,25 @@ class FoodController extends Controller
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
 
+    public function editFoodSubmit(Request $request)
+    {
+        allowed('food_management');
+
+        $request->validate([
+            'id' => 'required|exists:foods,id',
+            'price' => 'required|numeric',
+        ]);
+
+        $food = Food::find($request->get('id'));
+        $food->price = to_en($request->get('price')); //todo convert number
+        $food->save();
+
+        return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
+    }
+
     public function foodsList()
     {
-        allowed(Role::FOOD_MANAGER);
+        allowed('food_view');
 
         $data['foods'] = Food::query()
             ->orderBy('restaurant_id', 'asc')
@@ -77,6 +101,6 @@ class FoodController extends Controller
             ->with('Restaurant')
             ->get();
 
-        return view('admin_food.foods_list', $data);
+        return view('admin.tahdig.food.food_list', $data);
     }
 }
