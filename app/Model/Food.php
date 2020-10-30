@@ -3,14 +3,17 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Food extends Model
 {
+    use softDeletes;
+
     protected $table = 'foods';
 
     public function bookings()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(TahdigBooking::class);
     }
 
     public function Restaurant()

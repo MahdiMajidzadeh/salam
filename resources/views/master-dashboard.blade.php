@@ -13,14 +13,14 @@
                 {{--<li class="nav-item">--}}
                 {{--<a class="nav-link" href="{{ url('dashboard/reserve') }}">رزرو</a>--}}
                 {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                {{--<a class="nav-link" href="#">تاریخچه</a>--}}
-                {{--</li>--}}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ url('/logout') }}">خروج</a>
+                </li>
             </ul>
-            @if(auth()->user()->role_id > 1)
+            @if(is_admin())
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('admin') }}">مدیریت</a>
+                        <a class="nav-link" href="{{ url('/admin') }}">مدیریت</a>
                     </li>
                 </ul>
             @endif

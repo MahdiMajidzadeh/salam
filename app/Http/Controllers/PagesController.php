@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Enum\Role;
-use App\Model\Booking;
+use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,7 +11,7 @@ class PagesController extends Controller
     public function dashboard(Request $request)
     {
         $data = [];
-        $booking = Booking::query()
+        $booking = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
 
@@ -27,9 +26,11 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        allowed(Role::ADMIN);
+        if(! is_admin()){
+            abort(403);
+        }
 
-        return view('pages.dashboard_admin');
+        return view('admin.dashboard');
     }
 
     public function passwordReset(Request $request)

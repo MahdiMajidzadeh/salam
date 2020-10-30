@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AccountsController extends Controller
 {
     public function loginSubmit(Request $request)
     {
+
         $mobile   = $request->get('mobile');
         $password = $request->get('password');
 

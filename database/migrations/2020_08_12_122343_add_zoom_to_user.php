@@ -19,7 +19,6 @@ class AddZoomToUser extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('zoom_url');
             $table->dropColumn('zoom_auth');
-
         });
     }
 }

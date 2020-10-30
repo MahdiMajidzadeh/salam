@@ -18,6 +18,13 @@
                             <label>موبایل</label>
                             <input type="text" class="form-control" name="mobile">
                         </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="is_inter"
+                                       id="is_inter">
+                                <label class="custom-control-label" for="is_inter">کارآموز</label>
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-primary">افزودن</button>
                     </form>
                 </div>
