@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\BillExport;
-use App\Model\TahdigReservation;
 use App\Http\Controllers\Controller;
+use App\Model\TahdigReservation;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
