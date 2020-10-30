@@ -63,7 +63,7 @@
                 <td style="direction: ltr">{{ sprintf("%+d",$reservation->price - $reservation->price_default) }}</td>
                 <td>
                     @if($reservation->booking->booking_date > now()->addDays(config('nahar.gap_day'))->startOfDay())
-                        <a href="{{ url('/dashboard/reserve/delete/'.$reservation->id)}}" class="btn-danger btn btn-sm">
+                        <a href="{{ url('/tahdig/reserve/delete/'.$reservation->id)}}" class="btn-danger btn btn-sm">
                             حذف
                         </a>
                     @endif

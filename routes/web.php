@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
 Route::view('/login', 'login')->name('login');
-Route::post('/', [C\AccountsController::class, 'loginSubmit']);
+Route::post('/login', [C\AccountsController::class, 'loginSubmit']);
 Route::get('/logout', [C\AccountsController::class, 'logout']);
 
 Route::group(['middleware' => 'auth'], function() {

@@ -67,6 +67,6 @@ class FoodBookingController extends Controller
             }
         }
 
-        return view('admin.booking_day_list', $data);
+        return view('admin.tahdig.booking_day_list', $data);
     }
 }

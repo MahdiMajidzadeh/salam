@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Model\TahdigBooking;
 use App\Model\TahdigReservation;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ReservationsController extends Controller
@@ -15,7 +14,9 @@ class ReservationsController extends Controller
     {
         $data['reserved'] = TahdigReservation::query()
             ->where('user_id', auth()->id())
-            ->where('created_at', '>', Carbon::now()->subMonth()->startOfDay())
+            ->whereHas('booking', function($query) {
+                $query->where('booking_date', '>', Carbon::now()->subDays(14));
+            })
             ->get();
 
         $bookings = TahdigBooking::where('booking_date', '>',

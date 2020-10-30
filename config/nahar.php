@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'gap_day' => 0,
+    'gap_day' => 1,
 ];

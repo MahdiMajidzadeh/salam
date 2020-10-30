@@ -19,7 +19,7 @@
                         {{--<img src="{{ asset('img/login.jpg') }}" class="img-fluid">--}}
                     {{--</div>--}}
                     <div class="card-body">
-                        <form action="{{ url('/') }}" method="post">
+                        <form action="{{ url('/login') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label>شماره همراه</label>

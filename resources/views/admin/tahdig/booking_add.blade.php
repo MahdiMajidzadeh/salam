@@ -73,7 +73,7 @@
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
-                                        - {{ $food->restaurant->name }}</option>
+                                        - {{ $food->restaurant->name }} - {{ $food->price }}</option>
                                 @endforeach
                             </select>
                             <div class="custom-control custom-checkbox">
