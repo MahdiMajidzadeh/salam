@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\UserLite;
 use App\Model\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserLite;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
     public function userList(Request $request)
     {
         $request->validate([
-            'q' => 'required'
+            'q' => 'required',
         ]);
 
         $users = User::where('name', 'like', '%'.$request->get('q').'%')->get();

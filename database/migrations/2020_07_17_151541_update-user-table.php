@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class UpdateUserTable extends Migration
 {
     public function up()
     {
-        Schema::table('users', function(Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->integer('employment_id')->nullable();
             $table->timestamp('deactivated_at')->nullable();
         });
@@ -16,7 +16,7 @@ class UpdateUserTable extends Migration
 
     public function down()
     {
-        Schema::table('users', function(Blueprint $table){
+        Schema::table('users', function (Blueprint $table) {
             $table->removeColumn('employment_id');
             $table->removeColumn('deactivated_at');
         });

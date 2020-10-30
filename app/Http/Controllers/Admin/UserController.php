@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -101,9 +101,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
