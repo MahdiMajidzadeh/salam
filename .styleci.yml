@@ -1,12 +1,15 @@
+preset: laravel
 enabled:
   - align_equals_minimal
   - length_ordered_imports
 disabled:
   - unused_use
+  - unalign_equals
+  - alpha_ordered_imports
 finder:
   path:
-  - app
-  - database/migrations
+    - app
+    - database/migrations
   not-name:
-  - index.php
-  - server.php
+    - index.php
+    - server.php
