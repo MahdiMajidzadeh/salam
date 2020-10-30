@@ -12,7 +12,7 @@ class UserController extends Controller
     public function userList(Request $request)
     {
         $request->validate([
-            'q' => 'required'
+            'q' => 'required',
         ]);
 
         $users = User::where('name', 'like', '%'.$request->get('q').'%')->get();
