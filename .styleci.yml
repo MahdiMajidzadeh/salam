@@ -1,9 +1,13 @@
 preset: laravel
+enabled:
+  - align_equals_minimal
+  - length_ordered_imports
 disabled:
   - unused_use
 finder:
   path:
     - app
+    - database/migrations
   not-name:
     - index.php
     - server.php
