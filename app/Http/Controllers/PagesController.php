@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
     public function dashboard(Request $request)
     {
-        $data = [];
+        $data    = [];
         $booking = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
@@ -26,7 +26,7 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        if(! is_admin()){
+        if (! is_admin()) {
             abort(403);
         }
 
@@ -53,7 +53,7 @@ class PagesController extends Controller
             return redirect()->back()->with('msg-error', __('msg.password_wrong'));
         }
 
-        $user = auth()->user();
+        $user           = auth()->user();
         $user->password = Hash::make($request->get('password_new'));
         $user->save();
 

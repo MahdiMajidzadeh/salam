@@ -1,14 +1,14 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class AddChargeUsersTable extends Migration
 {
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->bigInteger('tahdig_credits')->default(0)->after('name');
             $table->boolean('is_inter')->default(false);
             $table->timestamp('settlement_at')->after('updated_at')->nullable();
@@ -18,7 +18,7 @@ class AddChargeUsersTable extends Migration
 
     public function down()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('tahdig_credits');
             $table->dropColumn('is_inter');
             $table->dropColumn('settlement_at');

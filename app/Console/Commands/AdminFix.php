@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Model\Permission;
 use App\Model\User;
+use App\Model\Permission;
 use Illuminate\Console\Command;
 
 class AdminFix extends Command

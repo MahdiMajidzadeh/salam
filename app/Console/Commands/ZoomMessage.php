@@ -2,14 +2,14 @@
 
 namespace App\Console\Commands;
 
-use App\Model\TahdigBooking;
 use App\Model\User;
 use GuzzleHttp\Client;
+use App\Model\TahdigBooking;
 use Illuminate\Console\Command;
 
 class ZoomMessage extends Command
 {
-    protected $signature = 'zoom:message';
+    protected $signature   = 'zoom:message';
     protected $description = 'Send message to zoom';
 
     public function __construct()
@@ -51,7 +51,7 @@ class ZoomMessage extends Command
 
     public function sendRequest($url, $auth, $food, $restaurant)
     {
-        $client = new Client();
+        $client   = new Client();
         $response = $client->post($url.'?format=fields', [
             'headers' => [
                 'debug'         => true,

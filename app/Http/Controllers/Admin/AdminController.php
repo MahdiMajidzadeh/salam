@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Permission;
 use App\Model\User;
+use App\Model\Permission;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -30,9 +30,9 @@ class AdminController extends Controller
         $user = User::find($request->get('user_id'));
         $user->permissions()->sync($request->get('permissions'));
 
-        cache()->delete('u_per_' . $user->id);
-        cache()->delete('u_is_ad_' . $user->id);
+        cache()->delete('u_per_'.$user->id);
+        cache()->delete('u_is_ad_'.$user->id);
 
-        return redirect('admin/acl/' . $user->id);
+        return redirect('admin/acl/'.$user->id);
     }
 }

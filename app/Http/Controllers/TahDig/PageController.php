@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\TahDig;
 
-use App\Http\Controllers\Controller;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {

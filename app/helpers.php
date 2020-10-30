@@ -2,26 +2,26 @@
 
 use Illuminate\Support\Facades\Cache;
 
-if (!function_exists('jdf')) {
+if (! function_exists('jdf')) {
     function jdf($date)
     {
         return \Morilog\Jalali\CalendarUtils::strftime('Y/m/d', strtotime($date));
     }
 }
 
-if (!function_exists('jdfw')) {
+if (! function_exists('jdfw')) {
     function jdfw($date)
     {
         return \Morilog\Jalali\CalendarUtils::strftime('l Y/m/d', strtotime($date));
     }
 }
 
-if (!function_exists('allowed')) {
+if (! function_exists('allowed')) {
     function allowed($action)
     {
         $userId = auth()->id();
 
-        $permissions = Cache::remember('u_per_' . $userId, 60 * 60, function() {
+        $permissions = Cache::remember('u_per_'.$userId, 60 * 60, function () {
             return auth()
                 ->user()
                 ->permissions()
@@ -29,7 +29,7 @@ if (!function_exists('allowed')) {
                 ->toArray();
         });
 
-        if (!in_array($action, $permissions)) {
+        if (! in_array($action, $permissions)) {
             return false;
         }
 
@@ -37,12 +37,12 @@ if (!function_exists('allowed')) {
     }
 }
 
-if (!function_exists('is_allowed')) {
+if (! function_exists('is_allowed')) {
     function is_allowed($action)
     {
         $userId = auth()->id();
 
-        $permissions = Cache::remember('u_per_' . $userId, 60 * 60, function() {
+        $permissions = Cache::remember('u_per_'.$userId, 60 * 60, function () {
             return auth()
                 ->user()
                 ->permissions()
@@ -50,7 +50,7 @@ if (!function_exists('is_allowed')) {
                 ->toArray();
         });
 
-        if (!in_array($action, $permissions)) {
+        if (! in_array($action, $permissions)) {
             return abort(403);
         }
 
@@ -58,12 +58,12 @@ if (!function_exists('is_allowed')) {
     }
 }
 
-if (!function_exists('is_admin')) {
+if (! function_exists('is_admin')) {
     function is_admin()
     {
         $userId = auth()->id();
 
-        $permissions = Cache::remember('u_is_ad_' . $userId, 60 * 60, function() {
+        $permissions = Cache::remember('u_is_ad_'.$userId, 60 * 60, function () {
             return auth()
                 ->user()
                 ->permissions
@@ -78,16 +78,16 @@ if (!function_exists('is_admin')) {
     }
 }
 
-if (!function_exists('to_en')) {
+if (! function_exists('to_en')) {
     function to_en($number)
     {
         $fmt = numfmt_create('en', NumberFormatter::DECIMAL);
 
-        return (int)$fmt->parse($number);
+        return (int) $fmt->parse($number);
     }
 }
 
-if (!function_exists('getMonthDays')) {
+if (! function_exists('getMonthDays')) {
     /**
      * First And Last Day of Month with Year and Month.
      *
@@ -114,7 +114,7 @@ if (!function_exists('getMonthDays')) {
     }
 }
 
-if (!function_exists('jMonths')) {
+if (! function_exists('jMonths')) {
     /**
      * @return array
      */
