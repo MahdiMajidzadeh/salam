@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Model\Food;
 use App\Model\Meal;
-use Illuminate\Http\Request;
 use App\Model\TahdigBooking;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Http\Controllers\Controller;
 
 class FoodBookingController extends Controller
 {
@@ -31,9 +31,9 @@ class FoodBookingController extends Controller
             'foods.*' => 'nullable|distinct|exists:foods,id|different:food_main',
         ]);
 
-        $booking                  = new TahdigBooking();
-        $booking->booking_date    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
-        $booking->meal_id         = $request->get('meal');
+        $booking = new TahdigBooking();
+        $booking->booking_date = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
+        $booking->meal_id = $request->get('meal');
         $booking->default_food_id = 0;
         $booking->save();
 
@@ -49,7 +49,7 @@ class FoodBookingController extends Controller
     {
         allowed('reservation_view');
 
-        $data['meals']   = Meal::all();
+        $data['meals'] = Meal::all();
         $data['hasData'] = false;
 
         if ($request->has('meal') && $request->has('date_alt')) {
@@ -63,7 +63,7 @@ class FoodBookingController extends Controller
                 $data['hasData'] = true;
 
                 $data['booking'] = $booking;
-                $data['foods']   = $booking->reservations->groupBy('food_id');
+                $data['foods'] = $booking->reservations->groupBy('food_id');
             }
         }
 
