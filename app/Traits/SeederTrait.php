@@ -7,7 +7,7 @@ trait SeederTrait
     /**
      * Returns the class of model for saving items.
      *
-     * @return String
+     * @return string
      */
     abstract protected function classModel();
 
@@ -22,9 +22,9 @@ trait SeederTrait
     public function save($items)
     {
         $class = $this->classModel();
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new \Exception(
-                $class . ' Model class is not exists!'
+                $class.' Model class is not exists!'
             );
         }
 
