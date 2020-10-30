@@ -1,7 +1,6 @@
 enabled:
   - align_equals_minimal
   - length_ordered_imports
-  - align_phpdoc
   - array_indentation
   - binary_operator_spaces
   - blank_line_after_namespace
@@ -111,8 +110,8 @@ disabled:
   - unused_use
 finder:
   path:
-  -  - app
-  -  - database/migrations
+  - app
+  - database/migrations
   not-name:
-  -  - index.php
-  -  - server.php
+  - index.php
+  - server.php
