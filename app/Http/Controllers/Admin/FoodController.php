@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Model\Food;
 use App\Model\Restaurant;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class FoodController extends Controller
 {
