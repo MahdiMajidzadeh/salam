@@ -57,5 +57,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'ajax'], function() {
         Route::get('users/list', [C\Ajax\UserController::class, 'userList']);
+        Route::get('tahdig/received/{id}', [C\Ajax\TagDigController::class, 'receivedReservation']);
     });
 });

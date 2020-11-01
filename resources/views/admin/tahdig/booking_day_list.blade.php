@@ -31,10 +31,9 @@
                 @endforeach
             </div>
         </div>
-        <table class="table table-striped" id="table">
+        <table class="table table-striped responsive" id="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">اسم</th>
                 <th scope="col">غذا</th>
                 <th scope="col">رستوران</th>
@@ -47,12 +46,16 @@
                     $food = $food->sortBy('user.id')
                 @endphp
                 @foreach($food as $reservation)
-                    <tr>
-                        <td>{{ $reservation->user->id }}</td>
+                    <tr class="@if(!is_null($reservation->received_at)) text-black-50 @endif">
                         <td>{{ $reservation->user->name }}</td>
                         <td>{{ $reservation->food->name }}</td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
-                        <td><button class="btn btn-info" disabled>دریافت</button></td>
+                        <td>
+                            <button class="btn btn-info received" data-id="{{ $reservation->id }}"
+                                    @if(!is_null($reservation->received_at)) disabled @endif>
+                                دریافت
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             @endforeach
@@ -78,8 +81,20 @@
                 altFormat: 'X'
             });
             $('#table').DataTable({
-                paging:false
+                paging:false,
+                responsive: true
             });
+
+            $('.received').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "{{ url('admin/ajax/tahdig/received') }}/" + $(this).data('id')
+                }).done(function() {
+
+                });
+                $(this).prop('disabled', true);
+                $(this).parent().parent().addClass('text-black-50');
+            })
         });
     </script>
 @endpush
