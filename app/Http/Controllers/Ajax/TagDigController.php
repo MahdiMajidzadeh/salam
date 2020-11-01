@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Http\Controllers\Controller;
-use App\Model\TahdigReservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Model\TahdigReservation;
+use App\Http\Controllers\Controller;
 
 class TagDigController extends Controller
 {
