@@ -21,3 +21,7 @@ mix.sass('resources/scss/shards/shards.scss', 'public/css')
     .copyDirectory('resources/fonts', 'public/fonts')
     .sourceMaps()
     .version();
+
+if (mix.inProduction()) {
+    mix.version();
+}

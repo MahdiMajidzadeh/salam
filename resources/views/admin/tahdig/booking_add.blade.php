@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label>غذا اول</label>
-                            <select class="form-control" name="food_1">
+                            <select class="form-control food-list" name="food_1">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label>غذا دوم</label>
-                            <select class="form-control" name="food_2">
+                            <select class="form-control food-list" name="food_2">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label>غذا سوم</label>
-                            <select class="form-control" name="food_3">
+                            <select class="form-control food-list" name="food_3">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label>غذا چهارم</label>
-                            <select class="form-control" name="food_4">
+                            <select class="form-control food-list" name="food_4">
                                 <option value="">----</option>
                                 @foreach($foods as $food)
                                     <option value="{{ $food->id }}">{{ $food->name }}
@@ -92,16 +92,22 @@
 
 @push('css')
     <link href="{{ mix('css/persian-datepicker.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 @endpush
 
 @push('js')
     <script src="{{ mix('js/persian-date.min.js') }}"></script>
     <script src="{{ mix('js/persian-datepicker.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#date").pDatepicker({
                 altField: '#date_alt',
                 altFormat: 'X'
+            });
+
+            $('.food-list').selectpicker({
+                liveSearch: true
             });
         });
     </script>
