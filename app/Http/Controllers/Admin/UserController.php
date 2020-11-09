@@ -107,9 +107,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
