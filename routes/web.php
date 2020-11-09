@@ -25,21 +25,23 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
     Route::get('/', [C\PagesController::class, 'adminDashboard']);
-    Route::get('/user/add', [C\Admin\UserController::class, 'add']);
-    Route::post('/user/add', [C\Admin\UserController::class, 'addSubmit']);
-    Route::get('/users', [C\Admin\UserController::class, 'usersList']);
     Route::get('/users-bill', [C\Admin\BillController::class, 'usersBill']);
     Route::get('/users-bill-export', [C\Admin\BillController::class, 'exportUsersBill']);
-    Route::get('/user/bulk', [C\Admin\UserController::class, 'bulk']);
-    Route::post('/user/bulk', [C\Admin\UserController::class, 'bulkSubmit']);
     Route::get('/restaurant/add', [C\Admin\FoodController::class, 'addRestaurant']);
     Route::get('/restaurants-bill', [C\Admin\BillController::class, 'restaurantsBill']);
     Route::post('/restaurant/add', [C\Admin\FoodController::class, 'addRestaurantSubmit']);
     Route::get('/restaurants', [C\Admin\FoodController::class, 'restaurantsList']);
-
     Route::get('/booking/add', [C\Admin\FoodBookingController::class, 'add']);
     Route::post('/booking/add', [C\Admin\FoodBookingController::class, 'addSubmit']);
     Route::get('/booking/day-list', [C\Admin\FoodBookingController::class, 'dayList']);
+
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', [C\Admin\UserController::class, 'usersList']);
+        Route::get('/add', [C\Admin\UserController::class, 'add']);
+        Route::post('/add', [C\Admin\UserController::class, 'addSubmit']);
+        Route::get('/{id}', [C\Admin\UserController::class, 'edit']);
+        Route::post('/edit', [C\Admin\UserController::class, 'editSubmit']);
+    });
 
     Route::group(['prefix' => 'foods'], function() {
         Route::get('/', [C\Admin\FoodController::class, 'foodsList']);

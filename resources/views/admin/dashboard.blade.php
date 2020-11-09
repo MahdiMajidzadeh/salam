@@ -33,7 +33,7 @@
     <div class="card my-4">
         <div class="card-body p-3">
             {{--<a href="{{ url('admin/user/bulk') }}" class="btn btn-secondary">افزودن دست جمعی کاربر</a>--}}
-            <a href="{{ url('admin/user/add') }}" class="btn btn-secondary">افزودن کاربر</a>
+            <a href="{{ url('admin/users/add') }}" class="btn btn-secondary">افزودن کاربر</a>
             <a href="{{ url('admin/users') }}" class="btn btn-secondary">لیست کاربران</a>
         </div>
     </div>

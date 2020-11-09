@@ -23,7 +23,7 @@ class BillController extends Controller
             ->get()
             ->groupBy('user_id');
 
-        return view('admin_bill.users-bill', $data);
+        return view('admin.bill.users-bill', $data);
     }
 
     public function exportUsersBill()
@@ -46,6 +46,6 @@ class BillController extends Controller
             ->get()
             ->groupBy('food.restaurant_id');
 
-        return view('admin_bill.restaurants-bill', $data);
+        return view('admin.bill.restaurants-bill', $data);
     }
 }

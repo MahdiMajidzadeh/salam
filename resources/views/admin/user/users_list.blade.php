@@ -26,6 +26,7 @@
             <th scope="col">کد پرسنلی</th>
             <th scope="col">اسم</th>
             <th scope="col">موبایل</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,7 @@
                 <td>{{ $user->employment_id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->mobile }}</td>
+                <td><a href="{{ url('admin/users/'.$user->id) }}" class="btn btn-primary">ویرایش</a></td>
             </tr>
         @endforeach
         </tbody>

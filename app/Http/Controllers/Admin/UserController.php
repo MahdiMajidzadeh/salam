@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    private $isFailed = false;
-
-    private $errors = [];
-
     /**
      * @deprecated
      */
@@ -21,7 +17,7 @@ class UserController extends Controller
     {
         is_allowed('user_management');
 
-        return view('admin_user.bulk');
+        return view('admin.user.bulk');
     }
 
     /**
@@ -50,8 +46,9 @@ class UserController extends Controller
     private function createUser($data)
     {
         $validator = Validator::make($data->all(), [
-            'name'   => 'required',
-            'mobile' => 'required|digits:11|unique:users,mobile',
+            'name'          => 'required',
+            'employment_id' => 'integer',
+            'mobile'        => 'required|digits:11|unique:users,mobile',
         ]);
 
         if ($validator->fails()) {
@@ -66,11 +63,12 @@ class UserController extends Controller
             return;
         }
 
-        $user           = new User();
-        $user->name     = $data->get('name');
-        $user->mobile   = $data->get('mobile');
-        $user->password = Hash::make($data->get('mobile'));
-        $user->is_inter = $data->has('is_inter');
+        $user                = new User();
+        $user->name          = $data->get('name');
+        $user->mobile        = $data->get('mobile');
+        $user->password      = Hash::make($data->get('mobile'));
+        $user->is_inter      = $data->has('is_inter');
+        $user->employment_id = $data->get('employment_id', null);
         $user->save();
     }
 
@@ -78,18 +76,26 @@ class UserController extends Controller
     {
         is_allowed('user_management');
 
-        return view('admin_user.add');
+        return view('admin.user.add');
     }
 
     public function addSubmit(Request $request)
     {
         is_allowed('user_management');
 
-        $this->createUser($request);
+        $request->validate([
+            'name'          => 'required',
+            'employment_id' => 'integer|nullable',
+            'mobile'        => 'required|digits:11|unique:users,mobile',
+        ]);
 
-        if ($this->isFailed) {
-            return redirect()->back()->withErrors($this->errors);
-        }
+        $user                = new User();
+        $user->name          = $request->get('name');
+        $user->mobile        = $request->get('mobile');
+        $user->password      = Hash::make($request->get('mobile'));
+        $user->is_inter      = $request->has('is_inter');
+        $user->employment_id = $request->get('employment_id', null);
+        $user->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
     }
@@ -101,14 +107,39 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
-        } elseif ($request->filled('name')) {
-            $query->where('name', 'like', '%'.$request->get('name').'%');
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
         $data['users'] = $query->orderBy('name', 'asc')
             ->paginate(60);
 
-        return view('admin_user.users_list', $data);
+        return view('admin.user.users_list', $data);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        is_allowed('user_management');
+
+        $data['user'] = User::find($id);
+
+        return view('admin.user.edit', $data);
+    }
+
+    public function editSubmit(Request $request)
+    {
+        is_allowed('user_management');
+
+        $request->validate([
+            'employment_id' => 'integer|nullable',
+        ]);
+
+        $user                = User::find($request->get('id'));
+        $user->is_inter      = $request->has('is_inter');
+        $user->employment_id = $request->get('employment_id', null);
+        $user->save();
+
+        return redirect()->back();
     }
 }
