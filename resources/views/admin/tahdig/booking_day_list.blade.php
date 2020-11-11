@@ -46,7 +46,7 @@
                     $food = $food->sortBy('user.id')
                 @endphp
                 @foreach($food as $reservation)
-                    <tr class="@if(!is_null($reservation->received_at)) text-black-50 @endif">
+                    <tr class="@if(!is_null($reservation->received_at)) text-black-50 line-through @endif">
                         <td>{{ $reservation->user->name }}</td>
                         <td>{{ $reservation->food->name }}</td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
@@ -93,7 +93,7 @@
 
                 });
                 $(this).prop('disabled', true);
-                $(this).parent().parent().addClass('text-black-50');
+                $(this).parent().parent().addClass('text-black-50 line-through');
             })
         });
     </script>
