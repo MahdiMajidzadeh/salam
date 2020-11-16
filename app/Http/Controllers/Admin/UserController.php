@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -93,8 +94,10 @@ class UserController extends Controller
         $user->name          = $request->get('name');
         $user->mobile        = $request->get('mobile');
         $user->password      = Hash::make($request->get('mobile'));
-        $user->is_inter      = $request->has('is_inter');
+        $user->is_inter      = $request->has(
+            'is_inter');
         $user->employment_id = $request->get('employment_id', null);
+        $user->settlement_at = Carbon::now();
         $user->save();
 
         return redirect()->back()->with('msg-ok', __('msg.add_ok', ['name' => $request->get('name')]));
