@@ -3,7 +3,7 @@
 @section('title', 'لیست روز')
 
 @section('inner-content')
-    <div class="card  d-print-none">
+    <div class="card d-print-none my-4">
         <div class="card-body">
             <form class="form-inline">
                 <label>وعده: </label>

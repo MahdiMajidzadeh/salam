@@ -10,31 +10,6 @@
                     تراز حساب:
                     <span style="font-weight: bold;">{{ number_format($sum,0,".",",") }}</span>
                 </div>
-                <div class="col-12 col-md-6">
-                    <form class="form-inline">
-                        <div class="form-group ml-3">
-                            <label>ماه: </label>
-                            <select class="custom-select form-control-sm" name="month">
-                                @foreach(jMonths() as $monthNumber=>$monthName)
-                                    <option value="{{ $monthNumber }}" {{$monthNumber == $month ? 'selected' : '' }}>
-                                        {{ $monthName }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group ml-3">
-                            <label>سال: </label>
-                            <select class="custom-select form-control-sm" name="year">
-                                @foreach(range(1399,1450) as $yearNumber)
-                                    <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>
-                                        {{ $yearNumber }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary ml-3 btn-sm">فیلتر کن</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -69,5 +44,6 @@
         @endforeach
         </tbody>
     </table>
+        {{ $reservations->links() }}
     </div>
 @endsection

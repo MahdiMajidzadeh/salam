@@ -48,6 +48,16 @@
                     </p>
                 </div>
             </div>
+            @foreach($notices as $notice)
+                @if(!is_null($notice->banner))
+                    <a href="{{ url('notices/'. $notice->id) }}">
+                        <div class="card bg-dark text-white">
+                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"
+                                 class="card-img">
+                        </div>
+                    </a>
+                @endif
+            @endforeach
             @isset($todayReserved)
                 <div class="bg-info card text-white my-4">
                     <div class="card-body">

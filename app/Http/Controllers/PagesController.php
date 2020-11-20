@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Notice;
 use App\Model\TahdigBooking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +22,10 @@ class PagesController extends Controller
                 ->where('user_id', auth()->id())
                 ->first();
         }
+
+        $data['notices'] = Notice::where('started_at','<', Carbon::now())
+            ->where('ended_at','>', Carbon::now())
+            ->get();
 
         return view('pages.dashboard', $data);
     }
@@ -58,5 +64,12 @@ class PagesController extends Controller
         $user->save();
 
         return redirect()->back()->with('msg-ok', __('msg.password_ok'));
+    }
+
+    public function singleNotice(Request $request, $id)
+    {
+        $data['notice'] = Notice::findOrFail($id);
+
+        return view('pages.notice', $data);
     }
 }

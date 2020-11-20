@@ -11,14 +11,14 @@ class FoodController extends Controller
 {
     public function addRestaurant(Request $request)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         return view('admin.tahdig.food.restaurant_add');
     }
 
     public function addRestaurantSubmit(Request $request)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         $request->validate([
             'name' => 'required|string|unique:restaurants,name',
@@ -33,14 +33,14 @@ class FoodController extends Controller
 
     public function restaurantsList()
     {
-        allowed('food_view');
+        is_allowed('food_view');
 
         return view('admin.tahdig.food.restaurant_list', ['restaurants' => Restaurant::all()]);
     }
 
     public function addFood(Request $request)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         $data['restaurants'] = Restaurant::all();
 
@@ -49,7 +49,7 @@ class FoodController extends Controller
 
     public function editFood(Request $request, $foodId)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         $data['food'] = Food::findOrFail($foodId);
 
@@ -58,7 +58,7 @@ class FoodController extends Controller
 
     public function addFoodSubmit(Request $request)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         $request->validate([
             'name' => 'required|string',
@@ -77,7 +77,7 @@ class FoodController extends Controller
 
     public function editFoodSubmit(Request $request)
     {
-        allowed('food_management');
+        is_allowed('food_management');
 
         $request->validate([
             'id' => 'required|exists:foods,id',
@@ -93,7 +93,7 @@ class FoodController extends Controller
 
     public function foodsList()
     {
-        allowed('food_view');
+        is_allowed('food_view');
 
         $data['foods'] = Food::query()
             ->orderBy('restaurant_id', 'asc')

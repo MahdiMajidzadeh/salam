@@ -3,7 +3,7 @@
 @section('title', 'لیست کاربران')
 
 @section('inner-content')
-    <div class="card  d-print-none">
+    <div class="card  d-print-none my-4">
         <div class="card-body">
             <form class="form-inline">
                 <div class="form-group ml-3">

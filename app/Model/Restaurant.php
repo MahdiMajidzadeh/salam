@@ -8,6 +8,6 @@ class Restaurant extends Model
 {
     public function Foods()
     {
-        return $this->hasMany(AvailableFood::class);
+        return $this->hasMany(Food::class);
     }
 }

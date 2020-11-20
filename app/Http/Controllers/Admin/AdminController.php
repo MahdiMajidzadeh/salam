@@ -11,6 +11,7 @@ class AdminController extends Controller
 {
     public function adminList()
     {
+        is_allowed('admin');
         $data['admins'] = User::has('permissions')->get();
 
         return view('admin.acl.admin_list', $data);
@@ -18,6 +19,8 @@ class AdminController extends Controller
 
     public function adminPermissions($id)
     {
+        is_allowed('admin');
+
         $data['user']            = User::find($id);
         $data['permissions']     = Permission::all();
         $data['userPermissions'] = $data['user']->permissions->pluck('id');
@@ -27,6 +30,8 @@ class AdminController extends Controller
 
     public function adminPermissionsSubmit(Request $request)
     {
+        is_allowed('admin');
+
         $user = User::find($request->get('user_id'));
         $user->permissions()->sync($request->get('permissions'));
 

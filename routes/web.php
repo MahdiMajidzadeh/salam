@@ -21,6 +21,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);
         Route::get('/history', [C\TahDig\ReservationsController::class, 'history']);
     });
+
+    Route::get('/notices/{id}', [C\PagesController::class, 'singleNotice']);
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
@@ -41,6 +43,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
         Route::post('/add', [C\Admin\UserController::class, 'addSubmit']);
         Route::get('/{id}', [C\Admin\UserController::class, 'edit']);
         Route::post('/edit', [C\Admin\UserController::class, 'editSubmit']);
+    });
+
+    Route::group(['prefix' => 'notices'], function() {
+        Route::get('/', [C\Admin\NoticeController::class, 'all']);
+        Route::get('/add', [C\Admin\NoticeController::class, 'add']);
+        Route::post('/add', [C\Admin\NoticeController::class, 'addSubmit']);
     });
 
     Route::group(['prefix' => 'foods'], function() {

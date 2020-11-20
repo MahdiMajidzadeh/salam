@@ -56,6 +56,16 @@ class PermissionSeed extends Seeder
                 'name' => 'مشاهده مالی',
                 'slug' => 'billing_view',
             ],
+            [
+                'id' => 9,
+                'name' => 'مشاهده اطلاعیه ها',
+                'slug' => 'notice_view',
+            ],
+            [
+                'id' => 10,
+                'name' => 'مدیریت اطلاعیه ها',
+                'slug' => 'notice_management',
+            ],
         ];
 
         $this->save($items);

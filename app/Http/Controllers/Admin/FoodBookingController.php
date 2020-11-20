@@ -13,7 +13,7 @@ class FoodBookingController extends Controller
 {
     public function add(Request $request)
     {
-        allowed('reservation_management');
+        is_allowed('reservation_management');
 
         $data['meals'] = Meal::all();
         $data['foods'] = Food::with(['restaurant'])->get();
@@ -23,7 +23,7 @@ class FoodBookingController extends Controller
 
     public function addSubmit(Request $request)
     {
-        allowed('reservation_management');
+        is_allowed('reservation_management');
 
         $request->validate([
             'meal'    => 'required|exists:meals,id',
@@ -47,7 +47,7 @@ class FoodBookingController extends Controller
 
     public function dayList(Request $request)
     {
-        allowed('reservation_view');
+        is_allowed('reservation_view');
 
         $data['meals']   = Meal::all();
         $data['hasData'] = false;
