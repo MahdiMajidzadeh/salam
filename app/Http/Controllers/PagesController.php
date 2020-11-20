@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Model\Notice;
 use App\Model\TahdigBooking;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -23,8 +23,8 @@ class PagesController extends Controller
                 ->first();
         }
 
-        $data['notices'] = Notice::where('started_at','<', Carbon::now())
-            ->where('ended_at','>', Carbon::now())
+        $data['notices'] = Notice::where('started_at', '<', Carbon::now())
+            ->where('ended_at', '>', Carbon::now())
             ->get();
 
         return view('pages.dashboard', $data);
