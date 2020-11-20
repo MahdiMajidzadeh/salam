@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\BillExport;
 use App\Model\TahdigReservation;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BillController extends Controller
@@ -15,13 +16,14 @@ class BillController extends Controller
 
         $data = getMonthDays();
 
-        $data['usersBill'] = TahdigReservation::query()
-            ->with('user')
-            ->join('tahdig_bookings', 'tahdig_reservations.booking_id', 'tahdig_bookings.id')
-            ->whereBetween('tahdig_bookings.booking_date', [$data['firstDayOfMonth'], $data['lastDayOfMonth']])
-            ->orderBy('user_id')
-            ->get()
-            ->groupBy('user_id');
+        $data['usersBill'] = DB::select(
+            "SELECT u.id, u.name, u.employment_id, u.deactivated_at, (u.tahdig_credits - sum(tr.price)) balance FROM `users` u
+            join tahdig_reservations tr on u.id = tr.user_id
+            join tahdig_bookings tb on tr.booking_id = tb.id
+            where tb.booking_date > u.settlement_at
+            GROUP by u.id,u.name, u.employment_id,u.tahdig_credits, u.deactivated_at
+            order by u.employment_id asc"
+        );
 
         return view('admin.bill.users-bill', $data);
     }

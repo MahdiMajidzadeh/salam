@@ -22,7 +22,6 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">کد پرسنلی</th>
             <th scope="col">اسم</th>
             <th scope="col">موبایل</th>
@@ -32,7 +31,6 @@
         <tbody>
         @foreach($users as $user)
             <tr class="@if(!is_null($user->deactivated_at)) text-muted @endif">
-                <td>{{ $user->id }}</td>
                 <td>{{ $user->employment_id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->mobile }}</td>

@@ -3,53 +3,31 @@
 @section('title', 'حساب ماهیانه کاربران')
 
 @section('inner-content')
-    <div class="card my-4">
-        <div class="card-body p-3 row">
-            <div class="col-9">
-                <form class="form-inline">
-                    <div class="form-group ml-3">
-                        <label>ماه: </label>
-                        <select class="custom-select form-control-sm" name="month">
-                            @foreach(jMonths() as $monthNumber=>$monthName)
-                                <option value="{{ $monthNumber }}" {{$monthNumber == $month ? 'selected' : '' }}>
-                                    {{ $monthName }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group ml-3">
-                        <label>سال: </label>
-                        <select class="custom-select form-control-sm" name="year">
-                            @foreach(range(1399,1450) as $yearNumber)
-                                <option value="{{$yearNumber}}" {{$yearNumber==$year ?'selected':''}}>
-                                    {{ $yearNumber }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary ml-3 btn-sm">فیلتر کن</button>
-                </form>
-            </div>
-            <div class="col-3">
-                <a href="{{ url('/admin/users-bill-export?'. http_build_query(request()->all())) }}" class="btn btn-primary btn-sm">اکسل</a>
-            </div>
-        </div>
-    </div>
+    {{--<div class="card my-4">--}}
+        {{--<div class="card-body p-3 row">--}}
+            {{--<div class="col-9">--}}
+            {{--</div>--}}
+            {{--<div class="col-3">--}}
+                {{--<a href="{{ url('/admin/users-bill-export?'. http_build_query(request()->all())) }}"--}}
+                   {{--class="btn btn-primary btn-sm">اکسل</a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
     <table class="table table-striped">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">پرسنلی</th>
             <th scope="col">نام</th>
             <th scope="col">جمع حساب</th>
         </tr>
         </thead>
         <tbody>
         @foreach($usersBill as $userBill)
-            <tr>
-                <td>{{$userBill->first()->user->id}}</td>
-                <td>{{ $userBill->first()->user->name }}</td>
+            <tr class="@if(!is_null($userBill->deactivated_at)) text-muted @endif">
+                <td>{{$userBill->employment_id}}</td>
+                <td>{{ $userBill->name }}</td>
                 <td dir="ltr">
-                    {{ $userBill->sum(function ($reservation) {return $reservation->price - $reservation->price_default;})}}
+                    {{ number_format($userBill->balance,0,".",",") }}
                 </td>
             </tr>
         @endforeach

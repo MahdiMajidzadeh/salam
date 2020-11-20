@@ -115,7 +115,7 @@ class UserController extends Controller
             $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
-        $data['users'] = $query->orderBy('name', 'asc')
+        $data['users'] = $query->orderBy('employment_id', 'asc')
             ->paginate(60);
 
         return view('admin.user.users_list', $data);
