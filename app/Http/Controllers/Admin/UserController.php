@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\User;
 use Carbon\Carbon;
+use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -90,11 +90,11 @@ class UserController extends Controller
             'mobile'        => 'required|digits:11|unique:users,mobile',
         ]);
 
-        $user                = new User();
-        $user->name          = $request->get('name');
-        $user->mobile        = $request->get('mobile');
-        $user->password      = Hash::make($request->get('mobile'));
-        $user->is_inter      = $request->has(
+        $user           = new User();
+        $user->name     = $request->get('name');
+        $user->mobile   = $request->get('mobile');
+        $user->password = Hash::make($request->get('mobile'));
+        $user->is_inter = $request->has(
             'is_inter');
         $user->employment_id = $request->get('employment_id', null);
         $user->settlement_at = Carbon::now();
@@ -110,9 +110,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('employment_id', 'asc')
