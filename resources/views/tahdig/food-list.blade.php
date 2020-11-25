@@ -23,7 +23,7 @@
                             @foreach($foods as $food)
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="{{ $booking->id.'-'.$food->id }}"
-                                           name="b-{{ $booking->id }}"
+                                           name="{{ $booking->id }}-f"
                                            value="{{ $food->id }}"
                                            @if(
                                            $reserved->where('booking_id',$booking->id)
@@ -42,7 +42,16 @@
                                     </label>
                                 </div>
                                 @endforeach
+
                                 </p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="form-group row m-0">
+                                <label for="quantity" class="col-sm-2 col-form-label">تعداد</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="quantity" name="{{ $booking->id }}-q" value="1">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

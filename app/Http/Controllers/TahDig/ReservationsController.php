@@ -7,6 +7,7 @@ use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
 use App\Model\TahdigReservation;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class ReservationsController extends Controller
 {
@@ -38,15 +39,20 @@ class ReservationsController extends Controller
     {
         $reserves = $request->except('_token');
 
-        foreach ($reserves as $key => $foodId) {
-            $bookingId = substr($key, 2);
-            $booking   = TahdigBooking::find($bookingId);
+        $reservations = [];
+        foreach ($reserves as $key => $id) {
+            list($bookingId, $type) = explode('-', $key);
+            $reservations[$bookingId][$type] = $id;
+        }
+
+        foreach ($reservations as $key => $reservationData) {
+            $booking = TahdigBooking::find($key);
 
             if (is_null($booking)) {
                 continue;
             }
 
-            $food = $booking->foods()->where('foods.id', $foodId)->first();
+            $food = $booking->foods()->where('foods.id', $reservationData['f'])->first();
 
             if (is_null($food)) {
                 continue;
@@ -57,6 +63,7 @@ class ReservationsController extends Controller
 
             $reservation->food_id       = $food->id;
             $reservation->price         = $food->price;
+            $reservation->quantity      = $reservationData['q'];
             $reservation->price_default = 0;
             $reservation->save();
         }
@@ -66,8 +73,6 @@ class ReservationsController extends Controller
 
     public function history(Request $request)
     {
-        $data = getMonthDays();
-
         $data['reservations'] = TahdigReservation::with([
             'booking',
             'booking.meal',
@@ -80,7 +85,7 @@ class ReservationsController extends Controller
         $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
-            ->sum('price');
+            ->sum(DB::raw('price * quantity'));
 
         $data['sum'] = auth()->user()->tahdig_credits - $totalCost;
 

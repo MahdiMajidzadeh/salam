@@ -27,13 +27,14 @@
         <div class="card my-4">
             <div class="card-body p-3">
                 @foreach($foods as $food)
-                    {{ $food->first()->food->name }} : {{ $food->count() }} <br>
+                    {{ $food->first()->food->name }} : {{ $food->sum('quantity') }} <br>
                 @endforeach
             </div>
         </div>
         <table class="table table-striped responsive" id="table">
             <thead>
             <tr>
+                <th scope="col">پرسنلی</th>
                 <th scope="col">اسم</th>
                 <th scope="col">غذا</th>
                 <th scope="col">رستوران</th>
@@ -47,8 +48,14 @@
                 @endphp
                 @foreach($food as $reservation)
                     <tr class="@if(!is_null($reservation->received_at)) text-black-50 line-through @endif">
+                        <td>{{ $reservation->user->employment_id }}</td>
                         <td>{{ $reservation->user->name }}</td>
-                        <td>{{ $reservation->food->name }}</td>
+                        <td>
+                            @if($reservation->quantity > 1)
+                                ({{ $reservation->quantity }})
+                            @endif
+                            {{ $reservation->food->name }}
+                        </td>
                         <td>{{ $reservation->food->restaurant->name }}</td>
                         <td>
                             <button class="btn btn-info received" data-id="{{ $reservation->id }}"

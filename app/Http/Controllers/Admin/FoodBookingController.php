@@ -61,7 +61,6 @@ class FoodBookingController extends Controller
 
             if ($booking) {
                 $data['hasData'] = true;
-
                 $data['booking'] = $booking;
                 $data['foods']   = $booking->reservations->groupBy('food_id');
             }

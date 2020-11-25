@@ -17,7 +17,7 @@ class BillController extends Controller
         $data = getMonthDays();
 
         $data['usersBill'] = DB::select(
-            "SELECT u.id, u.name, u.employment_id, u.deactivated_at, (u.tahdig_credits - sum(tr.price)) balance FROM `users` u
+            "SELECT u.id, u.name, u.employment_id, u.deactivated_at, (u.tahdig_credits - sum(tr.price * tr.quantity)) balance FROM `users` u
             join tahdig_reservations tr on u.id = tr.user_id
             join tahdig_bookings tb on tr.booking_id = tb.id
             where tb.booking_date > u.settlement_at

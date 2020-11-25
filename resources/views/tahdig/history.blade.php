@@ -20,6 +20,7 @@
             <th scope="col">تاریخ</th>
             <th scope="col">وعده</th>
             <th scope="col">غذا</th>
+            <th scope="col">تعداد</th>
             <th scope="col">رستوران</th>
             <th scope="col">قیمت</th>
             <th scope="col">عملیات</th>
@@ -31,6 +32,7 @@
                 <td>{{ jdfw($reservation->booking->booking_date) }}</td>
                 <td>{{ $reservation->booking->meal->name }}</td>
                 <td>{{ $reservation->food->name }}</td>
+                <td>{{ $reservation->quantity }}</td>
                 <td>{{ $reservation->food->restaurant->name }}</td>
                 <td>{{ $reservation->price }}</td>
                 <td>
