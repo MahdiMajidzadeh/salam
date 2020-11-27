@@ -32,7 +32,7 @@ class ReservationsController extends Controller
 
         $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
 
-        return view('tahdig.food-list', $data);
+        return view('tahdig.day_list', $data);
     }
 
     public function foodListSubmit(Request $request)

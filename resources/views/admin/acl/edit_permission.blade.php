@@ -1,4 +1,4 @@
-@extends('master-dashboard')
+@extends('template.master-dashboard')
 
 @section('title', 'لیست ادمین ها')
 
@@ -32,5 +32,4 @@
             </form>
         </div>
     </div>
-
 @endsection

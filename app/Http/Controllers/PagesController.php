@@ -41,7 +41,7 @@ class PagesController extends Controller
 
     public function passwordReset(Request $request)
     {
-        return view('pages.password_reset');
+        return view('user.password_reset');
     }
 
     public function passwordResetSubmit(Request $request)

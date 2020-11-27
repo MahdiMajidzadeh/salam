@@ -1,4 +1,4 @@
-@extends('master-dashboard')
+@extends('template.master-dashboard')
 
 @section('title', $notice->title)
 

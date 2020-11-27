@@ -1,11 +1,11 @@
-@extends('master-dashboard')
+@extends('template.master-dashboard')
 
 @section('title', 'افزودن غذا')
 
 @section('inner-content')
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            @include('messages')
+            @include('template.messages')
             <div class="card my-4">
                 <div class="card-body">
                     <form method="post" action="{{ url('admin/foods/add') }}">

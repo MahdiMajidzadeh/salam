@@ -25,7 +25,7 @@ class AdminController extends Controller
         $data['permissions']     = Permission::all();
         $data['userPermissions'] = $data['user']->permissions->pluck('id');
 
-        return view('admin.acl.edit', $data);
+        return view('admin.acl.edit_permission', $data);
     }
 
     public function adminPermissionsSubmit(Request $request)

@@ -1,4 +1,4 @@
-@extends('master-dashboard')
+@extends('template.master-dashboard')
 
 @section('title', 'تاریخچه')
 
@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12 col-md-6 my-auto">
                     تراز حساب:
-                    <span style="font-weight: bold;">{{ number_format($sum,0,".",",") }}</span>
+                    <strong>{{ number_format($sum,0,".",",") }}</strong>
                 </div>
             </div>
         </div>

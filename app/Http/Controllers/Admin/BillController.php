@@ -25,7 +25,7 @@ class BillController extends Controller
             order by u.employment_id asc'
         );
 
-        return view('admin.bill.users-bill', $data);
+        return view('admin.bill.tahdig_users', $data);
     }
 
     public function exportUsersBill()
@@ -48,6 +48,6 @@ class BillController extends Controller
             ->get()
             ->groupBy('food.restaurant_id');
 
-        return view('admin.bill.restaurants-bill', $data);
+        return view('admin.bill.tahdig_restaurants', $data);
     }
 }

@@ -1,4 +1,4 @@
-@extends('master-dashboard')
+@extends('template.master-dashboard')
 
 @section('title', 'رزرو')
 
@@ -11,7 +11,7 @@
                 <div class="col mb-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h3 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h3>
+                            <h4 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h4>
                             <p class="card-text">
                             @php
                                 if (auth()->user()->is_inter) {
