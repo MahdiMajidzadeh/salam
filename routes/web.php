@@ -15,7 +15,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
     });
     Route::group(['prefix' => 'tahdig'], function() {
-        Route::get('/', [C\TahDig\PageController::class, 'index']);
+        Route::redirect('/', 'dashboard');
         Route::get('/reserve', [C\TahDig\ReservationsController::class, 'foodList']);
         Route::post('/reserve', [C\TahDig\ReservationsController::class, 'foodListSubmit']);
         Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);

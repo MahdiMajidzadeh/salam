@@ -1,38 +1,39 @@
 @import "fonts";
 
-body{
+body {
   font-family: estedad;
   min-height: 100vh;
 }
 
-.card{
+.card {
   overflow: auto;
 }
 
 //rtl
-.rtl .custom-control-label::before{
+.rtl .custom-control-label::before {
   right: -5px;
 }
-.rtl .custom-radio .custom-control-label::after{
-  left:inherit;
+
+.rtl .custom-radio .custom-control-label::after {
+  left: inherit;
   right: 0;
 }
 
-.content{
-  padding: 70px 0;
+.content {
+  padding: 85px 0;
 }
 
 // end-rtl
 
-.ltr{
+.ltr {
   direction: ltr;
 }
 
-.h100{
+.h100 {
   min-height: 100vh;
 }
 
-.center-box{
+.center-box {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -43,22 +44,68 @@ body{
   background: rgb(0 0 0 / 50%);
 }
 
-.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
-.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
-.autocomplete-selected { background: #F0F0F0; }
-.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
-.autocomplete-group { padding: 2px 5px; }
-.autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+.autocomplete-suggestions {
+  border: 1px solid #999;
+  background: #FFF;
+  overflow: auto;
+}
+
+.autocomplete-suggestion {
+  padding: 2px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.autocomplete-selected {
+  background: #F0F0F0;
+}
+
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #3399FF;
+}
+
+.autocomplete-group {
+  padding: 2px 5px;
+}
+
+.autocomplete-group strong {
+  display: block;
+  border-bottom: 1px solid #000;
+}
 
 .custom-checkbox .custom-control-label::after {
   right: 2px;
   left: 0;
 }
 
-.bootstrap-select .dropdown-toggle .filter-option  .filter-option-inner{
+.bootstrap-select .dropdown-toggle .filter-option .filter-option-inner {
   text-align: right;
 }
 
-.line-through{
+.line-through {
   text-decoration: line-through;
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  background-image: none;
+  border-color: #e9ecef;
+  color: #212529;
+}
+
+.home {
+  h5{
+    margin-bottom: 30px;
+  }
+  .card-img {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-info-box{
+    margin: 0px -30px -191px !important;
+    background-color: #E0F7FA;
+    padding: 22px;
+  }
 }
