@@ -8,4 +8,6 @@ return [
     'user_bulk_ok'           => 'تعداد :count نفر اضافه شد',
     'add_ok'                 => ':name اضافه شد.',
     'add_failed'             => ':name با مقدار :value به مشکل خورد.',
+    'room_reserved'          => 'اتاق از قبل رزرو شده است.',
+    'reserved_to_long'       => 'مدت رزرو بیشتر از یک روز است.',
 ];

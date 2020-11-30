@@ -61,7 +61,8 @@
                         <div class="card-body">
                             <h5 class="card-title">اتاق</h5>
                             <p class="card-text">
-                                (به زودی)
+                                <a href="{{ url('otagh/reserve') }}" class="btn btn-outline-light">رزرو</a>
+                                {{--<a href="{{ url('tahdig/history') }}" class="btn btn-outline-light">تاریخچه</a>--}}
                             </p>
                         </div>
                     </div>

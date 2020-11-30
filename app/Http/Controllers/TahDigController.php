@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\TahDig;
+namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Model\TahdigBooking;
@@ -9,7 +9,7 @@ use App\Model\TahdigReservation;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class ReservationsController extends Controller
+class TahDigController extends Controller
 {
     public function foodList()
     {

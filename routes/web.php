@@ -14,12 +14,18 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/password-reset', [C\PagesController::class, 'passwordReset']);
         Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
     });
+
     Route::group(['prefix' => 'tahdig'], function() {
         Route::redirect('/', 'dashboard');
-        Route::get('/reserve', [C\TahDig\ReservationsController::class, 'foodList']);
-        Route::post('/reserve', [C\TahDig\ReservationsController::class, 'foodListSubmit']);
-        Route::get('/reserve/delete/{reservation}', [C\TahDig\ReservationsController::class, 'deleteReservation']);
-        Route::get('/history', [C\TahDig\ReservationsController::class, 'history']);
+        Route::get('/reserve', [C\TahDigController::class, 'foodList']);
+        Route::post('/reserve', [C\TahDigController::class, 'foodListSubmit']);
+        Route::get('/reserve/delete/{reservation}', [C\TahDigController::class, 'deleteReservation']);
+        Route::get('/history', [C\TahDigController::class, 'history']);
+    });
+
+    Route::group(['prefix' => 'otagh'], function() {
+        Route::get('/reserve', [C\OtaghController::class, 'reserve']);
+        Route::post('/reserve', [C\OtaghController::class, 'reserveSubmit']);
     });
 
     Route::get('/notices/{id}', [C\PagesController::class, 'singleNotice']);
