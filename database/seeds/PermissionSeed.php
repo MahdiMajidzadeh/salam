@@ -66,6 +66,11 @@ class PermissionSeed extends Seeder
                 'name' => 'مدیریت اطلاعیه ها',
                 'slug' => 'notice_management',
             ],
+            [
+                'id' => 11,
+                'name' => 'مشاهده رزرو اتاق ها',
+                'slug' => 'otagh_view',
+            ],
         ];
 
         $this->save($items);

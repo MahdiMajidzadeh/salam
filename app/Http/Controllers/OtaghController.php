@@ -19,18 +19,18 @@ class OtaghController extends Controller
 
         if (!$request->has('room')) {
             $data['show'] = false;
-            return view('room.reserve', $data);
+            return view('otagh.reserve', $data);
         }
 
         $data['show']         = true;
-        $data['roomCurrent']         = Room::findOrFail($request->get('room'));
+        $data['roomCurrent']  = Room::findOrFail($request->get('room'));
         $data['reservations'] = RoomReservation::with('user')
             ->where('room_id', $request->get('room'))
             ->where('ended_at', '>', Carbon::now())
             ->take(10)
             ->get();
 
-        return view('room.reserve', $data);
+        return view('otagh.reserve', $data);
     }
 
     public function reserveSubmit(Request $request)

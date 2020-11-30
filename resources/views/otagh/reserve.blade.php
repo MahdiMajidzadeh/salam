@@ -88,7 +88,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">توضیحات</label>
+                                        <label for="exampleFormControlTextarea1">یادداشت</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1"
                                                   rows="3"></textarea>
                                     </div>

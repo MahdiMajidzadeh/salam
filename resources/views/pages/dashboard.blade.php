@@ -8,10 +8,10 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-9 col-md-10">
                         <div class="card-body">
                             <h5 class="card-title">سلام {{ auth()->user()->name }}</h5>
                             <p class="card-text">
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-10">
                         <div class="card-body">
-                            <h5 class="card-title">اتاق</h5>
+                            <h5 class="card-title">اتاق (آزمایشی)</h5>
                             <p class="card-text">
                                 <a href="{{ url('otagh/reserve') }}" class="btn btn-outline-light">رزرو</a>
                                 {{--<a href="{{ url('tahdig/history') }}" class="btn btn-outline-light">تاریخچه</a>--}}

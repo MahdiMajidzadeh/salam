@@ -57,6 +57,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
         Route::post('/add', [C\Admin\NoticeController::class, 'addSubmit']);
     });
 
+    Route::group(['prefix' => 'otagh'], function() {
+        Route::get('/list', [C\Admin\OtaghController::class, 'check']);
+    });
+
     Route::group(['prefix' => 'foods'], function() {
         Route::get('/', [C\Admin\FoodController::class, 'foodsList']);
         Route::get('/add', [C\Admin\FoodController::class, 'addFood']);

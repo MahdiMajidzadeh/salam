@@ -45,6 +45,13 @@
             </div>
         </div>
     @endif
+    @if(allowed('otagh_view'))
+        <div class="card my-4">
+            <div class="card-body p-3">
+                <a href="{{ url('admin/otagh/list') }}" class="btn btn-secondary">لیست رزرو ها</a>
+            </div>
+        </div>
+    @endif
     @if(allowed('admin'))
         <div class="card my-4">
             <div class="card-body p-3">
