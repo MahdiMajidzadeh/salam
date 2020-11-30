@@ -104,7 +104,7 @@
                     <div class="card-body">
                         <h4 class="font-weight-bold mb-3">اتاق {{ $roomCurrent->name }}</h4>
                         @forelse($reservations as $reservation)
-                            <div class="border border-warning p-2 rounded mb-2">
+                            <div class="border border-warning p-2 rounded mb-2 @if($reservation->user_id == auth()->id()) bg-warning text-white @endif">
                                 <p class="mb-2">
                                     {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->format('%A: %d %B %y') }}
                                 </p>
