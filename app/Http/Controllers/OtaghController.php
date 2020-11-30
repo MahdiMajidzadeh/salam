@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Room;
-use App\Model\RoomReservation;
 use Carbon\Carbon;
+use App\Model\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Model\RoomReservation;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 
 class OtaghController extends Controller
 {
@@ -17,13 +17,14 @@ class OtaghController extends Controller
         $data['hours']   = range(8, 19);
         $data['minutes'] = [0, 15, 30, 45];
 
-        if (!$request->has('room')) {
+        if (! $request->has('room')) {
             $data['show'] = false;
+
             return view('room.reserve', $data);
         }
 
         $data['show']         = true;
-        $data['roomCurrent']         = Room::findOrFail($request->get('room'));
+        $data['roomCurrent']  = Room::findOrFail($request->get('room'));
         $data['reservations'] = RoomReservation::with('user')
             ->where('room_id', $request->get('room'))
             ->where('ended_at', '>', Carbon::now())
@@ -75,7 +76,7 @@ class OtaghController extends Controller
         $roomReservation->note       = $request->get('note');
         $roomReservation->save();
 
-        return redirect('otagh/reserve?room=' . $request->get('room_id'));
+        return redirect('otagh/reserve?room='.$request->get('room_id'));
     }
 
     private function makeDate($date, $hour, $minute)
@@ -90,12 +91,12 @@ class OtaghController extends Controller
 
     private function isReserved($start, $end, $roomId)
     {
-        return RoomReservation::where(function($query) use ($start, $end) {
-            $query->where(function($query) use ($start, $end) {
+        return RoomReservation::where(function ($query) use ($start, $end) {
+            $query->where(function ($query) use ($start) {
                 $query->where('started_at', '>=', $start)
                     ->where('ended_at', '<', $start);
             })
-                ->orWhere(function($query) use ($start, $end) {
+                ->orWhere(function ($query) use ($end) {
                     $query->where('started_at', '<', $end)
                         ->where('ended_at', '>=', $end);
                 });
