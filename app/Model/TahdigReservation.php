@@ -22,4 +22,9 @@ class TahdigReservation extends Model
     {
         return $this->belongsTo(Food::class);
     }
+
+    public function salon()
+    {
+        return $this->belongsTo(TahdigSalon::class);
+    }
 }

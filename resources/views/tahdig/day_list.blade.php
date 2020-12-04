@@ -19,37 +19,46 @@
                                 }else{
                                     $foods = $booking->foods;
                                 }
+
+                                $reservedDay = $reserved->where('booking_id',$booking->id);
+
                             @endphp
                             @foreach($foods as $food)
                                 <div class="custom-control custom-radio">
                                     <input type="radio" id="{{ $booking->id.'-'.$food->id }}"
                                            name="{{ $booking->id }}-f"
                                            value="{{ $food->id }}"
-                                           @if(
-                                           $reserved->where('booking_id',$booking->id)
-                                           ->where('food_id',$food->id)
-                                           ->isNotEmpty()
-                                           )
-                                           checked
-                                           @endif
+                                           @if(count($reservedDay->where('food_id',$food->id))) checked @endif
                                            class="custom-control-input">
                                     <label class="custom-control-label pb-3" for="{{ $booking->id.'-'.$food->id }}">
                                         <span class="h6 font-weight-bold">{{ $food->name }}</span>
                                         <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
                                         <span class="mx-2">/</span>
                                         {{ $food->restaurant->name }}
-
                                     </label>
                                 </div>
                                 @endforeach
-
                                 </p>
                         </div>
                         <div class="card-footer">
                             <div class="form-group row m-0">
                                 <label for="quantity" class="col-sm-2 col-form-label">تعداد</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="quantity" name="{{ $booking->id }}-q" value="1">
+                                    <input type="number" class="form-control" id="quantity" name="{{ $booking->id }}-q"
+                                           value="{{ optional($reservedDay->first())->quantity ?? 1 }}">
+                                </div>
+                            </div>
+                            <div class="form-group row m-0 mt-2">
+                                <label for="quantity" class="col-sm-2 col-form-label">سالن</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="{{ $booking->id }}-s">
+                                        @foreach($salons as $salon)
+                                            <option value="{{ $salon->id }}"
+                                                    @if($salon->id == optional($reservedDay->first())->salon_id) selected @endif
+                                                >
+                                                {{ $salon->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

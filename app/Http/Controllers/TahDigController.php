@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\TahdigSalon;
 use Carbon\Carbon;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class TahDigController extends Controller
         }
 
         $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
+        $data['salons'] = TahdigSalon::where('is_active', true)->get();
 
         return view('tahdig.day_list', $data);
     }
@@ -67,6 +69,7 @@ class TahDigController extends Controller
             $reservation->food_id       = $food->id;
             $reservation->price         = $food->price;
             $reservation->quantity      = $reservationData['q'];
+            $reservation->salon_id      = $reservationData['s'];
             $reservation->price_default = 0;
             $reservation->save();
         }
@@ -80,6 +83,7 @@ class TahDigController extends Controller
             'booking',
             'booking.meal',
             'food.restaurant',
+            'salon'
         ])
             ->where('user_id', auth()->id())
             ->orderBy('id', 'desc')
