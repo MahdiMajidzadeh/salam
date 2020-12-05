@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Model\Food;
 use App\Model\Meal;
+use App\Model\TahdigSalon;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
 
 class FoodBookingController extends Controller
 {
@@ -50,13 +52,17 @@ class FoodBookingController extends Controller
         is_allowed('reservation_view');
 
         $data['meals']   = Meal::all();
+        $data['salons']  = TahdigSalon::all();
         $data['hasData'] = false;
 
-        if ($request->has('meal') && $request->has('date_alt')) {
+        if ($request->has('meal') && $request->has('date_alt') && $request->has('salon')) {
             $booking = TahdigBooking::with(['foods', 'reservations'])
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))
+                ->whereHas('reservations', function(Builder $query) use ($request) {
+                    $query->where('salon_id', $request->get('salon'));
+                })
                 ->first();
 
             if ($booking) {

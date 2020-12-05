@@ -6,7 +6,13 @@
     <div class="card d-print-none my-4">
         <div class="card-body">
             <form class="form-inline">
-                <label>وعده: </label>
+                <label>سالن: </label>
+                <select class="custom-select" name="salon">
+                    @foreach($salons as $salon)
+                        <option value="{{ $salon->id }}">{{ $salon->name }}</option>
+                    @endforeach
+                </select>
+                <label class="ml-3">وعده: </label>
                 <select class="custom-select" name="meal">
                     <option value="">---</option>
                     @foreach($meals as $meal)
