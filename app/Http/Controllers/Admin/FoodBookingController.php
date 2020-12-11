@@ -60,7 +60,7 @@ class FoodBookingController extends Controller
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))
-                ->whereHas('reservations', function(Builder $query) use ($request) {
+                ->whereHas('reservations', function (Builder $query) use ($request) {
                     $query->where('salon_id', $request->get('salon'));
                 })
                 ->first();
