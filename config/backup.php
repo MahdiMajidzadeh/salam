@@ -8,7 +8,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'basalamiha'),
+        'name' => env('APP_NAME', 'Laravel'),
 
         'source' => [
 
@@ -102,7 +102,7 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => '',
+            'filename_prefix' => 'slm_',
 
             /*
              * The disk names on which the backups will be stored.
@@ -128,12 +128,12 @@ return [
     'notifications' => [
 
         'notifications' => [
-//            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['mail'],
-//            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
-//            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['mail'],
-//            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['mail'],
-//            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['mail'],
-//            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupHasFailed::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\UnhealthyBackupWasFound::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupHasFailed::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\BackupWasSuccessful::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\HealthyBackupWasFound::class => ['mail'],
+            \Spatie\Backup\Notifications\Notifications\CleanupWasSuccessful::class => ['mail'],
         ],
 
         /*
