@@ -56,19 +56,16 @@ class FoodBookingController extends Controller
         $data['hasData'] = false;
 
         if ($request->has('meal') && $request->has('date_alt') && $request->has('salon')) {
-            $booking = TahdigBooking::with(['foods', 'reservations'])
+            $booking = TahdigBooking::with(['reservations', 'reservations.user', 'reservations.food.restaurant'])
                 ->where(
                     'booking_date', Carbon::createFromTimestamp($request->get('date_alt'))->toDateString()
                 )->where('meal_id', $request->get('meal'))
-                ->whereHas('reservations', function(Builder $query) use ($request) {
-                    $query->where('salon_id', $request->get('salon'));
-                })
                 ->first();
 
             if ($booking) {
                 $data['hasData'] = true;
-                $data['booking'] = $booking;
-                $data['foods']   = $booking->reservations->groupBy('food_id');
+                $data['booking'] = $booking->reservations->where('salon_id', $request->get('salon'));
+                $data['foods']   = $data['booking']->groupBy('food_id');
             }
         }
 
