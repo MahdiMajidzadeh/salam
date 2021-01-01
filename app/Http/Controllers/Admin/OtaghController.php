@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Model\Room;
-use App\Model\RoomReservation;
 use Carbon\Carbon;
+use App\Model\Room;
 use Illuminate\Http\Request;
+use App\Model\RoomReservation;
+use App\Http\Controllers\Controller;
 
 class OtaghController extends Controller
 {
@@ -16,8 +16,9 @@ class OtaghController extends Controller
         $data['hours']   = range(8, 19);
         $data['minutes'] = [0, 15, 30, 45];
 
-        if (!$request->has('room')) {
+        if (! $request->has('room')) {
             $data['show'] = false;
+
             return view('otagh.reserve', $data);
         }
 
