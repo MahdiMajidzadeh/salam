@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Model\Notice;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
+use Modules\Notice\Entities\Notice;
+use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
@@ -23,16 +24,18 @@ class PagesController extends Controller
                 ->first();
         }
 
-        $data['notices'] = Notice::where('started_at', '<', Carbon::now())
-            ->where('ended_at', '>', Carbon::now())
-            ->get();
+        if (Module::find('Notice')) {
+            $data['notices'] = Notice::where('started_at', '<', Carbon::now())
+                ->where('ended_at', '>', Carbon::now())
+                ->get();
+        }
 
         return view('pages.dashboard', $data);
     }
 
     public function adminDashboard(Request $request)
     {
-        if (! is_admin()) {
+        if (!is_admin()) {
             abort(403);
         }
 
@@ -52,7 +55,7 @@ class PagesController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (! Hash::check(
+        if (!Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
