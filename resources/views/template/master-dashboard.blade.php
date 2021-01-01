@@ -21,3 +21,19 @@
         @yield('inner-content')
     </div>
 @endsection
+
+@push('css')
+    <!-- PushAlert -->
+    <script type="text/javascript">
+        (function(d, t) {
+            var g = d.createElement(t),
+                s = d.getElementsByTagName(t)[0];
+            g.src = "https://cdn.pushalert.co/integrate_771d0f0bfb7ddef5e7fa89c8dcccb521.js";
+            s.parentNode.insertBefore(g, s);
+        }(document, "script"));
+    </script>
+    <!-- End PushAlert -->
+    <script>
+        (pushalertbyiw = window.pushalertbyiw || []).push(['addAttributes', {"user_id": {{ auth()->id() }}}]); //add attributes in form of key-value pair
+    </script>
+@endpush
