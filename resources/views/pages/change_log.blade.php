@@ -8,6 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <h1 class="font-weight-bold h3 mb-5">لیست تغییرات</h1>
+                    <p class="mb-3"><span class="d-inline-block font-weight-bold p-0" style="width:100px">۱۳ دی ۹۹</span> لینک‌ها</p>
                     <p class="mb-3"><span class="d-inline-block font-weight-bold p-0" style="width:100px">۲۸ آذر ۹۹</span> بهبود اطلاعیه‌ها</p>
                     <p class="mb-3"><span class="d-inline-block font-weight-bold p-0" style="width:100px">۲۳ آذر ۹۹</span> پوش نوتیفیکیشن</p>
                     <p class="mb-3"><span class="d-inline-block font-weight-bold p-0" style="width:100px">۱۵ آذر ۹۹</span> رزرو غذا در چند سالن</p>

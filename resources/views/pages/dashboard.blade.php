@@ -91,6 +91,26 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-2">
+                        <img src="{{ asset('img/links.jpg') }}" class="card-img">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title">لینک‌ها</h5>
+                            <p class="card-text">
+                                @foreach($links as $link)
+                                    <a href="{{ $link->url }}" class="btn btn-outline-light"
+                                       target="_blank">{{ $link->title }}</a>
+                                @endforeach
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="row no-gutters">
+                    <div class="col-md-2">
                         <img src="{{ asset('img/ghafase.jpg') }}" class="card-img">
                     </div>
                     <div class="col-md-10">

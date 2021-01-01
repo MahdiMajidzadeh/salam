@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
+use Modules\Link\Entities\Link;
 use Modules\Notice\Entities\Notice;
 use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,10 @@ class PagesController extends Controller
             $data['notices'] = Notice::where('started_at', '<', Carbon::now())
                 ->where('ended_at', '>', Carbon::now())
                 ->get();
+        }
+
+        if (Module::find('Link')) {
+            $data['links'] = Link::orderBy('priority', 'asc')->get();
         }
 
         return view('pages.dashboard', $data);

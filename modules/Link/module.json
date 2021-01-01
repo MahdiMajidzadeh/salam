@@ -1,0 +1,13 @@
+{
+    "name": "Link",
+    "alias": "link",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Link\\Providers\\LinkServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
