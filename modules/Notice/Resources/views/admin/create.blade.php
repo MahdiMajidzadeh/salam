@@ -8,7 +8,7 @@
             @include('template.messages')
             <div class="card my-4">
                 <div class="card-body">
-                    <form method="post" action="{{ url('admin/notices/add') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ url('admin/notices/create') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label>عنوان</label>

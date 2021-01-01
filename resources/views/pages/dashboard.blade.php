@@ -5,17 +5,18 @@
 @section('inner-content')
 
     <div class="row home">
-        <div class="col-12 mb-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-3 col-md-2">
+                    <div class="col-3 col-md-4">
                         <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
                     </div>
-                    <div class="col-9 col-md-10">
+                    <div class="col-9 col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">سلام {{ auth()->user()->name }}</h5>
                             <p class="card-text">
-                                <a href="{{ url('dashboard/password-reset') }}" class="btn btn-outline-light">تغییر رمز</a>
+                                <a href="{{ url('dashboard/password-reset') }}" class="btn btn-outline-light">تغییر
+                                    رمز</a>
                                 <a href="{{ url('logout') }}" class="btn btn-outline-light">خروج</a>
                             </p>
                             <div>
@@ -25,6 +26,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-md-6">
+            @forelse($notices as $notice)
+                @if(!is_null($notice->banner))
+                    <a href="{{ url('notices/'. $notice->id) }}">
+                        <div class="card bg-dark text-white mb-4">
+                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"
+                                 class="card-img">
+                        </div>
+                    </a>
+                @endif
+            @empty
+                <div class="card d-none d-md-block mb-4">
+                    <img src="{{ asset('img/default-notice.jpg') }}"
+                         class="card-img">
+                </div>
+            @endforelse
         </div>
         <div class="col-12 mb-4">
             <div class="card">
@@ -88,15 +106,4 @@
         </div>
     </div>
 
-
-    {{--@foreach($notices as $notice)--}}
-    {{--@if(!is_null($notice->banner))--}}
-    {{--<a href="{{ url('notices/'. $notice->id) }}">--}}
-    {{--<div class="card bg-dark text-white">--}}
-    {{--<img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"--}}
-    {{--class="card-img">--}}
-    {{--</div>--}}
-    {{--</a>--}}
-    {{--@endif--}}
-    {{--@endforeach--}}
 @endsection

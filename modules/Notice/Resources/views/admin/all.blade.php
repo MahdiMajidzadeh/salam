@@ -5,7 +5,7 @@
 @section('inner-content')
     <div class="card my-4">
         <div class="card-body">
-            <a href="{{ url('admin/notices/add') }}" class="btn btn-primary">افزودن اطلاعیه</a>
+            <a href="{{ url('admin/notices/create') }}" class="btn btn-primary">افزودن اطلاعیه</a>
         </div>
     </div>
     <table class="table table-striped">
