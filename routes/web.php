@@ -11,6 +11,8 @@ Route::get('/logout', [C\AccountsController::class, 'logout']);
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'dashboard'], function() {
         Route::get('/', [C\PagesController::class, 'dashboard']);
+        Route::view('/change-log', 'pages.change_log');
+
         Route::get('/password-reset', [C\PagesController::class, 'passwordReset']);
         Route::post('/password-reset', [C\PagesController::class, 'passwordResetSubmit']);
     });
