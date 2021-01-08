@@ -40,7 +40,7 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        if (!is_admin()) {
+        if (! is_admin()) {
             abort(403);
         }
 
@@ -60,7 +60,7 @@ class PagesController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (!Hash::check(
+        if (! Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
