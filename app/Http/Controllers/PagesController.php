@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Model\Link;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
-use Modules\Link\Entities\Link;
 use Modules\Notice\Entities\Notice;
 use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\Hash;
