@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class AddToUserEmails extends Migration
 {
-
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('email')->nullable();
             $table->string('email_basalam')->nullable();
             $table->string('team_id')->nullable();
@@ -28,7 +27,7 @@ class AddToUserEmails extends Migration
 
     public function down()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('email');
             $table->dropColumn('email_basalam');
             $table->dropColumn('team_id');
