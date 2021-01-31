@@ -24,7 +24,7 @@
         <tbody>
         @foreach($usersBill as $userBill)
             <tr class="@if(!is_null($userBill->deactivated_at)) text-muted @endif">
-                <td>{{$userBill->employment_id}}</td>
+                <td>{{$userBill->employee_id}}</td>
                 <td>{{ $userBill->name }}</td>
                 <td dir="ltr">
                     {{ number_format($userBill->balance,0,".",",") }}

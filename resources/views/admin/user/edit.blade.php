@@ -21,8 +21,8 @@
                         </div>
                         <div class="form-group">
                             <label>شماره پرسنلی</label>
-                            <input type="text" class="form-control" name="employment_id"
-                                   value="{{ $user->employment_id }}">
+                            <input type="text" class="form-control" name="employee_id"
+                                   value="{{ $user->employee_id }}">
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">

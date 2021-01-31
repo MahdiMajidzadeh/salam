@@ -20,7 +20,7 @@
                                 <a href="{{ url('logout') }}" class="btn btn-outline-light">خروج</a>
                             </p>
                             <div>
-                                کد پرسنلی: {{ auth()->user()->employment_id }}
+                                کد پرسنلی: {{ auth()->user()->employee_id }}
                             </div>
                         </div>
                     </div>

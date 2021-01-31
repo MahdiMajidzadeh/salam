@@ -54,7 +54,7 @@
                 @endphp
                 @foreach($food as $reservation)
                     <tr class="@if(!is_null($reservation->received_at)) text-black-50 line-through @endif">
-                        <td>{{ $reservation->user->employment_id }}</td>
+                        <td>{{ $reservation->user->employee_id }}</td>
                         <td>{{ $reservation->user->name }}</td>
                         <td>
                             @if($reservation->quantity > 1)
