@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Notice;
 use Carbon\Carbon;
 use App\Model\Link;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
-use Modules\Notice\Entities\Notice;
-use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
@@ -25,22 +24,18 @@ class PagesController extends Controller
                 ->first();
         }
 
-        if (Module::find('Notice')) {
-            $data['notices'] = Notice::where('started_at', '<', Carbon::now())
-                ->where('ended_at', '>', Carbon::now())
-                ->get();
-        }
+        $data['notices'] = Notice::where('started_at', '<', Carbon::now())
+            ->where('ended_at', '>', Carbon::now())
+            ->get();
 
-        if (Module::find('Link')) {
-            $data['links'] = Link::orderBy('priority', 'asc')->get();
-        }
+        $data['links'] = Link::orderBy('priority', 'asc')->get();
 
         return view('pages.dashboard', $data);
     }
 
     public function adminDashboard(Request $request)
     {
-        if (! is_admin()) {
+        if (!is_admin()) {
             abort(403);
         }
 
@@ -60,7 +55,7 @@ class PagesController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (! Hash::check(
+        if (!Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
@@ -78,6 +73,6 @@ class PagesController extends Controller
     {
         $data['notice'] = Notice::findOrFail($id);
 
-        return view('pages.notice', $data);
+        return view('notices.show', $data);
     }
 }

@@ -23,7 +23,7 @@ class NoticeController extends Controller
     {
         is_allowed('notice_management');
 
-        return view('admin.notice.add');
+        return view('admin.notice.create');
     }
 
     public function addSubmit(Request $request)
@@ -47,6 +47,6 @@ class NoticeController extends Controller
             $notice->save();
         }
 
-        return asset(Storage::url($notice->banner));
+        return url('notices/'. $notice->id);
     }
 }

@@ -16,7 +16,7 @@
 
     <div class="card  d-print-none">
         <div class="card-body">
-            <form action="{{ url('admin/acl') }}" method="post">
+            <form action="{{ url('notice') }}" method="post">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 @foreach($permissions as $permission)

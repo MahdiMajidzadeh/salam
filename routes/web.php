@@ -71,6 +71,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
         Route::post('/', [C\Admin\AdminController::class, 'adminPermissionsSubmit']);
     });
 
+    Route::group(['prefix' => 'notices'], function() {
+        Route::get('/', [C\Admin\NoticeController::class, 'all']);
+        Route::get('/create', [C\Admin\NoticeController::class, 'add']);
+        Route::post('/create', [C\Admin\NoticeController::class, 'addSubmit']);
+    });
+
     Route::group(['prefix' => 'ajax'], function() {
         Route::get('users/list', [C\Ajax\UserController::class, 'userList']);
         Route::get('tahdig/received/{id}', [C\Ajax\TagDigController::class, 'receivedReservation']);

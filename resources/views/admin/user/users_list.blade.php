@@ -34,7 +34,7 @@
                 <td>{{ $user->employment_id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->mobile }}</td>
-                <td><a href="{{ url('admin/users/'.$user->id) }}" class="btn btn-primary">ویرایش</a></td>
+                <td><a href="{{ url('notice'.$user->id) }}" class="btn btn-primary">ویرایش</a></td>
             </tr>
         @endforeach
         </tbody>

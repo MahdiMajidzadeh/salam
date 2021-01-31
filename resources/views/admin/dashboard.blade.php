@@ -16,7 +16,7 @@
             <div class="card-body p-3">
                 <a href="{{ url('admin/restaurant/add') }}" class="btn btn-secondary">افزودن رستوران</a>
                 <a href="{{ url('admin/foods/add') }}" class="btn btn-secondary">افزودن غذا</a>
-                <a href="{{ url('admin/restaurants') }}" class="btn btn-secondary">لیست رستوران</a>
+                <a href="{{ url('notice') }}" class="btn btn-secondary">لیست رستوران</a>
                 <a href="{{ url('admin/foods') }}" class="btn btn-secondary">لیست غذا ها</a>
             </div>
         </div>
@@ -41,7 +41,7 @@
     @if(allowed('notice_view'))
         <div class="card my-4">
             <div class="card-body p-3">
-                <a href="{{ url('admin/notices') }}" class="btn btn-secondary">لیست اطلاعیه ها</a>
+                <a href="{{ url('notice') }}" class="btn btn-secondary">لیست اطلاعیه ها</a>
             </div>
         </div>
     @endif
