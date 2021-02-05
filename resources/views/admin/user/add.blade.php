@@ -23,6 +23,32 @@
                             <input type="text" class="form-control" name="employee_id">
                         </div>
                         <div class="form-group">
+                            <label>تیم</label>
+                            <select class="form-control" name="team">
+                                <option value="">--</option>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>چپتر</label>
+                            <select class="form-control" name="chapter">
+                                <option value="">--</option>
+                                @foreach($chapters as $chapter)
+                                    <option value="{{ $chapter->id }}">{{ $chapter->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ایمیل</label>
+                            <input type="text" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>ایمیل باسلامی</label>
+                            <input type="text" class="form-control" name="email_basalam">
+                        </div>
+                        <div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="is_inter"
                                        id="is_inter">

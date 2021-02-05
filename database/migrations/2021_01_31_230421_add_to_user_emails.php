@@ -12,8 +12,8 @@ class AddToUserEmails extends Migration
         Schema::table('users', function(Blueprint $table) {
             $table->string('email')->nullable();
             $table->string('email_basalam')->nullable();
-            $table->string('team_id')->nullable();
-            $table->string('chapter_id')->nullable();
+            $table->unsignedTinyInteger('team_id')->nullable();
+            $table->unsignedTinyInteger('chapter_id')->nullable();
 
             $table->renameColumn('employment_id', 'employee_id');
 

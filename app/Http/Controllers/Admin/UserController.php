@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use App\Model\Team;
 use App\Model\User;
+use App\Model\Chapter;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -15,7 +16,10 @@ class UserController extends Controller
     {
         is_allowed('user_management');
 
-        return view('admin.user.add');
+        $data['teams']    = Team::where('is_active', true)->get();
+        $data['chapters'] = Chapter::where('is_active', true)->get();
+
+        return view('admin.user.add', $data);
     }
 
     public function addSubmit(Request $request)
@@ -23,9 +27,13 @@ class UserController extends Controller
         is_allowed('user_management');
 
         $request->validate([
-            'name'        => 'required',
-            'employee_id' => 'integer|nullable',
-            'mobile'      => 'required|digits:11|unique:users,mobile',
+            'name'          => 'required',
+            'employee_id'   => 'integer|nullable',
+            'mobile'        => 'required|digits:11|unique:users,mobile',
+//            'team'          => 'nullable|integer',
+//            'chapter'       => 'nullable|digits_between:1,2',
+            'email'         => 'email|nullable',
+            'email_basalam' => 'email|nullable',
         ]);
 
         $user                = new User();
@@ -34,6 +42,10 @@ class UserController extends Controller
         $user->password      = Hash::make($request->get('mobile'));
         $user->is_inter      = $request->has('is_inter');
         $user->employee_id   = $request->get('employee_id', null);
+        $user->team_id       = $request->get('team', null);
+        $user->chapter_id    = $request->get('chapter', null);
+        $user->email         = $request->get('email', null);
+        $user->email_basalam = $request->get('email_basalam', null);
         $user->settlement_at = Carbon::now();
         $user->save();
 
@@ -62,7 +74,9 @@ class UserController extends Controller
     {
         is_allowed('user_management');
 
-        $data['user'] = User::find($id);
+        $data['user']     = User::find($id);
+        $data['teams']    = Team::where('is_active', true)->get();
+        $data['chapters'] = Chapter::where('is_active', true)->get();
 
         return view('admin.user.edit', $data);
     }
@@ -72,12 +86,20 @@ class UserController extends Controller
         is_allowed('user_management');
 
         $request->validate([
-            'employee_id' => 'integer|nullable',
+            'employee_id'   => 'integer|nullable',
+            'team'          => 'integer|nullable',
+            'chapter'       => 'integer|nullable',
+            'email'         => 'email|nullable',
+            'email_basalam' => 'email|nullable',
         ]);
 
-        $user              = User::find($request->get('id'));
-        $user->is_inter    = $request->has('is_inter');
-        $user->employee_id = $request->get('employee_id', null);
+        $user                = User::find($request->get('id'));
+        $user->is_inter      = $request->has('is_inter');
+        $user->employee_id   = $request->get('employee_id', null);
+        $user->team_id       = $request->get('team', null);
+        $user->chapter_id    = $request->get('chapter', null);
+        $user->email         = $request->get('email', null);
+        $user->email_basalam = $request->get('email_basalam', null);
         $user->save();
 
         return redirect()->back();
