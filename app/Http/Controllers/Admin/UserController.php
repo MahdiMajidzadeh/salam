@@ -30,8 +30,8 @@ class UserController extends Controller
             'name'          => 'required',
             'employee_id'   => 'integer|nullable',
             'mobile'        => 'required|digits:11|unique:users,mobile',
-//            'team'          => 'nullable|integer',
-//            'chapter'       => 'nullable|digits_between:1,2',
+            //            'team'          => 'nullable|integer',
+            //            'chapter'       => 'nullable|digits_between:1,2',
             'email'         => 'email|nullable',
             'email_basalam' => 'email|nullable',
         ]);
@@ -59,9 +59,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
-        } else if ($request->filled('name')) {
-            $query->where('name', 'like', '%' . $request->get('name') . '%');
+            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
+        } elseif ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         $data['users'] = $query->orderBy('employee_id', 'asc')
@@ -87,8 +87,8 @@ class UserController extends Controller
 
         $request->validate([
             'employee_id'   => 'integer|nullable',
-//            'team'          => 'integer|nullable',
-//            'chapter'       => 'integer|nullable',
+            //            'team'          => 'integer|nullable',
+            //            'chapter'       => 'integer|nullable',
             'email'         => 'email|nullable',
             'email_basalam' => 'email|nullable',
         ]);
