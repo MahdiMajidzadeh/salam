@@ -16,7 +16,7 @@ class SettingController extends Controller
 
     public function tahdigSubmit(Request $request)
     {
-        $user = auth()->user();
+        $user                   = auth()->user();
         $user->default_salon_id = $request->get('salon');
         $user->save();
 
@@ -36,7 +36,7 @@ class SettingController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (!Hash::check(
+        if (! Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
