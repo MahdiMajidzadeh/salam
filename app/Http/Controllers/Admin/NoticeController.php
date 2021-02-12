@@ -47,6 +47,6 @@ class NoticeController extends Controller
             $notice->save();
         }
 
-        return url('notices/'. $notice->id);
+        return url('notices/'.$notice->id);
     }
 }

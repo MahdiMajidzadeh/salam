@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Team;
 use App\Model\Chapter;
 use App\Model\TahdigSalon;
-use App\Model\Team;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -67,7 +67,7 @@ class SettingController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (!Hash::check(
+        if (! Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {

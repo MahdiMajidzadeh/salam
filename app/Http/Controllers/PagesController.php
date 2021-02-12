@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Notice;
 use Carbon\Carbon;
 use App\Model\Link;
+use App\Model\Notice;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +35,7 @@ class PagesController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        if (!is_admin()) {
+        if (! is_admin()) {
             abort(403);
         }
 
