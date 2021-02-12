@@ -52,11 +52,21 @@
                                 <label for="quantity" class="col-sm-2 col-form-label">سالن</label>
                                 <div class="col-sm-10">
                                     <select class="form-control" name="{{ $booking->id }}-s">
+                                        <option value="1">---</option>
                                         @foreach($salons as $salon)
                                             <option value="{{ $salon->id }}"
-                                                    @if($salon->id == optional($reservedDay->first())->salon_id) selected @endif
-                                                >
-                                                {{ $salon->name }}</option>
+                                                    @if($reservedDay->first())
+                                                        @if($salon->id == $reservedDay->first()->salon_id)
+                                                            selected
+                                                        @endif
+                                                    @else
+                                                        @if($salon->id == auth()->user()->default_salon_id)
+                                                            selected
+                                                        @endif
+                                                    @endif
+                                            >
+                                                {{ $salon->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>

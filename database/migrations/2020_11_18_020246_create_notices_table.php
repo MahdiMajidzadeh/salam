@@ -12,7 +12,7 @@ class CreateNoticesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('banner')->nullable();
-            $table->text('content');
+            $table->longText('content');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->timestamp('started_at')->useCurrent();

@@ -42,33 +42,6 @@ class PagesController extends Controller
         return view('admin.dashboard');
     }
 
-    public function passwordReset(Request $request)
-    {
-        return view('user.password_reset');
-    }
-
-    public function passwordResetSubmit(Request $request)
-    {
-        $request->validate([
-            'password_old'        => 'required|min:6',
-            'password_new'        => 'required|min:6',
-            'password_double_new' => 'required|same:password_new',
-        ]);
-
-        if (!Hash::check(
-            $request->get('password_old'),
-            auth()->user()->password)
-        ) {
-            return redirect()->back()->with('msg-error', __('msg.password_wrong'));
-        }
-
-        $user           = auth()->user();
-        $user->password = Hash::make($request->get('password_new'));
-        $user->save();
-
-        return redirect()->back()->with('msg-ok', __('msg.password_ok'));
-    }
-
     public function singleNotice(Request $request, $id)
     {
         $data['notice'] = Notice::findOrFail($id);

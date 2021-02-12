@@ -23,4 +23,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Team::class);
     }
+
+    public function salon()
+    {
+        return $this->belongsTo(TahdigSalon::class, 'default_salon_id');
+    }
 }

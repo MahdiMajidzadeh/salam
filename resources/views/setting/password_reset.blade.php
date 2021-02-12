@@ -4,7 +4,13 @@
 
 @section('inner-content')
     <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
+        <div class="col-12 col-md-6 offset-md-3">
+            <nav class="nav">
+                <a class="nav-link" href="{{ url('/setting') }}">ته دیگ</a>
+                <a class="nav-link btn btn-secondary" href="{{ url('/setting/password-reset') }}">تغیر رمز</a>
+            </nav>
+        </div>
+        <div class="col-12 col-md-6 offset-md-3">
             @include('template.messages')
             <div class="card my-4">
                 <div class="card-body">
