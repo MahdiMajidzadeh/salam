@@ -13,7 +13,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::view('/change-log', 'pages.change_log');
 
     Route::group(['prefix' => 'setting'], function() {
-        Route::get('/',[C\SettingController::class, 'index']);
+        Route::get('/',[C\SettingController::class, 'user']);
+        Route::post('/',[C\SettingController::class, 'userSubmit']);
+        Route::get('/tahdig',[C\SettingController::class, 'tahdig']);
         Route::post('/tahdig',[C\SettingController::class, 'tahdigSubmit']);
         Route::get('/password-reset', [C\SettingController::class, 'passwordReset']);
         Route::post('/password-reset', [C\SettingController::class, 'passwordResetSubmit']);

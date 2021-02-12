@@ -1,12 +1,13 @@
 @extends('template.master-dashboard')
 
-@section('title', 'تنظیمات')
+@section('title', 'تنظیمات ته دیگ')
 
 @section('inner-content')
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
             <nav class="nav">
-                <a class="nav-link btn btn-secondary" href="{{ url('/setting') }} ">ته دیگ</a>
+                <a class="nav-link" href="{{ url('/setting/') }} ">کاربر</a>
+                <a class="nav-link btn btn-secondary" href="{{ url('/setting/tahdig') }} ">ته دیگ</a>
                 <a class="nav-link" href="{{ url('/setting/password-reset') }}">تغیر رمز</a>
             </nav>
         </div>

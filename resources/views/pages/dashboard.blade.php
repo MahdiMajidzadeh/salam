@@ -15,7 +15,10 @@
                         <div class="card-body">
                             <h5 class="card-title">سلام {{ auth()->user()->name }}</h5>
                             <p class="card-text">
-                                <a href="{{ url('setting') }}" class="btn btn-outline-light">تنظیمات</a>
+                                <a href="{{ url('setting') }}" class="btn btn-outline-light">
+                                    تنظیمات
+                                    <span class="badge badge-danger">جدید</span>
+                                </a>
                                 <a href="{{ url('logout') }}" class="btn btn-outline-light">خروج</a>
                             </p>
                             <div>

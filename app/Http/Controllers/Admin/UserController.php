@@ -87,8 +87,8 @@ class UserController extends Controller
 
         $request->validate([
             'employee_id'   => 'integer|nullable',
-            'team'          => 'integer|nullable',
-            'chapter'       => 'integer|nullable',
+//            'team'          => 'integer|nullable',
+//            'chapter'       => 'integer|nullable',
             'email'         => 'email|nullable',
             'email_basalam' => 'email|nullable',
         ]);

@@ -2,21 +2,52 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Chapter;
 use App\Model\TahdigSalon;
+use App\Model\Team;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public function index(Request $request)
+    public function user(Request $request)
+    {
+        $data['user']     = auth()->user();
+        $data['teams']    = Team::where('is_active', true)->get();
+        $data['chapters'] = Chapter::where('is_active', true)->get();
+
+        return view('setting.user', $data);
+    }
+
+    public function userSubmit(Request $request)
+    {
+        $request->validate([
+            'employee_id'   => 'integer|nullable',
+            'team'          => 'exists:teams,id',
+            'chapter'       => 'exists:chapters,id',
+            'email'         => 'email|nullable',
+            'email_basalam' => 'email|nullable',
+        ]);
+
+        $user                = auth()->user();
+        $user->team_id       = $request->get('team', null);
+        $user->chapter_id    = $request->get('chapter', null);
+        $user->email         = $request->get('email', null);
+        $user->email_basalam = $request->get('email_basalam', null);
+        $user->save();
+
+        return redirect()->back()->with('msg-ok', __('msg.change_ok'));
+    }
+
+    public function tahdig(Request $request)
     {
         $data['salons'] = TahdigSalon::where('is_active', true)->get();
 
-        return view('setting.index', $data);
+        return view('setting.tahdig', $data);
     }
 
     public function tahdigSubmit(Request $request)
     {
-        $user = auth()->user();
+        $user                   = auth()->user();
         $user->default_salon_id = $request->get('salon');
         $user->save();
 
