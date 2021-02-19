@@ -34,6 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/reserve', [C\OtaghController::class, 'reserveSubmit']);
     });
 
+    Route::group(['prefix' => 'contacts'], function() {
+        Route::get('/', [C\ContactsController::class, 'index']);
+        Route::get('/chapters', [C\ContactsController::class, 'chapters']);
+        Route::get('/teams', [C\ContactsController::class, 'teams']);
+    });
+
     Route::get('/notices/{id}', [C\PagesController::class, 'singleNotice']);
 });
 

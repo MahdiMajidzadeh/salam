@@ -46,13 +46,13 @@
                 </div>
             @endforelse
         </div>
-        <div class="col-12 mb-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <img src="{{ asset('img/tahdig.jpg') }}" class="card-img">
+                    <div class="col-md-3">
+                        <img src="{{ asset('img/tahdig_2.jpg') }}" class="card-img">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="card-body">
                             <h5 class="card-title">ته‌دیگ</h5>
                             <p class="card-text">
@@ -71,13 +71,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <img src="{{ asset('img/otagh.jpg') }}" class="card-img">
+                    <div class="col-md-3">
+                        <img src="{{ asset('img/otagh_2.jpg') }}" class="card-img">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="card-body">
                             <h5 class="card-title">اتاق (آزمایشی)</h5>
                             <p class="card-text">
@@ -89,13 +89,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <img src="{{ asset('img/links.jpg') }}" class="card-img">
+                    <div class="col-md-3">
+                        <img src="{{ asset('img/links_2.jpg') }}" class="card-img">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="card-body">
                             <h5 class="card-title">لینک‌ها</h5>
                             <p class="card-text">
@@ -109,17 +109,18 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-4">
+        <div class="col-12 col-md-6 mb-4">
             <div class="card">
                 <div class="row no-gutters">
-                    <div class="col-md-2">
-                        <img src="{{ asset('img/ghafase.jpg') }}" class="card-img">
+                    <div class="col-md-3">
+                        <img src="{{ asset('img/contact_2.jpg') }}" class="card-img">
                     </div>
-                    <div class="col-md-10">
+                    <div class="col-md-9">
                         <div class="card-body">
-                            <h5 class="card-title">قفسه</h5>
+                            <h5 class="card-title">دفترچه تلفن</h5>
                             <p class="card-text">
-                                (به زودی)
+                                <a href="{{ url('contacts/chapters') }}" class="btn btn-outline-light">چپترها</a>
+                                <a href="{{ url('contacts/teams') }}" class="btn btn-outline-light">تیم‌ها</a>
                             </p>
                         </div>
                     </div>
