@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Chapter;
 use App\Model\Team;
 use App\Model\User;
+use App\Model\Chapter;
 use Illuminate\Http\Request;
 
 class ContactsController extends Controller
