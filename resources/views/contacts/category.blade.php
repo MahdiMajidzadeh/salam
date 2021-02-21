@@ -4,7 +4,7 @@
 
 @section('inner-content')
     <div class="row">
-        <div class="col-12 mt-3">
+        <div class="col-12 my-3">
             <h2>{{ $title }}</h2>
         </div>
         @foreach($items as $item)

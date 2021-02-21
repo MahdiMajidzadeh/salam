@@ -50,7 +50,7 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                        <img src="{{ asset('img/tahdig_2.jpg') }}" class="card-img">
+                        <img src="{{ asset('img/tahdig_3.jpg') }}" class="card-img">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
@@ -75,7 +75,7 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                        <img src="{{ asset('img/otagh_2.jpg') }}" class="card-img">
+                        <img src="{{ asset('img/otagh_3.jpg') }}" class="card-img">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
@@ -93,7 +93,7 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                        <img src="{{ asset('img/links_2.jpg') }}" class="card-img">
+                        <img src="{{ asset('img/links_3.jpg') }}" class="card-img">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
@@ -113,7 +113,7 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-md-3">
-                        <img src="{{ asset('img/contact_2.jpg') }}" class="card-img">
+                        <img src="{{ asset('img/contact_3.jpg') }}" class="card-img">
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
