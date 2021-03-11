@@ -104,4 +104,15 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
+    public function avatarSubmit(Request $request)
+    {
+        $user = User::find($request->get('id'));
+
+        $path = $request->file('avatar')->store('public/avatar');
+        $user->avatar = $path;
+        $user->save();
+
+        return redirect()->back();
+    }
 }

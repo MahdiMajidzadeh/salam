@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
         Route::post('/add', [C\Admin\UserController::class, 'addSubmit']);
         Route::get('/{id}', [C\Admin\UserController::class, 'edit']);
         Route::post('/edit', [C\Admin\UserController::class, 'editSubmit']);
+        Route::post('/edit/avatar', [C\Admin\UserController::class, 'avatarSubmit']);
     });
 
     Route::group(['prefix' => 'otagh'], function() {

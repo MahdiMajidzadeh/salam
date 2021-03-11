@@ -4,8 +4,8 @@
 
 @section('inner-content')
     <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
-            @include('template.messages')
+        @include('template.messages')
+        <div class="col-12 col-md-6">
             <div class="card my-4">
                 <div class="card-body">
                     <form method="post" action="{{ url('admin/users/edit') }}">
@@ -65,7 +65,28 @@
                                 <label class="custom-control-label" for="is_inter">کارآموز</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">افزودن</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card my-4">
+                <div class="card-body">
+                    <form method="post" action="{{ url('admin/users/edit/avatar') }}" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <div class="form-group">
+                            @if(!is_null($user->avatar))
+                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}" class="img-fluid mb-3">
+                            @endif
+                            <label>آواتار</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile" name="avatar">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
                     </form>
                 </div>
             </div>

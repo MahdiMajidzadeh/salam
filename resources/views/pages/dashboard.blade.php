@@ -9,11 +9,15 @@
             <div class="card">
                 <div class="row no-gutters">
                     <div class="col-3 col-md-4">
-                        <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
+                        @if(!is_null($user->avatar))
+                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}" class="card-img">
+                        @else
+                            <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
+                        @endif
                     </div>
                     <div class="col-9 col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">سلام {{ auth()->user()->name }}</h5>
+                            <h5 class="card-title">سلام {{ $user->name }}</h5>
                             <p class="card-text">
                                 <a href="{{ url('setting') }}" class="btn btn-outline-light">
                                     تنظیمات
@@ -22,7 +26,7 @@
                                 <a href="{{ url('logout') }}" class="btn btn-outline-light">خروج</a>
                             </p>
                             <div>
-                                کد پرسنلی: {{ auth()->user()->employee_id }}
+                                کد پرسنلی: {{ $user->employee_id }}
                             </div>
                         </div>
                     </div>
@@ -41,8 +45,7 @@
                 @endif
             @empty
                 <div class="card d-none d-md-block mb-4">
-                    <img src="{{ asset('img/default-notice.jpg') }}"
-                         class="card-img">
+                    <img src="{{ asset('img/default-notice.jpg') }}" class="card-img">
                 </div>
             @endforelse
         </div>
