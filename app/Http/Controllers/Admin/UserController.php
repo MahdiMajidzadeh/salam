@@ -109,7 +109,7 @@ class UserController extends Controller
     {
         $user = User::find($request->get('id'));
 
-        $path = $request->file('avatar')->store('public/avatar');
+        $path         = $request->file('avatar')->store('public/avatar');
         $user->avatar = $path;
         $user->save();
 

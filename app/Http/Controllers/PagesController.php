@@ -13,8 +13,8 @@ class PagesController extends Controller
 {
     public function dashboard(Request $request)
     {
-        $data['user']    = auth()->user();
-        $booking = TahdigBooking::query()
+        $data['user'] = auth()->user();
+        $booking      = TahdigBooking::query()
             ->where('booking_date', now()->toDateString())
             ->first();
 
