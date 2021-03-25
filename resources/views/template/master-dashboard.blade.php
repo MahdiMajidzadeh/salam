@@ -2,7 +2,7 @@
 
 @section('content')
     <nav class="navbar fixed-top navbar-expand-lg shadow-sm bg-white">
-        <a class="navbar-brand" href="{{ url('dashboard') }}">پورتال باسلامی‌ها</a>
+        <a class="navbar-brand" href="{{ url('dashboard') }}">پورتال باسلامیها</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/change-log') }}">تغییرات</a>
+                    <a class="nav-link" href="{{ url('/setting') }}">تنظیمات</a>
                 </li>
                 @if(is_admin())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/admin') }}">مدیریت</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/admin') }}">مدیریت</a>
+                    </li>
                 @endif
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/logout') }}">خروج</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -28,7 +31,7 @@
 @push('css')
     <!-- PushAlert -->
     <script type="text/javascript">
-        (function(d, t) {
+        (function (d, t) {
             var g = d.createElement(t),
                 s = d.getElementsByTagName(t)[0];
             g.src = "https://cdn.pushalert.co/integrate_771d0f0bfb7ddef5e7fa89c8dcccb521.js";

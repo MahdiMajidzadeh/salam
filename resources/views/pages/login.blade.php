@@ -2,10 +2,17 @@
 
 @section('title', 'ورود')
 
+@section('css-box', 'login-bg')
+
 @section('content')
     <div class="row justify-content-center align-items-center h100">
         <div class="col-12 col-md-4">
-            {{--<div class="center-box">--}}
+            <div class="text-white text-center">
+                <h3 class="text-white">
+                    باسلامیها
+                </h3>
+                <p class="text-white">پورتال اهالی باسلام</p>
+            </div>
             @if (session('msg-error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ session('msg-error') }}
@@ -15,9 +22,6 @@
                 </div>
             @endif
                 <div class="card overflow-hidden">
-                    {{--<div class="card-img-top">--}}
-                        {{--<img src="{{ asset('img/login.jpg') }}" class="img-fluid">--}}
-                    {{--</div>--}}
                     <div class="card-body">
                         <form action="{{ url('/login') }}" method="post">
                             @csrf
@@ -29,7 +33,7 @@
                                 <label>رمز عبور</label>
                                 <input type="password" name="password" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary">ورود</button>
+                            <button type="submit" class="btn btn-primary btn-block">ورود</button>
                         </form>
                     </div>
                 {{--</div>--}}

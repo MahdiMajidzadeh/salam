@@ -4,13 +4,12 @@ use App\Http\Controllers as C;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/dashboard');
-Route::view('/login', 'login')->name('login');
+Route::view('/login', 'pages.login')->name('login');
 Route::post('/login', [C\AccountsController::class, 'loginSubmit']);
 Route::get('/logout', [C\AccountsController::class, 'logout']);
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', [C\PagesController::class, 'dashboard']);
-    Route::view('/change-log', 'pages.change_log');
 
     Route::group(['prefix' => 'setting'], function() {
         Route::get('/',[C\SettingController::class, 'user']);

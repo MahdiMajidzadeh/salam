@@ -58,7 +58,7 @@
                 <img src="{{ asset('img/otagh_3.jpg') }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="mdi mdi-home-modern"></i>
+                        <i class="mdi mdi-home-automation"></i>
                         اتاق (آزمایشی)
                     </h5>
                     <p class="card-text">
@@ -71,7 +71,7 @@
                 <img src="{{ asset('img/ghafase_3.jpg') }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <i class="mdi mdi-home-modern"></i>
+                        <i class="mdi mdi-bookshelf"></i>
                         قفسه (آزمایشی)
                     </h5>
                     <p class="card-text">
