@@ -8,7 +8,6 @@ use Illuminate\Console\Command;
 
 class MakeDays extends Command
 {
-
     protected $signature = 'day:make {date} {amount}';
 
     protected $description = 'make days';
@@ -27,7 +26,7 @@ class MakeDays extends Command
         }
         $dod = $max;
 
-        while (!$dod->equalTo(new Carbon($this->argument('date')))) {
+        while (! $dod->equalTo(new Carbon($this->argument('date')))) {
             $dod                = $max->addDay();
             $day                = new Day();
             $day->day           = $dod;

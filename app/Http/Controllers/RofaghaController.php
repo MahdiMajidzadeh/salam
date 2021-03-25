@@ -23,7 +23,7 @@ class RofaghaController extends Controller
         }
 
         if ($request->has('q')) {
-            $contacts->where('name','like', '%'.$request->input('q').'%');
+            $contacts->where('name', 'like', '%'.$request->input('q').'%');
         }
 
         $data['users'] = $contacts->get();
