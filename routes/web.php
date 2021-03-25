@@ -34,6 +34,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/reserve', [C\OtaghController::class, 'reserveSubmit']);
     });
 
+    Route::group(['prefix' => 'sarnakh'], function() {
+        Route::get('/', [C\SarnakhController::class, 'index']);
+    });
+
     Route::group(['prefix' => 'rofagha'], function() {
         Route::get('/', [C\RofaghaController::class, 'index']);
         Route::get('/chapters', [C\RofaghaController::class, 'chapters']);
@@ -44,7 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
-    Route::get('/', [C\PagesController::class, 'adminDashboard']);
+    Route::get('/', [C\Admin\AdminController::class, 'index']);
     Route::get('/users-bill', [C\Admin\BillController::class, 'usersBill']);
     Route::get('/users-bill-export', [C\Admin\BillController::class, 'exportUsersBill']);
     Route::get('/restaurant/add', [C\Admin\FoodController::class, 'addRestaurant']);

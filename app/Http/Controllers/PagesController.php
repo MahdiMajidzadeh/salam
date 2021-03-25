@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Model\Link;
 use App\Model\Notice;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class PagesController extends Controller
 {
@@ -28,18 +26,7 @@ class PagesController extends Controller
             ->where('ended_at', '>', Carbon::now())
             ->get();
 
-        $data['links'] = Link::orderBy('priority', 'asc')->get();
-
         return view('pages.dashboard', $data);
-    }
-
-    public function adminDashboard(Request $request)
-    {
-        if (! is_admin()) {
-            abort(403);
-        }
-
-        return view('admin.dashboard');
     }
 
     public function singleNotice(Request $request, $id)

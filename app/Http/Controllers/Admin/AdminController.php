@@ -9,6 +9,15 @@ use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
+    public function index(Request $request)
+    {
+        if (! is_admin()) {
+            abort(403);
+        }
+
+        return view('admin.dashboard');
+    }
+
     public function adminList()
     {
         is_allowed('admin');
