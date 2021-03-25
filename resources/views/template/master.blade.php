@@ -8,19 +8,21 @@
     <link href="{{ mix('css/shards.css') }}" rel="stylesheet">
     <link href="{{ mix('css/style.css') }}" rel="stylesheet">
     <link href="{{ mix('css/materialdesignicons.min.css') }}" rel="stylesheet">
+    @livewireStyles
     @stack('css')
     {{--<link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">--}}
 </head>
 
-<body class="rtl">
+<body class="rtl @yield('css-box')">
 
-<main class="container @yield('css-box')">
+<main class="container">
    @yield('content')
 </main>
 
 <script src="{{ mix('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ mix('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ mix('js/shards.min.js') }}"></script>
+@livewireScripts
 @stack('js')
 </body>
 </html>
