@@ -9,7 +9,7 @@
         </div>
         @foreach($items as $item)
             <div class="col-6 col-md-3">
-                <a href="{{ url('contacts/?'.$slug.'='. $item->id) }}">
+                <a href="{{ url('rofagha/?'.$slug.'='. $item->id) }}">
                     <div class="card my-2">
                         <div class="card-body text-center">
                             {{ $item->name }}

@@ -7,7 +7,7 @@ use App\Model\User;
 use App\Model\Chapter;
 use Illuminate\Http\Request;
 
-class ContactsController extends Controller
+class RofaghaController extends Controller
 {
     public function index(Request $request)
     {
@@ -22,9 +22,13 @@ class ContactsController extends Controller
             $contacts->where('chapter_id', $request->input('chapter'));
         }
 
+        if ($request->has('q')) {
+            $contacts->where('name','like', '%'.$request->input('q').'%');
+        }
+
         $data['users'] = $contacts->get();
 
-        return view('contacts.list', $data);
+        return view('rofagha.list', $data);
     }
 
     public function chapters(Request $request)
@@ -33,7 +37,7 @@ class ContactsController extends Controller
         $data['slug']  = 'chapter';
         $data['items'] = Chapter::where('is_active', true)->get();
 
-        return view('contacts.category', $data);
+        return view('rofagha.category', $data);
     }
 
     public function teams(Request $request)
@@ -42,6 +46,6 @@ class ContactsController extends Controller
         $data['slug']  = 'team';
         $data['items'] = Team::where('is_active', true)->get();
 
-        return view('contacts.category', $data);
+        return view('rofagha.category', $data);
     }
 }

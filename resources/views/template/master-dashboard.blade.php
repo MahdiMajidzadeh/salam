@@ -1,7 +1,7 @@
 @extends('template.master')
 
 @section('content')
-    <nav class="navbar fixed-top navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar fixed-top navbar-expand-lg shadow-sm bg-white">
         <a class="navbar-brand" href="{{ url('dashboard') }}">پورتال باسلامی‌ها</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
