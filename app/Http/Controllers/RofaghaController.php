@@ -26,7 +26,7 @@ class RofaghaController extends Controller
             $contacts->where('name','like', '%'.$request->input('q').'%');
         }
 
-        $data['users'] = $contacts->get();
+        $data['users'] = $contacts->paginate(40);
 
         return view('rofagha.list', $data);
     }
