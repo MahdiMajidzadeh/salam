@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateDaysTable extends Migration
 {
@@ -14,7 +14,6 @@ class CreateDaysTable extends Migration
             $table->bigInteger('charge_amount');
         });
     }
-
 
     public function down()
     {
