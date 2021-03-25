@@ -6,7 +6,7 @@
 
 :root {
   --blue: #007bff;
-  --indigo: #674eec;
+  --indigo: #622FB5;
   --purple: #8445f7;
   --pink: #ff4169;
   --red: #c4183c;
@@ -18,7 +18,7 @@
   --white: #fff;
   --gray: #868e96;
   --gray-dark: #343a40;
-  --primary: #007bff;
+  --primary: #622FB5;
   --secondary: #5A6169;
   --success: #17c671;
   --info: #00b8d8;
@@ -31,7 +31,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-sans-serif: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-monospace: "Roboto Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -49,12 +49,12 @@ body {
 }
 
 a {
-  color: #007bff;
+  color: #622FB5;
   text-decoration: none;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #411f78;
   text-decoration: underline;
 }
 
@@ -95,7 +95,7 @@ h6,
 .h5,
 .h6 {
   margin-bottom: 0.75rem;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   color: #212529;
 }
@@ -238,16 +238,16 @@ mark,
 .table-primary,
 .table-primary > th,
 .table-primary > td {
-  background-color: #b8daff;
+  background-color: #d3c5ea;
 }
 
 .table-hover .table-primary:hover {
-  background-color: #9fcdff;
+  background-color: #c5b2e3;
 }
 
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #9fcdff;
+  background-color: #c5b2e3;
 }
 
 .table-secondary,
@@ -423,12 +423,12 @@ mark,
 .form-control:focus {
   color: #495057;
   background-color: #fff;
-  border-color: #007bff;
-  box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
+  border-color: #622FB5;
+  box-shadow: 0 0.313rem 0.719rem rgba(98, 47, 181, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 }
 
 .form-control:focus:hover {
-  border-color: #007bff;
+  border-color: #622FB5;
 }
 
 .form-control::-webkit-input-placeholder {
@@ -798,7 +798,7 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .btn {
   font-weight: 300;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   border: 1px solid transparent;
   padding: 0.75rem 1.25rem;
   font-size: 0.875rem;
@@ -832,28 +832,28 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .btn-primary {
-  color: color-yiq(#007bff);
-  border-color: #007bff;
-  background-color: #007bff;
+  color: color-yiq(#622FB5);
+  border-color: #622FB5;
+  background-color: #622FB5;
   box-shadow: none;
 }
 
 .btn-primary:hover {
-  color: color-yiq(#006fe6);
-  background-color: #006fe6;
-  border-color: #006fe6;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 123, 255, 0.25);
+  color: color-yiq(#572aa1);
+  background-color: #572aa1;
+  border-color: #572aa1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(98, 47, 181, 0.25);
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15), 0 3px 15px rgba(0, 123, 255, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 3px rgba(98, 47, 181, 0.15), 0 3px 15px rgba(98, 47, 181, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #622FB5;
+  border-color: #622FB5;
   box-shadow: none;
   cursor: not-allowed;
 }
@@ -861,9 +861,9 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
-  color: color-yiq(#006fe6);
-  background-color: #006fe6;
-  border-color: #0062cc;
+  color: color-yiq(#572aa1);
+  background-color: #572aa1;
+  border-color: #4c248d;
   background-image: none;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
 }
@@ -1204,25 +1204,25 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn-outline-primary {
   background-color: transparent;
   background-image: none;
-  border-color: #007bff;
-  color: #007bff;
+  border-color: #622FB5;
+  color: #622FB5;
 }
 
 .btn-outline-primary:hover {
-  color: color-yiq(#007bff);
-  background-color: #007bff;
-  border-color: #007bff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(0, 123, 255, 0.25);
+  color: color-yiq(#622FB5);
+  background-color: #622FB5;
+  border-color: #622FB5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05), 0 4px 10px rgba(98, 47, 181, 0.25);
 }
 
 .btn-outline-primary:focus,
 .btn-outline-primary.focus {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15), 0 3px 15px rgba(0, 123, 255, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(98, 47, 181, 0.15), 0 3px 15px rgba(98, 47, 181, 0.2), 0 2px 5px rgba(0, 0, 0, 0.1) !important;
 }
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-  color: #007bff;
+  color: #622FB5;
   background-color: transparent;
   box-shadow: none;
 }
@@ -1230,9 +1230,9 @@ select.form-control-lg:not([size]):not([multiple]),
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
-  color: color-yiq(#007bff);
-  background-color: #007bff;
-  border-color: #007bff;
+  color: color-yiq(#622FB5);
+  background-color: #622FB5;
+  border-color: #622FB5;
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
@@ -1615,11 +1615,11 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .btn-link {
   font-weight: 300;
-  color: #007bff;
+  color: #622FB5;
 }
 
 .btn-link:hover {
-  color: #0056b3;
+  color: #411f78;
   text-decoration: underline;
 }
 
@@ -1965,17 +1965,17 @@ select.form-control-lg:not([size]):not([multiple]),
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
   border-color: transparent;
-  background-color: #007bff;
+  background-color: #622FB5;
   box-shadow: none;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
-  box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0.313rem 0.719rem rgba(98, 47, 181, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 }
 
 .custom-control-input:active ~ .custom-control-label::before {
   color: #fff;
-  background-color: #b3d7ff;
+  background-color: #c4adea;
   box-shadow: none;
 }
 
@@ -2056,7 +2056,7 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
   border: none;
-  background-color: #007bff;
+  background-color: #622FB5;
   box-shadow: none;
 }
 
@@ -2106,7 +2106,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #007bff;
+  background-color: #622FB5;
 }
 
 .custom-radio .custom-control-input:checked ~ .custom-control-label::after {
@@ -2142,8 +2142,8 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .custom-select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
+  border-color: #622FB5;
+  box-shadow: 0 0.313rem 0.719rem rgba(98, 47, 181, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 }
 
 .custom-select:focus::-ms-value {
@@ -2192,19 +2192,19 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .custom-file-input:focus ~ .custom-file-label {
-  border-color: #007bff;
+  border-color: #622FB5;
   color: #495057;
-  box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0.313rem 0.719rem rgba(98, 47, 181, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 }
 
 .custom-file-input:focus ~ .custom-file-label::after {
-  border-color: #007bff;
-  color: #007bff;
-  background: #e6f2ff;
+  border-color: #622FB5;
+  color: #622FB5;
+  background: #e1d5f4;
 }
 
 .custom-file-input:focus ~ .custom-file-label:hover {
-  border-color: #007bff;
+  border-color: #622FB5;
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
@@ -2314,7 +2314,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .custom-toggle .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
-  box-shadow: 0 0.313rem 0.719rem rgba(0, 123, 255, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
+  box-shadow: 0 0.313rem 0.719rem rgba(98, 47, 181, 0.1), 0 0.156rem 0.125rem rgba(0, 0, 0, 0.06);
 }
 
 .custom-toggle.custom-toggle-sm {
@@ -2351,7 +2351,7 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .nav {
   font-size: 0.875rem;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .nav-link {
@@ -2415,7 +2415,7 @@ select.form-control-lg:not([size]):not([multiple]),
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color: #622FB5;
 }
 
 .nav-pills:hover {
@@ -2430,8 +2430,8 @@ select.form-control-lg:not([size]):not([multiple]),
 .nav-outlined-pills .nav-link.active,
 .show > .nav-outlined-pills .nav-link {
   background: none;
-  color: #007bff;
-  border-color: #007bff;
+  color: #622FB5;
+  border-color: #622FB5;
 }
 
 .nav-outlined-pills .nav-link:hover {
@@ -2472,9 +2472,9 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .nav-indigo .nav-link.active {
-  background-color: #674eec;
-  border-color: #5b40eb;
-  color: color-yiq(#674eec);
+  background-color: #622FB5;
+  border-color: #5b2ca9;
+  color: color-yiq(#622FB5);
 }
 
 .nav-indigo .nav-link.disabled {
@@ -2487,21 +2487,21 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .nav-indigo .nav-link {
-  color: #674eec;
+  color: #622FB5;
 }
 
 .nav-indigo.nav-outlined-pills .nav-link.active {
   background: transparent;
-  border-color: #8f7cf1;
-  color: #674eec;
+  border-color: #7b48cf;
+  color: #622FB5;
 }
 
 .nav-indigo.nav-outlined-pills .nav-link.active:hover {
-  border-color: #8f7cf1;
+  border-color: #7b48cf;
 }
 
 .nav-indigo.nav-outlined-pills .nav-link {
-  color: #674eec;
+  color: #622FB5;
 }
 
 .nav-purple .nav-link.active {
@@ -2876,7 +2876,7 @@ select.form-control-lg:not([size]):not([multiple]),
   padding-bottom: 0.625rem;
   margin-right: 1.5rem;
   font-size: 1rem;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
 }
 
@@ -3034,7 +3034,7 @@ select.form-control-lg:not([size]):not([multiple]),
   background-color: #fff;
   border: none;
   border-radius: 0.625rem;
-  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
 }
 
 .card > .list-group:first-child .list-group-item:first-child {
@@ -3070,7 +3070,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-body {
-  padding: 1.875rem;
+  padding: 1.15rem;
 }
 
 .card-body > p:last-child {
@@ -3083,19 +3083,19 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-subtitle {
-  margin-top: -1.09375rem;
+  margin-top: -0.59375rem;
 }
 
 .card-link {
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 .card-link + .card-link {
-  margin-left: 1.875rem;
+  margin-left: 1.15rem;
 }
 
 .card-header {
-  padding: 1.09375rem 1.875rem;
+  padding: 0.59375rem 1.15rem;
   background-color: rgba(90, 97, 105, 0.06);
   border-bottom: none;
 }
@@ -3105,7 +3105,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-footer {
-  padding: 1.09375rem 1.875rem;
+  padding: 0.59375rem 1.15rem;
   background-color: rgba(90, 97, 105, 0.06);
   border-top: none;
 }
@@ -3125,8 +3125,8 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-header-pills {
-  margin-right: -0.9375rem;
-  margin-left: -0.9375rem;
+  margin-right: -0.575rem;
+  margin-left: -0.575rem;
 }
 
 .card-header-pills:hover {
@@ -3174,7 +3174,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-group > .card {
-  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
 }
 
 .card-group > .card:last-child .card-body,
@@ -3189,7 +3189,7 @@ select.form-control-lg:not([size]):not([multiple]),
 
 @media (min-width: 576px) {
   .card-group {
-    box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+    box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
     border-radius: 0.625rem;
   }
 
@@ -3236,7 +3236,7 @@ select.form-control-lg:not([size]):not([multiple]),
 }
 
 .card-columns .card {
-  margin-bottom: 2.1875rem;
+  margin-bottom: 1.1875rem;
 }
 
 @media (min-width: 576px) {
@@ -3252,14 +3252,14 @@ select.form-control-lg:not([size]):not([multiple]),
   padding-left: 0;
   list-style: none;
   border-radius: 0.375rem;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 0.875rem;
 }
 
 .page-link {
   padding: 0.5rem 0.75rem;
   line-height: 1.25;
-  color: #007bff;
+  color: #622FB5;
   background-color: #fff;
   border: none;
   margin: 0;
@@ -3268,7 +3268,7 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .page-link:hover,
 .page-link:focus {
-  color: #0056b3;
+  color: #411f78;
   background-color: #f5f5f6;
   border-color: #dfe1e3;
 }
@@ -3295,8 +3295,8 @@ select.form-control-lg:not([size]):not([multiple]),
 
 .page-item.active .page-link {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #622FB5;
+  border-color: #622FB5;
 }
 
 .page-item.disabled .page-link {
@@ -3341,7 +3341,7 @@ select.form-control-lg:not([size]):not([multiple]),
   padding: 0.375rem 0.5rem;
   font-size: 75%;
   font-weight: 500;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #fff;
   border-radius: 0.375rem;
 }
@@ -3361,21 +3361,21 @@ a.badge {
 }
 
 .badge-primary {
-  color: color-yiq(#007bff);
-  background-color: #007bff;
+  color: color-yiq(#622FB5);
+  background-color: #622FB5;
 }
 
 .badge-primary[href]:hover,
 .badge-primary[href]:focus {
-  color: color-yiq(#007bff);
+  color: color-yiq(#622FB5);
   text-decoration: none;
-  background-color: #0062cc;
+  background-color: #4c248d;
 }
 
 .badge-outline-primary {
   background: none;
-  border: 1px solid #007bff;
-  color: #007bff;
+  border: 1px solid #622FB5;
+  color: #622FB5;
 }
 
 .badge-secondary {
@@ -3541,12 +3541,12 @@ a.badge {
 }
 
 .alert-primary {
-  color: #f5faff;
-  background-color: #007bff;
+  color: #eae1f7;
+  background-color: #622FB5;
 }
 
 .alert-primary .alert-link {
-  color: #f5faff;
+  color: #eae1f7;
 }
 
 .alert-secondary {
@@ -3659,7 +3659,7 @@ a.badge {
   height: 0.625rem;
   line-height: 0.625rem;
   color: #fff;
-  background-color: #007bff;
+  background-color: #622FB5;
   transition: width 0.6s ease;
 }
 
@@ -3720,8 +3720,8 @@ a.badge {
 
 .list-group-item.active {
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #622FB5;
+  border-color: #622FB5;
 }
 
 .list-group-flush .list-group-item {
@@ -3729,27 +3729,27 @@ a.badge {
 }
 
 .list-group-item-primary {
-  color: #004085;
-  background-color: #b8daff;
+  color: #33185e;
+  background-color: #d3c5ea;
 }
 
 a.list-group-item-primary,
 button.list-group-item-primary {
-  color: #004085;
+  color: #33185e;
 }
 
 a.list-group-item-primary:hover,
 a.list-group-item-primary:focus,
 button.list-group-item-primary:hover,
 button.list-group-item-primary:focus {
-  color: #004085;
-  background-color: #9fcdff;
+  color: #33185e;
+  background-color: #c5b2e3;
 }
 
 a.list-group-item-primary.active,
 button.list-group-item-primary.active {
-  background-color: #004085;
-  border-color: #004085;
+  background-color: #33185e;
+  border-color: #33185e;
 }
 
 .list-group-item-secondary {
@@ -3953,7 +3953,7 @@ button.list-group-item-dark.active {
   background-color: #fff;
   border: none;
   border-radius: 0.5rem;
-  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
 }
 
 .modal-backdrop {
@@ -3994,7 +3994,7 @@ button.list-group-item-dark.active {
   }
 
   .modal-content {
-    box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+    box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
   }
 
   .modal-sm {
@@ -4011,7 +4011,7 @@ button.list-group-item-dark.active {
 .tooltip {
   z-index: 1070;
   margin: 0;
-  font-family: "estedad", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "pelak", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   font-weight: 300;
   line-height: 1.5;
@@ -4125,7 +4125,7 @@ button.list-group-item-dark.active {
 
 .noUi-target:focus {
   outline: 0;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.65), 0 3px 15px rgba(90, 97, 105, 0.1), 0 2px 3px rgba(90, 97, 105, 0.2);
+  box-shadow: 0 0 8px rgba(98, 47, 181, 0.65), 0 3px 15px rgba(90, 97, 105, 0.1), 0 2px 3px rgba(90, 97, 105, 0.2);
 }
 
 .noUi-base,
@@ -4159,7 +4159,7 @@ button.list-group-item-dark.active {
 }
 
 .noUi-connect {
-  background: #007bff;
+  background: #622FB5;
   border-radius: 5px;
 }
 
@@ -4260,7 +4260,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .noUi-handle:focus {
   outline: 0;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.65), 0 3px 15px rgba(90, 97, 105, 0.1), 0 2px 3px rgba(90, 97, 105, 0.2);
+  box-shadow: 0 0 8px rgba(98, 47, 181, 0.65), 0 3px 15px rgba(90, 97, 105, 0.1), 0 2px 3px rgba(90, 97, 105, 0.2);
 }
 
 .noUi-handle:after {
@@ -4408,7 +4408,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .slider-primary .noUi-connect {
-  background: #007bff;
+  background: #622FB5;
 }
 
 .slider-secondary .noUi-connect {
@@ -4578,17 +4578,17 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .datepicker table tr td.highlighted.focused {
-  background: #007bff;
+  background: #622FB5;
 }
 
 .datepicker table tr td.highlighted.disabled,
 .datepicker table tr td.highlighted.disabled:active {
-  background: #007bff;
+  background: #622FB5;
   color: #5A6169;
 }
 
 .datepicker table tr td.today {
-  background: #e6f2ff;
+  background: #e1d5f4;
 }
 
 .datepicker table tr td.today.focused {
@@ -4602,20 +4602,20 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .datepicker table tr td.range {
-  background: #007bff;
+  background: #622FB5;
   color: #fff;
   border-radius: 0;
 }
 
 .datepicker table tr td.range.focused {
-  background: #0067d6;
+  background: #502795;
 }
 
 .datepicker table tr td.range.disabled,
 .datepicker table tr td.range.disabled:active,
 .datepicker table tr td.range.day.disabled:hover {
-  background: #0062cc;
-  color: #3395ff;
+  background: #4c248d;
+  color: #7b48cf;
 }
 
 .datepicker table tr td.range.highlighted.focused {
@@ -4653,7 +4653,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .datepicker table tr td.selected:hover,
 .datepicker table tr td.selected.highlighted:hover,
 .datepicker table tr td.day.range:hover {
-  background: #007bff;
+  background: #622FB5;
   color: #fff;
 }
 
@@ -4661,7 +4661,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .datepicker table tr td.active.highlighted,
 .datepicker table tr td.active:hover,
 .datepicker table tr td.active.highlighted:hover {
-  background: #007bff;
+  background: #622FB5;
   color: #fff;
 }
 
@@ -4735,24 +4735,24 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .bg-primary {
-  background-color: #007bff !important;
+  background-color: #622FB5 !important;
 }
 
 .bg-primary.card .card-title,
 .bg-primary.card .card-body,
 .bg-primary.card .card-header,
 .bg-primary.card .card-footer {
-  background-color: #0062cc !important;
+  background-color: #4c248d !important;
 }
 
 .bg-primary.card .card-header,
 .bg-primary.card .card-footer {
-  background: #0074f0;
+  background: #5b2ca9;
 }
 
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #0062cc !important;
+  background-color: #4c248d !important;
 }
 
 .bg-secondary {
@@ -4923,7 +4923,7 @@ a.bg-dark:focus {
 }
 
 .border-primary {
-  border-color: #007bff !important;
+  border-color: #622FB5 !important;
 }
 
 .border-secondary {
@@ -4991,12 +4991,12 @@ a.bg-dark:focus {
 }
 
 .text-primary {
-  color: #007bff !important;
+  color: #622FB5 !important;
 }
 
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #0062cc !important;
+  color: #4c248d !important;
 }
 
 .text-secondary {
@@ -5085,6 +5085,6 @@ a.text-black:focus {
 }
 
 .with-shadows {
-  box-shadow: 0 0.46875rem 2.1875rem rgba(90, 97, 105, 0.1), 0 0.9375rem 1.40625rem rgba(90, 97, 105, 0.1), 0 0.25rem 0.53125rem rgba(90, 97, 105, 0.12), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.1);
+  box-shadow: 0 0.46875rem 0.1875rem rgba(90, 97, 105, 0.04), 0 0.4375rem 0.40625rem rgba(90, 97, 105, 0.04), 0 0.25rem 0.23125rem rgba(90, 97, 105, 0.04), 0 0.125rem 0.1875rem rgba(90, 97, 105, 0.04);
 }
 

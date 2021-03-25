@@ -17,15 +17,15 @@ class BillController extends Controller
         $data = getMonthDays();
 
         $data['usersBill'] = DB::select(
-            'SELECT u.id, u.name, u.employee_id, u.deactivated_at, (u.tahdig_credits - sum(tr.price * tr.quantity)) balance FROM `users` u
-            join tahdig_reservations tr on u.id = tr.user_id
-            join tahdig_bookings tb on tr.booking_id = tb.id
+            'SELECT u.id, u.name, u.employee_id,u.tahdig_credits,u.started_at, u.deactivated_at,sum(tr.price * tr.quantity) cost, (u.tahdig_credits - sum(tr.price * tr.quantity)) balance FROM `users` u
+            left join tahdig_reservations tr on u.id = tr.user_id
+            left join tahdig_bookings tb on tr.booking_id = tb.id
             where tb.booking_date > u.settlement_at
-            GROUP by u.id,u.name, u.employee_id,u.tahdig_credits, u.deactivated_at
+            GROUP by u.id,u.name, u.employee_id,u.tahdig_credits, u.deactivated_at,u.started_at
             order by u.employee_id asc'
         );
 
-        return view('notice.bill.tahdig_users', $data);
+        return view('admin.bill.tahdig_users', $data);
     }
 
     public function exportUsersBill()

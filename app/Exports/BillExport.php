@@ -15,35 +15,47 @@ class BillExport implements FromArray, WithHeadings
     {
         $data = getMonthDays();
 
-        return DB::select("SELECT
-	u.employee_id,
-	u.NAME,
-IF
-	(
-		(sum( r.price ) - sum( r.price_default )) > 0,
-		sum( r.price ) - sum( r.price_default ),
-		0 
-	) total
+        return DB::select("SELECT u.id, u.employee_id, u.NAME, ff.cost, uu.credits,( uu.credits - ff.cost ) balance,
+started_at,
+uu.cday , (u.tahdig_credits - ff.cost) n_balance, u.credits
 FROM
-	reservations r
-	JOIN users u ON u.id = r.user_id
-	JOIN bookings b ON b.id = r.booking_id 
-WHERE
-	b.booking_date BETWEEN '".$data['firstDayOfMonth'].
-            "' AND '".$data['lastDayOfMonth']."' 
-GROUP BY
-    u.employee_id,
-	u.NAME,
-	r.user_id
-	order by 1 asc");
+	users u
+	JOIN (
+	SELECT
+		u.id,
+		sum( d.charge_amount ) credits,
+		count(*) cday 
+	FROM
+		users u
+		LEFT JOIN days d ON u.started_at <= d.DAY 
+	GROUP BY
+		u.id,
+		u.started_at 
+	) uu ON u.id = uu.id
+	LEFT JOIN (
+	SELECT
+		u.id,
+		sum( tr.price * tr.quantity ) cost 
+	FROM
+		`users` u
+		LEFT JOIN tahdig_reservations tr ON u.id = tr.user_id
+		LEFT JOIN tahdig_bookings tb ON tr.booking_id = tb.id 
+	WHERE
+		tb.booking_date >= '2020-10-30' 
+	GROUP BY
+	u.id 
+	) ff ON u.id = ff.id");
     }
 
     public function headings(): array
     {
         return [
+            'ID',
             'Employee ID',
             'Name',
-            'Total',
+            'Total Cost',
+            'Credits',
+            'Balance',
         ];
     }
 }

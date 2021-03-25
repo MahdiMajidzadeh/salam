@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@yield('title') - سامانه سلام</title>
-{{--    <link href="{{ mix('css/nahar.css') }}" rel="stylesheet">--}}
     <link href="{{ mix('css/bootstrap-rtl.css') }}" rel="stylesheet">
     <link href="{{ mix('css/shards.css') }}" rel="stylesheet">
     <link href="{{ mix('css/style.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/materialdesignicons.min.css') }}" rel="stylesheet">
     @stack('css')
     {{--<link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">--}}
 </head>

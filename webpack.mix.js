@@ -18,6 +18,7 @@ mix.sass('resources/scss/shards/shards.scss', 'public/css')
     .copy('resources/js/persian-datepicker.min.js', 'public/js/persian-datepicker.min.js')
     .copy('resources/js/jquery.autocomplete.min.js', 'public/js/jquery.autocomplete.min.js')
     .copy('resources/css/persian-datepicker.min.css', 'public/css/persian-datepicker.min.css')
+    .copy('resources/css/materialdesignicons.min.css', 'public/css/materialdesignicons.min.css')
     .copyDirectory('resources/fonts', 'public/fonts')
     .sourceMaps()
     .version();

@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('backup:run --only-db')->hourly();
         $schedule->command('backup:clean')->weekly();
-        $schedule->command('zoom:message')->dailyAt('12:30');
+//        $schedule->command('zoom:message')->dailyAt('12:30');
     }
 
     protected function commands()

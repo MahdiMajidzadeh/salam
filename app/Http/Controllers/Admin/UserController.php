@@ -59,9 +59,9 @@ class UserController extends Controller
         $query = User::query();
 
         if ($request->filled('mobile')) {
-            $query->where('mobile', 'like', '%'.$request->get('mobile').'%');
-        } elseif ($request->filled('name')) {
-            $query->where('name', 'like', '%'.$request->get('name').'%');
+            $query->where('mobile', 'like', '%' . $request->get('mobile') . '%');
+        } else if ($request->filled('name')) {
+            $query->where('name', 'like', '%' . $request->get('name') . '%');
         }
 
         $data['users'] = $query->orderBy('employee_id', 'asc')
@@ -87,8 +87,8 @@ class UserController extends Controller
 
         $request->validate([
             'employee_id'   => 'integer|nullable',
-            //            'team'          => 'integer|nullable',
-            //            'chapter'       => 'integer|nullable',
+            'team'          => 'integer|nullable',
+            'chapter'       => 'integer|nullable',
             'email'         => 'email|nullable',
             'email_basalam' => 'email|nullable',
         ]);
@@ -100,6 +100,8 @@ class UserController extends Controller
         $user->chapter_id    = $request->get('chapter', null);
         $user->email         = $request->get('email', null);
         $user->email_basalam = $request->get('email_basalam', null);
+        $user->started_at    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
+        $user->settlement_at = Carbon::now()->toDateString();
         $user->save();
 
         return redirect()->back();
@@ -109,7 +111,7 @@ class UserController extends Controller
     {
         $user = User::find($request->get('id'));
 
-        $path = $request->file('avatar')->store('public/avatar');
+        $path         = $request->file('avatar')->store('public/avatar');
         $user->avatar = $path;
         $user->save();
 

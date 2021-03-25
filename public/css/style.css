@@ -1,19 +1,19 @@
 @font-face {
-  font-family: "estedad";
-  src: url(/fonts/Estedad-FD-Thin.woff?52346309ad6585379b7424c471f1fea3) format("woff"), url(/fonts/Estedad-FD-Thin.ttf?470392dde8ecd1273a2ba7cee5bdcb3a) format("truetype");
-  font-style: normal;
-  font-weight: normal;
-}
-
-@font-face {
-  font-family: "estedad";
-  src: url(/fonts/Estedad-FD-Black.woff?7d7cabcd93ffa5c0a643b2634ffe54fc) format("woff"), url(/fonts/Estedad-FD-Black.ttf?63ff9cc94b0a44c225abb5060ef90fa1) format("truetype");
+  font-family: "pelak";
+  src: url(/fonts/PelakFA-Black.woff?cfdc4c78068e9a90d8099ee0fa007531) format("woff"), url(/fonts/PelakFA-Black.ttf?cc451f96c526889034d9bdc55c8599fd) format("truetype");
   font-style: normal;
   font-weight: 500;
 }
 
+@font-face {
+  font-family: "pelak";
+  src: url(/fonts/PelakFA-Regular.woff?a0cf7013e99b2419c48c0b4ff6a9b5eb) format("woff"), url(/fonts/PelakFA-Regular.ttf?8152e60aa0348836e19a9a6581ec01d6) format("truetype");
+  font-style: normal;
+  font-weight: 300;
+}
+
 body {
-  font-family: estedad;
+  font-family: pelak;
   min-height: 100vh;
 }
 
@@ -117,5 +117,9 @@ body {
   margin: 0px -30px -191px !important;
   background-color: #E0F7FA;
   padding: 22px;
+}
+
+.card-title .mdi {
+  font-size: 1.5em;
 }
 

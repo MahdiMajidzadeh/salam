@@ -1,15 +1,31 @@
+//@font-face {
+//  font-family: 'estedad';
+//  src: url('../fonts/Estedad-FD-Thin.woff') format('woff'),
+//  url('../fonts/Estedad-FD-Thin.ttf') format('truetype');
+//  font-style: normal;
+//  font-weight: normal;
+//}
+//
+//@font-face {
+//  font-family: 'estedad';
+//  src: url('../fonts/Estedad-FD-Black.woff') format('woff'),
+//  url('../fonts/Estedad-FD-Black.ttf') format('truetype');
+//  font-style: normal;
+//  font-weight: 500;
+//}
+
 @font-face {
-  font-family: 'estedad';
-  src: url('../fonts/Estedad-FD-Thin.woff') format('woff'),
-  url('../fonts/Estedad-FD-Thin.ttf') format('truetype');
+  font-family: 'pelak';
+  src: url('../fonts/PelakFA-Black.woff') format('woff'),
+  url('../fonts/PelakFA-Black.ttf') format('truetype');
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 @font-face {
-  font-family: 'estedad';
-  src: url('../fonts/Estedad-FD-Black.woff') format('woff'),
-  url('../fonts/Estedad-FD-Black.ttf') format('truetype');
+  font-family: 'pelak';
+  src: url('../fonts/PelakFA-Regular.woff') format('woff'),
+  url('../fonts/PelakFA-Regular.ttf') format('truetype');
   font-style: normal;
-  font-weight: 500;
+  font-weight: 300;
 }

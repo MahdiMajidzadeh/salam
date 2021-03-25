@@ -1,7 +1,7 @@
 @import "fonts";
 
 body {
-  font-family: estedad;
+  font-family: pelak;
   min-height: 100vh;
 }
 
@@ -107,5 +107,11 @@ body {
     margin: 0px -30px -191px !important;
     background-color: #E0F7FA;
     padding: 22px;
+  }
+}
+
+.card-title{
+  .mdi{
+    font-size: 1.5em;
   }
 }
