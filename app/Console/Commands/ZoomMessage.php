@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Model\User;
-use GuzzleHttp\Client;
 use App\Model\TahdigBooking;
+use Goutte\Client;
 use Illuminate\Console\Command;
 
 class ZoomMessage extends Command
@@ -19,19 +19,25 @@ class ZoomMessage extends Command
 
     public function handle()
     {
-        $users = User::whereNotNull('zoom_url')->whereNotNull('zoom_auth')->get();
-        foreach ($users as $user) {
-            $reservation = $this->getToday($user->id);
+        $client = new Client();
+        $crawler = $client->request('GET', 'https://ketabchi.org/search?q=9786006958965');
 
-            if (! is_null($reservation)) {
-                $this->sendRequest(
-                    $user->zoom_url,
-                    $user->zoom_auth,
-                    $reservation->food->name,
-                    $reservation->food->restaurant->name
-                );
-            }
+        if($crawler->filter('.result-wrapper.row div a')->count() == 0)
+        {
+            $this->warn('not found');
+            return;
         }
+        $link = $crawler->filter('.result-wrapper.row div a')->first()->link()->getUri();
+
+        $crawler = $client->request('GET', $link);
+
+        $this->info($crawler->filter('h1 span')->first()->text());
+        $this->info($crawler->filter('.publisher h3 a')->first()->text());
+        $crawler->filter('.person h3 a')->each(function ($node) {
+            $this->info($node->text());
+        });
+        $this->info($crawler->filter('.thumb img')->first()->image()->getUri());
+
     }
 
     public function getToday($userId)
