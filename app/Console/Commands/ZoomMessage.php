@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use Goutte\Client;
 use App\Model\User;
 use App\Model\TahdigBooking;
-use Goutte\Client;
 use Illuminate\Console\Command;
 
 class ZoomMessage extends Command
@@ -19,12 +19,12 @@ class ZoomMessage extends Command
 
     public function handle()
     {
-        $client = new Client();
+        $client  = new Client();
         $crawler = $client->request('GET', 'https://ketabchi.org/search?q=9786006958965');
 
-        if($crawler->filter('.result-wrapper.row div a')->count() == 0)
-        {
+        if ($crawler->filter('.result-wrapper.row div a')->count() == 0) {
             $this->warn('not found');
+
             return;
         }
         $link = $crawler->filter('.result-wrapper.row div a')->first()->link()->getUri();
@@ -37,7 +37,6 @@ class ZoomMessage extends Command
             $this->info($node->text());
         });
         $this->info($crawler->filter('.thumb img')->first()->image()->getUri());
-
     }
 
     public function getToday($userId)
