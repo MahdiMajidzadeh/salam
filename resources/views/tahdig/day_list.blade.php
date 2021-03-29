@@ -83,3 +83,10 @@
         </nav>
     </form>
 @endsection
+
+@push('js')
+    <script src="{{ asset('js/input-spinner.js') }}"></script>
+    <script>
+        $("input[type='number']").inputSpinner()
+    </script>
+@endpush
