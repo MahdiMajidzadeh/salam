@@ -10291,8 +10291,8 @@ a.text-dark:focus {
 
 .rtl .navbar-nav .nav-item + .nav-item,
 [dir=rtl] .navbar-nav .nav-item + .nav-item {
-  margin-right: inherit;
-  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-left: inherit;
 }
 
 .rtl th,

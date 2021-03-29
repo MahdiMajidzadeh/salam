@@ -30,7 +30,8 @@
         </div>
     </div>
     @if($hasData)
-        <div class="card my-4">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".collapse">جزییات</button>
+        <div class="card my-4 collapse">
             <div class="card-body p-3">
                 @foreach($foods as $food)
                     {{ $food->first()->food->name }} : {{ $food->sum('quantity') }} <br>
