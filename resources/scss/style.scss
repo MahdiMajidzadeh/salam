@@ -96,27 +96,34 @@ body {
 }
 
 .home {
-  h5{
+  h5 {
     margin-bottom: 30px;
   }
+
   .card-img {
     height: 100%;
     object-fit: cover;
   }
 
-  .card-info-box{
+  .card-info-box {
     margin: 0px -30px -191px !important;
     background-color: #E0F7FA;
     padding: 22px;
   }
 }
 
-.card-title{
-  .mdi{
+.card-title {
+  .mdi {
     font-size: 1.5em;
   }
 }
 
 .login-bg {
   background: #202020;
+}
+
+.input-group.input-group-sm .form-control {
+  text-align: center;
+  margin: 0 -1px;
+  font-size: 101%;
 }

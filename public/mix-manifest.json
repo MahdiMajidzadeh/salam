@@ -1,13 +1,14 @@
 {
     "/css/shards.css": "/css/shards.css?id=01027d7e3642e3f065d1",
     "/css/bootstrap-rtl.css": "/css/bootstrap-rtl.css?id=7ddbf82e25976c2ea504",
-    "/css/style.css": "/css/style.css?id=7c605d77a376ae34190e",
+    "/css/style.css": "/css/style.css?id=517249bdb2bf8ce8b256",
     "/js/bootstrap.bundle.min.js": "/js/bootstrap.bundle.min.js?id=254d642f4222d611f0ec",
     "/js/jquery-3.5.1.min.js": "/js/jquery-3.5.1.min.js?id=dc5e7f18c8d36ac1d3d4",
     "/js/shards.min.js": "/js/shards.min.js?id=4fce2c40433518fba20a",
     "/js/persian-date.min.js": "/js/persian-date.min.js?id=0e1c842cccdf0cdbb6a8",
     "/js/persian-datepicker.min.js": "/js/persian-datepicker.min.js?id=148a10a2ffdb50e70dbf",
     "/js/jquery.autocomplete.min.js": "/js/jquery.autocomplete.min.js?id=98124b34236766b0da6e",
+    "/js/input-spinner.js": "/js/input-spinner.js?id=dc3f24636e5e3a609d7f",
     "/css/persian-datepicker.min.css": "/css/persian-datepicker.min.css?id=f68ae99536a90d749df5",
     "/css/materialdesignicons.min.css": "/css/materialdesignicons.min.css?id=b9d0fbe2aa96f2d1e6c6"
 }

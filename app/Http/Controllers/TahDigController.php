@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Model\Day;
 use Carbon\Carbon;
+use App\Model\Food;
 use App\Model\TahdigSalon;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
@@ -14,64 +15,45 @@ class TahDigController extends Controller
 {
     public function foodList()
     {
-        $data['reserved'] = TahdigReservation::query()
-            ->where('user_id', auth()->id())
-            ->whereHas('booking', function($query) {
-                $query->where('booking_date', '>', Carbon::now()->subDays(14));
-            })
-            ->get();
+        $data['bookings'] = TahdigBooking::with(['reservationsForUser', 'foods.restaurant', 'meal'])
+            ->where('booking_date', '>',
+                Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d')
+            )->orderBy('booking_date', 'asc')->get();
 
-        $bookings = TahdigBooking::where('booking_date', '>',
-            Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d')
-        );
-
-        if (auth()->user()->is_inter) {
-            $bookings->with(['foodsForInter.restaurant', 'meal']);
-        } else {
-            $bookings->with(['foods.restaurant', 'meal']);
-        }
-
-        $data['bookings'] = $bookings->orderBy('booking_date', 'asc')->get();
-        $data['salons']   = TahdigSalon::where('is_active', true)->get();
+        $data['salons'] = TahdigSalon::where('is_active', true)->get();
 
         return view('tahdig.day_list', $data);
     }
 
     public function foodListSubmit(Request $request)
     {
-        $reserves = $request->except('_token');
+        $data = $request->except('_token');
 
-        $reservations = [];
-        foreach ($reserves as $key => $id) {
-            [$bookingId, $type] = explode('-', $key);
-            $reservations[$bookingId][$type] = $id;
-        }
+        foreach ($data['booking'] as $booking_id => $booking) {
+            foreach ($booking as $food_id => $quantity) {
+                if ($quantity == 0) {
+                    TahdigReservation::where('user_id', auth()->id())
+                        ->where('booking_id', $booking_id)
+                        ->where('food_id', $food_id)
+                        ->delete();
+                } else {
+                    $food = Food::find($food_id);
 
-        foreach ($reservations as $key => $reservationData) {
-            if ($reservationData['q'] < 1 || !isset($reservationData['f'])) {
-                continue;
+                    TahdigReservation::updateOrCreate(
+                        [
+                            'user_id'    => auth()->id(),
+                            'booking_id' => $booking_id,
+                            'food_id'    => $food_id,
+                        ],
+                        [
+                            'quantity'      => $quantity,
+                            'price'         => $food->price,
+                            'price_default' => 0,
+                            'salon_id'      => $data['salon'][$booking_id],
+                        ]
+                    );
+                }
             }
-            $booking = TahdigBooking::find($key);
-
-            if (is_null($booking)) {
-                continue;
-            }
-
-            $food = $booking->foods()->where('foods.id', $reservationData['f'])->first();
-
-            if (is_null($food)) {
-                continue;
-            }
-
-            $reservation = TahdigReservation::query()
-                ->firstOrNew(['user_id' => auth()->id(), 'booking_id' => $booking->id]);
-
-            $reservation->food_id       = $food->id;
-            $reservation->price         = $food->price;
-            $reservation->quantity      = $reservationData['q'];
-            $reservation->salon_id      = $reservationData['s'];
-            $reservation->price_default = 0;
-            $reservation->save();
         }
 
         return redirect('tahdig/history');
@@ -89,11 +71,11 @@ class TahDigController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(30);
 
-        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function ($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
             ->sum(DB::raw('price * quantity'));
-        $credits   = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
+        $credits = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
 
         $data['sum'] = $credits - $totalCost;
 

@@ -128,3 +128,9 @@ body {
   background: #202020;
 }
 
+.input-group.input-group-sm .form-control {
+  text-align: center;
+  margin: 0 -1px;
+  font-size: 101%;
+}
+

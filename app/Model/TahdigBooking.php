@@ -34,4 +34,10 @@ class TahdigBooking extends Model
     {
         return $this->hasMany(TahdigReservation::class, 'booking_id');
     }
+
+    public function reservationsForUser()
+    {
+        return $this->hasMany(TahdigReservation::class, 'booking_id')
+            ->where('user_id', auth()->id());
+    }
 }
