@@ -16,7 +16,7 @@ class TahDigController extends Controller
     {
         $data['reserved'] = TahdigReservation::query()
             ->where('user_id', auth()->id())
-            ->whereHas('booking', function($query) {
+            ->whereHas('booking', function ($query) {
                 $query->where('booking_date', '>', Carbon::now()->subDays(14));
             })
             ->get();
@@ -43,12 +43,12 @@ class TahDigController extends Controller
 
         $reservations = [];
         foreach ($reserves as $key => $id) {
-            [$bookingId, $type] = explode('-', $key);
+            [$bookingId, $type]              = explode('-', $key);
             $reservations[$bookingId][$type] = $id;
         }
 
         foreach ($reservations as $key => $reservationData) {
-            if ($reservationData['q'] < 1 || !isset($reservationData['f'])) {
+            if ($reservationData['q'] < 1 || ! isset($reservationData['f'])) {
                 continue;
             }
             $booking = TahdigBooking::find($key);
@@ -89,11 +89,11 @@ class TahDigController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(30);
 
-        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function ($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
             ->sum(DB::raw('price * quantity'));
-        $credits   = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
+        $credits = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
 
         $data['sum'] = $credits - $totalCost;
 
