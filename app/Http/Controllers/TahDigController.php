@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Day;
-use App\Model\Food;
 use Carbon\Carbon;
+use App\Model\Food;
 use App\Model\TahdigSalon;
 use App\Model\TahdigBooking;
 use Illuminate\Http\Request;
@@ -71,11 +71,11 @@ class TahDigController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(30);
 
-        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function($query) {
+        $totalCost = TahdigReservation::with(['booking'])->whereHas('booking', function ($query) {
             $query->where('booking_date', '>', auth()->user()->settlement_at);
         })->where('user_id', auth()->id())
             ->sum(DB::raw('price * quantity'));
-        $credits   = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
+        $credits = Day::where('day', '>=', auth()->user()->settlement_at)->sum('charge_amount');
 
         $data['sum'] = $credits - $totalCost;
 
