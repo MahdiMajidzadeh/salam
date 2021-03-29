@@ -10,9 +10,12 @@
     <link href="{{ mix('css/materialdesignicons.min.css') }}" rel="stylesheet">
     @livewireStyles
     @stack('css')
-    {{--<link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">--}}
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ asset('favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="/favicon96x96.png" sizes="96x96">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}" >
 </head>
-
 <body class="rtl @yield('css-box')">
 
 <main class="container">
