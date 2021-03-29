@@ -7,63 +7,47 @@
         @csrf
         <div class="row row-cols-1 row-cols-md-2 mt-4">
             @foreach($bookings as $booking)
-
                 <div class="col mb-4">
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h4>
                             <p class="card-text">
-                            @php
-                                if (auth()->user()->is_inter) {
-                                    $foods = $booking->foodsForInter;
-                                }else{
-                                    $foods = $booking->foods;
-                                }
-
-                                $reservedDay = $reserved->where('booking_id',$booking->id);
-
-                            @endphp
-                            @foreach($foods as $food)
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="{{ $booking->id.'-'.$food->id }}"
-                                           name="{{ $booking->id }}-f"
-                                           value="{{ $food->id }}"
-                                           @if(count($reservedDay->where('food_id',$food->id))) checked @endif
-                                           class="custom-control-input">
-                                    <label class="custom-control-label pb-3" for="{{ $booking->id.'-'.$food->id }}">
-                                        <span class="h6 font-weight-bold">{{ $food->name }}</span>
+                            @foreach($booking->foods as $food)
+                                <h6 class="h6 font-weight-bold">{{ $food->name }}
+                                    <span class="mx-2 text-muted">/ {{ $food->restaurant->name }}</span>
+                                </h6>
+                                <div class="row">
+                                    <div class="col-8">
                                         <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
-                                        <span class="mx-2">/</span>
-                                        {{ $food->restaurant->name }}
-                                    </label>
+                                    </div>
+                                    <div class="col-4">
+                                        @php
+                                            $value = $booking->reservationsForUser()->where('food_id', $food->id)->first();
+                                        @endphp
+                                        <input type="number" class="form-control form-control-sm" name="booking[{{ $booking->id }}][ {{ $food->id }}]"
+                                               min="0" max="3" value="{{ $value->quantity ?? 0 }}" >
+                                    </div>
                                 </div>
                                 @endforeach
                                 </p>
                         </div>
                         <div class="card-footer">
-                            <div class="form-group row m-0">
-                                <label for="quantity" class="col-sm-2 col-form-label">تعداد</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="quantity" name="{{ $booking->id }}-q"
-                                           value="{{ optional($reservedDay->first())->quantity ?? 1 }}">
-                                </div>
-                            </div>
                             <div class="form-group row m-0 mt-2">
-                                <label for="quantity" class="col-sm-2 col-form-label">سالن</label>
-                                <div class="col-sm-10">
-                                    <select class="form-control" name="{{ $booking->id }}-s">
+                                <label for="quantity" class="col-sm-3 col-form-label">ساختمان</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="salon[{{ $booking->id }}]">
                                         <option value="1">---</option>
                                         @foreach($salons as $salon)
                                             <option value="{{ $salon->id }}"
-                                                    @if($reservedDay->first())
-                                                        @if($salon->id == $reservedDay->first()->salon_id)
-                                                            selected
-                                                        @endif
-                                                    @else
-                                                        @if($salon->id == auth()->user()->default_salon_id)
-                                                            selected
-                                                        @endif
-                                                    @endif
+                                                @if($booking->reservationsForUser()->first())
+                                                @if($salon->id == $booking->reservationsForUser()->first()->salon_id)
+                                                selected
+                                                @endif
+                                                @else
+                                                @if($salon->id == auth()->user()->default_salon_id)
+                                                selected
+                                                @endif
+                                                @endif
                                             >
                                                 {{ $salon->name }}
                                             </option>
