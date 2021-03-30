@@ -26,7 +26,7 @@ class PortalMakeDays extends Command
         }
         $dod = $max;
 
-        while (!$dod->equalTo(new Carbon($this->argument('date')))) {
+        while (! $dod->equalTo(new Carbon($this->argument('date')))) {
             $dod                = $max->addDay();
             $day                = new Day();
             $day->day           = $dod;

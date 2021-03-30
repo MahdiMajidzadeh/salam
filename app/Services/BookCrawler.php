@@ -6,7 +6,7 @@ use Goutte\Client;
 
 class BookCrawler
 {
-    private $book = [];
+    private $book    = [];
     private $success = false;
     private $isbn;
 
@@ -26,10 +26,11 @@ class BookCrawler
     private function crawlKetabchi()
     {
         $client  = new Client();
-        $crawler = $client->request('GET', 'https://ketabchi.org/search?q=' . $this->isbn);
+        $crawler = $client->request('GET', 'https://ketabchi.org/search?q='.$this->isbn);
 
         if ($crawler->filter('.result-wrapper.row div a')->count() == 0) {
             $this->success = true;
+
             return;
         }
 
@@ -40,7 +41,7 @@ class BookCrawler
         $this->book['title']     = $crawler->filter('h1 span')->first()->text();
         $this->book['publisher'] = $crawler->filter('.publisher h3 a')->first()->text();
 
-        $crawler->filter('.person h3 a')->each(function($node) {
+        $crawler->filter('.person h3 a')->each(function ($node) {
             $this->book['authors'][] = $node->text();
         });
 
@@ -55,5 +56,4 @@ class BookCrawler
     {
         return $this->book;
     }
-
 }
