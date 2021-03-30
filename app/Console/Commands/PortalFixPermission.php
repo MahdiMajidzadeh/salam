@@ -6,9 +6,9 @@ use App\Model\User;
 use App\Model\Permission;
 use Illuminate\Console\Command;
 
-class AdminFix extends Command
+class PortalFixPermission extends Command
 {
-    protected $signature = 'admin:fix';
+    protected $signature = 'portal:fix-permission';
 
     protected $description = 'fix admin permissions';
 

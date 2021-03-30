@@ -6,9 +6,9 @@ use App\Model\Day;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class MakeDays extends Command
+class PortalMakeDays extends Command
 {
-    protected $signature = 'day:make {date} {amount}';
+    protected $signature = 'portal:make-day {date} {amount}';
 
     protected $description = 'make days';
 
