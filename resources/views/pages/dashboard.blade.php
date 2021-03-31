@@ -25,14 +25,14 @@
             {{--</div>--}}
             {{--</div>--}}
             {{--</div>--}}
-            @foreach($notices as $notice)
-                <a href="{{ url('notices/'. $notice->id) }}">
-                    <div class="card bg-dark text-white mb-4">
-                        <img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"
-                             class="card-img">
-                    </div>
-                </a>
-            @endforeach
+            {{--@foreach($notices as $notice)--}}
+                {{--<a href="{{ url('notices/'. $notice->id) }}">--}}
+                    {{--<div class="card bg-dark text-white mb-4">--}}
+                        {{--<img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"--}}
+                             {{--class="card-img">--}}
+                    {{--</div>--}}
+                {{--</a>--}}
+            {{--@endforeach--}}
             <div class="card">
                 <img src="{{ asset('img/tahdig_3.jpg') }}" class="card-img-top">
                 <div class="card-body">
@@ -75,8 +75,8 @@
                         قفسه (آزمایشی)
                     </h5>
                     <p class="card-text">
-                        <a href="{{ url('ghafase') }}" class="btn btn-primary btn-block">لیست</a>
-                        <a href="{{ url('ghafase/history') }}" class="btn btn-outline-primary btn-block">تاریخچه</a>
+                        <a href="{{ url('ghafase') }}" class="btn btn-primary btn-block disabled">لیست</a>
+                        <a href="{{ url('ghafase/history') }}" class="btn btn-outline-primary btn-block disabled">تاریخچه</a>
                     </p>
                 </div>
             </div>

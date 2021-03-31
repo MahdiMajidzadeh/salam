@@ -8,7 +8,7 @@
     <link href="{{ mix('css/shards.css') }}" rel="stylesheet">
     <link href="{{ mix('css/style.css') }}" rel="stylesheet">
     <link href="{{ mix('css/materialdesignicons.min.css') }}" rel="stylesheet">
-    @livewireStyles
+    <livewire:styles />
     @stack('css')
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="icon" type="image/png" href="{{ asset('favicon-16x16.png') }}" sizes="16x16">
@@ -25,7 +25,7 @@
 <script src="{{ mix('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ mix('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ mix('js/shards.min.js') }}"></script>
-@livewireScripts
+<livewire:scripts />
 @stack('js')
 </body>
 </html>

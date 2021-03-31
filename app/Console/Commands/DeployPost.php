@@ -19,11 +19,11 @@ class DeployPost extends Command
     {
         shell_exec('composer install --optimize-autoloader --no-dev');
 
+        $this->call('clear-compiled');
         $this->call('view:cache');
         $this->call('config:cache');
-        $this->call('debugbar:clear');
+//        $this->call('debugbar:clear');
         $this->call('cache:clear');
         $this->call('route:cache');
-        $this->call('clear-compiled');
     }
 }
