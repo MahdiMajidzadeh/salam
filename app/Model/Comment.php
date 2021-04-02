@@ -13,6 +13,6 @@ class Comment extends Model
 
     public function book()
     {
-        return $this->belongsTo(Book::class,'entity_id');
+        return $this->belongsTo(Book::class, 'entity_id');
     }
 }
