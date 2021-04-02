@@ -15,7 +15,7 @@ class CreateAuthorBookTable extends Migration
             $table->timestamps();
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('author_book');
