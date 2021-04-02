@@ -13,14 +13,14 @@
                             <h4 class="card-title">{{ jdfw($booking->booking_date) }} {{ $booking->meal->name }}</h4>
                             <p class="card-text">
                             @foreach($booking->foods as $food)
-                                <h6 class="h6 font-weight-bold">{{ $food->name }}
+                                <h6 class="h6 font-weight-bold mt-2">{{ $food->name }}
                                     <span class="mx-2 text-muted">/ {{ $food->restaurant->name }}</span>
                                 </h6>
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-6">
                                         <span class="badge badge-dark mx-1">{{ $food->price }} تومان </span>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-6">
                                         @php
                                             $value = $booking->reservationsForUser()->where('food_id', $food->id)->first();
                                         @endphp
