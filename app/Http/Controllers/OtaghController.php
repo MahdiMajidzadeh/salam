@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Model\Room;
+use App\Models\Room;
 use Illuminate\Http\Request;
-use App\Model\RoomReservation;
+use App\Models\RoomReservation;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 

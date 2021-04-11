@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Team;
-use App\Model\Chapter;
-use App\Model\TahdigSalon;
+use App\Models\Team;
+use App\Models\Chapter;
+use App\Models\TahdigSalon;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller

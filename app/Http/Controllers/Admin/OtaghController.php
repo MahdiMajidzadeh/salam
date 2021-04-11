@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
-use App\Model\Room;
+use App\Models\Room;
 use Illuminate\Http\Request;
-use App\Model\RoomReservation;
+use App\Models\RoomReservation;
 use App\Http\Controllers\Controller;
 
 class OtaghController extends Controller

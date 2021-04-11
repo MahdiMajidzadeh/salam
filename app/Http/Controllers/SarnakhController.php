@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Link;
+use App\Models\Link;
 use Illuminate\Http\Request;
 
 class SarnakhController extends Controller

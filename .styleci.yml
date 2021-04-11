@@ -1,15 +1,13 @@
-preset: laravel
-enabled:
-  - align_equals_minimal
-  - length_ordered_imports
-disabled:
-  - unused_use
-  - unalign_equals
-  - alpha_ordered_imports
-finder:
-  path:
-    - app
-    - database/migrations
-  not-name:
-    - index.php
-    - server.php
+php:
+  preset: laravel
+  disabled:
+    - no_unused_imports
+  finder:
+    not-name:
+      - index.php
+      - server.php
+js:
+  finder:
+    not-name:
+      - webpack.mix.js
+css: true

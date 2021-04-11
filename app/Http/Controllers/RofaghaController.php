@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Team;
-use App\Model\User;
-use App\Model\Chapter;
+use App\Models\Team;
+use App\Models\User;
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 
 class RofaghaController extends Controller

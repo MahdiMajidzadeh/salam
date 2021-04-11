@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\Food;
-use App\Model\Meal;
-use App\Model\TahdigSalon;
-use App\Model\TahdigBooking;
+use App\Models\Food;
+use App\Models\Meal;
+use App\Models\TahdigSalon;
+use App\Models\TahdigBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;

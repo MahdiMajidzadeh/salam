@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Ajax;
 
-use App\Model\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\UserLite;
 use App\Http\Controllers\Controller;

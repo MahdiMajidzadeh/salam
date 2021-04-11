@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Day;
+use App\Models\Day;
 use Carbon\Carbon;
-use App\Model\Food;
-use App\Model\TahdigSalon;
-use App\Model\TahdigBooking;
+use App\Models\Food;
+use App\Models\TahdigSalon;
+use App\Models\TahdigBooking;
 use Illuminate\Http\Request;
-use App\Model\TahdigReservation;
+use App\Models\TahdigReservation;
 use Illuminate\Support\Facades\DB;
 
 class TahDigController extends Controller

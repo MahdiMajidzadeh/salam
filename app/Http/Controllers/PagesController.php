@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Model\Notice;
-use App\Model\TahdigBooking;
+use App\Models\Notice;
+use App\Models\TahdigBooking;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller

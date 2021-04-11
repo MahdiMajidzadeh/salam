@@ -2,7 +2,7 @@
 
 namespace Modules\Notice\Http\Controllers;
 
-use App\Model\Notice;
+use App\Models\Notice;
 use Illuminate\Routing\Controller;
 
 class NoticeController extends Controller
