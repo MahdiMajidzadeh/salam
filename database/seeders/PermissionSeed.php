@@ -83,6 +83,11 @@ class PermissionSeed extends Seeder
                 'name' => 'مدیریت کتابخانه',
                 'slug' => 'shelf_management',
             ],
+            [
+                'id' => 14,
+                'name' => 'مدیریت آنبوردینگ',
+                'slug' => 'welcome_management',
+            ],
         ];
 
         $this->save($items);

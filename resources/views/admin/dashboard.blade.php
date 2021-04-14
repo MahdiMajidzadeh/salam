@@ -60,6 +60,13 @@
             </div>
         </div>
     @endif
+    @if(allowed('welcome_management'))
+        <div class="card my-4">
+            <div class="card-body p-3">
+                <a href="{{ url('admin/welcome/notes') }}" class="btn btn-secondary">یادداشت‌های آنبوردینگ</a>
+            </div>
+        </div>
+    @endif
     @if(allowed('admin'))
         <div class="card my-4">
             <div class="card-body p-3">
