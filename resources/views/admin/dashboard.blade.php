@@ -45,6 +45,14 @@
             </div>
         </div>
     @endif
+    @if(allowed('shelf_view'))
+        <div class="card my-4">
+            <div class="card-body p-3">
+                <a href="{{ url('admin/shelves') }}" class="btn btn-secondary">لیست کتاب‌ها</a>
+                <a href="{{ url('admin/shelves/add') }}" class="btn btn-secondary">افزودن کتاب</a>
+            </div>
+        </div>
+    @endif
     @if(allowed('otagh_view'))
         <div class="card my-4">
             <div class="card-body p-3">

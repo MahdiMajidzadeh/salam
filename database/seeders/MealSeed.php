@@ -1,6 +1,8 @@
 <?php
 
-use App\Model\Meal;
+namespace Database\Seeders;
+
+use App\Models\Meal;
 use App\Traits\SeederTrait;
 use Illuminate\Database\Seeder;
 

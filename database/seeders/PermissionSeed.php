@@ -1,6 +1,8 @@
 <?php
 
-use App\Model\Permission;
+namespace Database\Seeders;
+
+use App\Models\Permission;
 use App\Traits\SeederTrait;
 use Illuminate\Database\Seeder;
 
@@ -70,6 +72,16 @@ class PermissionSeed extends Seeder
                 'id' => 11,
                 'name' => 'مشاهده رزرو اتاق ها',
                 'slug' => 'otagh_view',
+            ],
+            [
+                'id' => 12,
+                'name' => 'مشاهده کتابخانه',
+                'slug' => 'shelf_view',
+            ],
+            [
+                'id' => 13,
+                'name' => 'مدیریت کتابخانه',
+                'slug' => 'shelf_management',
             ],
         ];
 
