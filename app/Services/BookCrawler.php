@@ -7,7 +7,7 @@ use Goutte\Client;
 class BookCrawler
 {
     private $book    = [];
-    private $success = false;
+//    private $success = false;
     private $isbn;
 
     public function __construct($isbn)
@@ -29,9 +29,7 @@ class BookCrawler
         $crawler = $client->request('GET', 'https://ketabchi.org/search?q='.$this->isbn);
 
         if ($crawler->filter('.result-wrapper.row div a')->count() == 0) {
-            $this->success = true;
-
-            return;
+            return false;
         }
 
         $link = $crawler->filter('.result-wrapper.row div a')->first()->link()->getUri();
@@ -47,11 +45,17 @@ class BookCrawler
 
         $this->book['cover'] = $crawler->filter('.thumb img')->first()->image()->getUri();
 
-        $this->success = false;
-
-        return $this->success;
+        return true;
     }
 
+    /**
+     * $book['title']
+     * $book['publisher']
+     * $book['authors'][]
+     * $book['cover']
+     *
+     * @return array
+     */
     public function book()
     {
         return $this->book;
