@@ -6,7 +6,7 @@ use Goutte\Client;
 
 class BookCrawler
 {
-    private $book    = [];
+    private $book = [];
 //    private $success = false;
     private $isbn;
 
@@ -52,7 +52,7 @@ class BookCrawler
      * $book['title']
      * $book['publisher']
      * $book['authors'][]
-     * $book['cover']
+     * $book['cover'].
      *
      * @return array
      */
