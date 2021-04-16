@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Library;
 
-use App\Models\Author;
 use App\Models\Book;
+use App\Models\Author;
+use Livewire\Component;
 use App\Models\Publisher;
 use App\Services\BookCrawler;
-use Intervention\Image\Facades\Image;
-use Livewire\Component;
 use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
 
 class Add extends Component
 {
@@ -25,6 +25,7 @@ class Add extends Component
 
         if ($crawler->crawl() === false) {
             session()->flash('msg-error', 'یافت نشد');
+
             return;
         }
 
@@ -47,8 +48,8 @@ class Add extends Component
 
         if (is_null($this->cover)) {
             Image::make('https://cdn.ketabchi.org/products/33950/images/ketab-general-book-2i6mp.jpg')
-                ->save('book_cover/' . $this->code . '.jpg');
-            $book->cover = 'book_cover/' . $this->code . '.jpg';
+                ->save('book_cover/'.$this->code.'.jpg');
+            $book->cover = 'book_cover/'.$this->code.'.jpg';
         }
 
         $book->save();
@@ -79,7 +80,7 @@ class Add extends Component
 
             $ids[] = $authorModel->id;
         }
-        
+
         return $ids;
     }
 }

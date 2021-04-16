@@ -19,7 +19,7 @@ class Book extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class,'entity_id')->where('type_id', TypeEnum::BOOK);
+        return $this->hasMany(Comment::class, 'entity_id')->where('type_id', TypeEnum::BOOK);
     }
 
     public function publisher()
