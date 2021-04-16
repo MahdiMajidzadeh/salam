@@ -19,7 +19,7 @@ class BookCrawler
     {
         // todo: dynamic call
         if ($source == 'ketabchi') {
-            $this->crawlKetabchi();
+            return $this->crawlKetabchi();
         }
     }
 

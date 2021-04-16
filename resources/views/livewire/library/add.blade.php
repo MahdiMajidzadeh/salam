@@ -11,6 +11,10 @@
                     <hr>
                     <form wire:submit.prevent="save">
                         <div class="form-group">
+                            <label>کد</label>
+                            <input type="text" class="form-control" wire:model="code">
+                        </div>
+                        <div class="form-group">
                             <label>عنوان</label>
                             <input type="text" class="form-control" wire:model="book.title">
                         </div>
