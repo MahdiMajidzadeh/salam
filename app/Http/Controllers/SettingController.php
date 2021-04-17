@@ -26,6 +26,9 @@ class SettingController extends Controller
             'chapter'       => 'exists:chapters,id',
             'email'         => 'email|nullable',
             'email_basalam' => 'email|nullable',
+            'biography'     => 'nullable',
+            'linkedin_url'  => 'url|nullable',
+            'virgool_url'   => 'url|nullable',
         ]);
 
         $user                = auth()->user();
@@ -33,6 +36,9 @@ class SettingController extends Controller
         $user->chapter_id    = $request->get('chapter', null);
         $user->email         = $request->get('email', null);
         $user->email_basalam = $request->get('email_basalam', null);
+        $user->biography     = $request->get('biography', null);
+        $user->linkedin_url  = $request->get('linkedin_url', null);
+        $user->virgool_url   = $request->get('virgool_url', null);
         $user->save();
 
         return redirect()->back()->with('msg-ok', __('msg.change_ok'));
@@ -67,7 +73,7 @@ class SettingController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (! Hash::check(
+        if (!Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {

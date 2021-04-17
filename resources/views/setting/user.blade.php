@@ -61,6 +61,20 @@
                             <input type="text" class="form-control" name="email_basalam"
                                    value="{{ $user->email_basalam }}">
                         </div>
+                        <div class="form-group">
+                            <label>معرفی</label>
+                            <textarea class="form-control" name="biography">{{ $user->biography }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>پروفایل لینکدین</label>
+                            <input type="text" class="form-control" name="linkedin_url"
+                                   value="{{ $user->linkedin_url }}">
+                        </div>
+                        <div class="form-group">
+                            <label>پروفایل ویرگول</label>
+                            <input type="text" class="form-control" name="virgool_url"
+                                   value="{{ $user->virgool_url }}">
+                        </div>
                         <button type="submit" class="btn btn-primary">تغییر</button>
                     </form>
                 </div>
