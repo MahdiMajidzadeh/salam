@@ -17,7 +17,7 @@ class TahDigController extends Controller
     {
         $data['bookings'] = TahdigBooking::with(['reservationsForUser', 'foods.restaurant', 'meal'])
             ->where('booking_date', '>',
-                Carbon::now()->addDays(config('nahar.gap_day'))->startOfDay()->format('Y-m-d')
+                Carbon::now()->addDays(config('salam.gap_day'))->startOfDay()->format('Y-m-d')
             )->orderBy('booking_date', 'asc')->get();
 
         $data['salons'] = TahdigSalon::where('is_active', true)->get();
@@ -87,7 +87,7 @@ class TahDigController extends Controller
         if (
             (auth()->id() === $reservation->user_id)
             &&
-            ($reservation->booking->booking_date > now()->addDays(config('nahar.gap_day'))->startOfDay())
+            ($reservation->booking->booking_date > now()->addDays(config('salam.gap_day'))->startOfDay())
         ) {
             $reservation->delete();
         }
