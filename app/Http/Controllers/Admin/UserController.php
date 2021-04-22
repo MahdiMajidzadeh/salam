@@ -101,7 +101,6 @@ class UserController extends Controller
         $user->email         = $request->get('email', null);
         $user->email_basalam = $request->get('email_basalam', null);
         $user->started_at    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
-        $user->settlement_at = Carbon::now()->toDateString();
         $user->save();
 
         return redirect()->back();
@@ -113,6 +112,17 @@ class UserController extends Controller
 
         $path         = $request->file('avatar')->store('public/avatar');
         $user->avatar = $path;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function deactivateSubmit(Request $request)
+    {
+        is_allowed('user_management');
+
+        $user                = User::find($request->get('id'));
+        $user->deactivated_at    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
         $user->save();
 
         return redirect()->back();

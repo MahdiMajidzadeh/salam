@@ -4,9 +4,16 @@
 
 @section('inner-content')
     <div class="row">
-        @include('template.messages')
+        <div class="col-12">
+            @include('template.messages')
+            @if(!is_null($user->deactivated_at))
+                <div class="alert alert-warning" role="alert">
+                    این کارمند، رو دیگه بین خودمون نداریم!
+                </div>
+            @endif
+        </div>
         <div class="col-12 col-md-6">
-            <div class="card my-4">
+            <div class="card">
                 <div class="card-body">
                     <form method="post" action="{{ url('admin/users/edit') }}">
                         @csrf
@@ -41,7 +48,7 @@
                                 <option>--</option>
                                 @foreach($chapters as $chapter)
                                     <option value="{{ $chapter->id }}"
-                                        @if($user->chapter_id == $chapter->id) selected @endif
+                                            @if($user->chapter_id == $chapter->id) selected @endif
                                     >{{ $chapter->name }}</option>
                                 @endforeach
                             </select>
@@ -58,7 +65,8 @@
                         </div>
                         <div class="form-group">
                             <label>تاریخ ورود</label>
-                            <input type="text" class="form-control" name="date" id="date" value="{{ $user->started_at }}">
+                            <input type="text" class="form-control" name="date" id="date"
+                                   value="{{ $user->started_at }}">
                             <input type="hidden" class="form-control" name="date_alt" id="date_alt">
                         </div>
                         <div class="form-group">
@@ -76,14 +84,15 @@
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="card my-4">
+            <div class="card">
                 <div class="card-body">
                     <form method="post" action="{{ url('admin/users/edit/avatar') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="form-group">
                             @if(!is_null($user->avatar))
-                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}" class="img-fluid mb-3">
+                                <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}"
+                                     class="img-fluid mb-3">
                             @endif
                             <label>آواتار</label>
                             <div class="custom-file">
@@ -95,17 +104,35 @@
                     </form>
                 </div>
             </div>
+            <div class="card my-4">
+                <div class="card-body">
+                    <form method="post" action="{{ url('admin/users/edit/deactivate') }}"
+                          id="deactivate">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $user->id }}">
+                        <div class="form-group">
+                            <label>تاریخ خروج</label>
+                            <input type="text" class="form-control" name="date" id="date_e"
+                                   value="{{ $user->deactivated_at }}">
+                            <input type="hidden" class="form-control" name="date_alt" id="date_alt_e">
+                        </div>
+                        <a href="#" class="btn btn-primary" id="deactivate-btn">غیرفعال سازی</a>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
 
 @push('css')
     <link href="{{ mix('css/persian-datepicker.min.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/sweetalert2.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('js')
     <script src="{{ mix('js/persian-date.min.js') }}"></script>
     <script src="{{ mix('js/persian-datepicker.min.js') }}"></script>
+    <script src="{{ mix('js/sweetalert2.all.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $("#date").pDatepicker({
@@ -113,6 +140,27 @@
                 altFormat: 'X',
                 format: 'YYYY/MM/DD',
                 observer: true
+            });
+            $("#date_e").pDatepicker({
+                altField: '#date_alt_e',
+                altFormat: 'X',
+                format: 'YYYY/MM/DD',
+                observer: true
+            });
+            $('#deactivate-btn').on('click', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'خداحافظی!',
+                    text: 'از غیر فعال کردن این کارمند مطمئن هستید؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'بای‌بای',
+                    cancelButtonText: 'نه',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $('#deactivate').submit();
+                    }
+                });
             });
         });
     </script>
