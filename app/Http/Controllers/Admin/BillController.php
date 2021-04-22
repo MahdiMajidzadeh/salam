@@ -14,15 +14,9 @@ class BillController extends Controller
     {
         is_allowed('billing_view');
 
-        $data = getMonthDays();
 
         $data['usersBill'] = DB::select(
-            'SELECT u.id, u.name, u.employee_id,u.tahdig_credits,u.started_at, u.deactivated_at,sum(tr.price * tr.quantity) cost, (u.tahdig_credits - sum(tr.price * tr.quantity)) balance FROM `users` u
-            left join tahdig_reservations tr on u.id = tr.user_id
-            left join tahdig_bookings tb on tr.booking_id = tb.id
-            where tb.booking_date > u.settlement_at
-            GROUP by u.id,u.name, u.employee_id,u.tahdig_credits, u.deactivated_at,u.started_at
-            order by u.employee_id asc'
+            'SELECT u.id, u.employee_id, u.deactivated_at, u.name, ff.cost, uu.credits,( uu.credits - Ifnull(ff.cost, 0)) balance FROM users u JOIN(SELECT u.id, Sum(d.charge_amount) credits, Count(*) cday FROM users u LEFT JOIN days d ON u.settlement_at <= d.day and (u.deactivated_at > d.day or u.deactivated_at is null) GROUP BY u.id, u.started_at) uu ON u.id = uu.id LEFT JOIN (SELECT u.id, Sum(tr.price * tr.quantity) cost FROM `users` u LEFT JOIN tahdig_reservations tr ON u.id = tr.user_id LEFT JOIN tahdig_bookings tb ON tr.booking_id = tb.id WHERE tb.booking_date >= u.settlement_at GROUP BY u.id) ff ON u.id = ff.id'
         );
 
         return view('admin.bill.tahdig_users', $data);
@@ -38,8 +32,6 @@ class BillController extends Controller
     public function restaurantsBill()
     {
         is_allowed('billing_view');
-
-        $data = getMonthDays();
 
         $data['restaurantsBill'] = TahdigReservation::query()
             ->with('food.restaurant')

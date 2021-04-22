@@ -18,9 +18,6 @@
         <tr>
             <th scope="col">پرسنلی</th>
             <th scope="col">نام</th>
-            <th scope="col">اعتبار</th>
-            <th scope="col">تاریخ شروع</th>
-            <th scope="col">کل هزینه</th>
             <th scope="col">جمع حساب</th>
         </tr>
         </thead>
@@ -29,9 +26,6 @@
             <tr class="@if(!is_null($userBill->deactivated_at)) text-muted @endif">
                 <td>{{ $userBill->employee_id }}</td>
                 <td>{{ $userBill->name }}</td>
-                <td>{{ $userBill->tahdig_credits }}</td>
-                <td>{{ $userBill->started_at }}</td>
-                <td>{{ $userBill->cost }}</td>
                 <td dir="ltr">
                     {{ number_format($userBill->balance,0,".",",") }}
                 </td>
