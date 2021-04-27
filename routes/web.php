@@ -7,6 +7,7 @@ Route::redirect('/', '/dashboard');
 Route::view('/login', 'pages.login')->name('login');
 Route::post('/login', [C\AccountsController::class, 'loginSubmit']);
 Route::get('/logout', [C\AccountsController::class, 'logout']);
+Route::view('/live', 'pages.live');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard', [C\PagesController::class, 'dashboard']);
