@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WelcomeNote;
 use Carbon\Carbon;
 use App\Models\Notice;
 use Illuminate\Http\Request;
@@ -25,6 +26,10 @@ class PagesController extends Controller
         $data['notices'] = Notice::where('started_at', '<', Carbon::now())
             ->where('ended_at', '>', Carbon::now())
             ->get();
+
+        $dayPast = (new Carbon(auth()->user()->started_at))->diffInDays(now());
+
+        $data['note'] = WelcomeNote::where('day', $dayPast)->first();
 
         return view('pages.dashboard', $data);
     }

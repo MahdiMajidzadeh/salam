@@ -23,16 +23,22 @@
                 <div class="card">
                     <div class="row no-gutters">
                         <div class="col-3 col-md-4">
-                            @if(!is_null($user->avatar))
-                                <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}"
-                                     class="card-img">
-                            @else
-                                <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
-                            @endif
+                            <a href="{{ url('/rofagha/'. $user->employee_id) }}">
+                                @if(!is_null($user->avatar))
+                                    <img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}"
+                                         class="card-img">
+                                @else
+                                    <img src="{{ asset('img/default-user-image.png') }}" class="card-img">
+                                @endif
+                            </a>
                         </div>
                         <div class="col-9 col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $user->name }}</h5>
+                                <h5 class="card-title">
+                                    <a href="{{ url('/rofagha/'. $user->employee_id) }}">
+                                        {{ $user->name }}
+                                    </a>
+                                </h5>
                                 <p class="card-text">
                                     <span class="badge badge-info">{{ optional($user->team)->name }}</span>
                                     <span class="badge badge-warning">{{ optional($user->chapter)->name }}</span>

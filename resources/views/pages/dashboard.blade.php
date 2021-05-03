@@ -5,6 +5,18 @@
 @section('inner-content')
 
     <div class="home">
+        @if(!is_null($note))
+        <div class="card mb-3,,,,">
+            <div class="card-body">
+                <h3 class="card-title">
+                    {{ $note->title }}
+                </h3>
+                <div class="card-text mb-0">
+                  {!! $note->content !!}
+                </div>
+            </div>
+        </div>
+        @endif
         <div class="card-columns">
             {{--<div class="card">--}}
             {{--@if(!is_null($user->avatar))--}}

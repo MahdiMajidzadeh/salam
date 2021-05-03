@@ -39,9 +39,10 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix' => 'rofagha'], function() {
-        Route::get('/', [C\RofaghaController::class, 'index']);
-        Route::get('/chapters', [C\RofaghaController::class, 'chapters']);
-        Route::get('/teams', [C\RofaghaController::class, 'teams']);
+        Route::get('/', [C\EmployeeController::class, 'index']);
+        Route::get('/chapters', [C\EmployeeController::class, 'chapters']);
+        Route::get('/teams', [C\EmployeeController::class, 'teams']);
+        Route::get('/{id}', [C\EmployeeController::class, 'single']);
     });
 
     Route::get('/notices/{id}', [C\PagesController::class, 'singleNotice']);

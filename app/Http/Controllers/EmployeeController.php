@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Chapter;
 use Illuminate\Http\Request;
 
-class RofaghaController extends Controller
+class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
@@ -28,7 +28,7 @@ class RofaghaController extends Controller
 
         $data['users'] = $contacts->paginate(40);
 
-        return view('rofagha.list', $data);
+        return view('employee.list', $data);
     }
 
     public function chapters(Request $request)
@@ -37,7 +37,7 @@ class RofaghaController extends Controller
         $data['slug']  = 'chapter';
         $data['items'] = Chapter::where('is_active', true)->get();
 
-        return view('rofagha.category', $data);
+        return view('employee.category', $data);
     }
 
     public function teams(Request $request)
@@ -46,6 +46,13 @@ class RofaghaController extends Controller
         $data['slug']  = 'team';
         $data['items'] = Team::where('is_active', true)->get();
 
-        return view('rofagha.category', $data);
+        return view('employee.category', $data);
+    }
+
+    public function single(Request $request, $id)
+    {
+        $data['user'] = User::where('employee_id', $id)->firstOrFail();
+
+        return view('employee.single', $data);
     }
 }
