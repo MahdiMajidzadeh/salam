@@ -10,6 +10,10 @@ body {
   overflow: auto;
 }
 
+.ltr{
+  direction: ltr;
+}
+
 //rtl
 .rtl .custom-control-label::before {
   right: -5px;
@@ -129,8 +133,12 @@ body {
 }
 
 .info-box {
-  background-color: #e2e2e2;
-  margin: 10px 0;
-  padding: 5px;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-bottom: #ccc 2px solid;
+  margin: 0 5px;
+}
+
+.icon-social{
+  font-size: 36px;
+  margin: 0 10px;
 }
