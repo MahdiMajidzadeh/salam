@@ -93,4 +93,3 @@ if (! function_exists('to_en')) {
         return (int) $fmt->parse($number);
     }
 }
-
