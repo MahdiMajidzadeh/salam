@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [C\EmployeeController::class, 'index']);
         Route::get('/chapters', [C\EmployeeController::class, 'chapters']);
         Route::get('/teams', [C\EmployeeController::class, 'teams']);
+        Route::get('/export/email/active', [C\EmployeeController::class, 'exportEmailActive']);
         Route::get('/{id}', [C\EmployeeController::class, 'single']);
     });
 

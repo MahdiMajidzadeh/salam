@@ -55,4 +55,16 @@ class EmployeeController extends Controller
 
         return view('employee.single', $data);
     }
+
+    public function exportEmailActive(Request $request)
+    {
+        $emails = User::query()
+            ->whereNull('deactivated_at')
+            ->whereNotNull('email')
+            ->get()
+            ->pluck('email')
+            ->toArray();
+
+        return implode(',',$emails);
+    }
 }
