@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WelcomeNote;
 use Carbon\Carbon;
 use App\Models\Notice;
+use App\Models\WelcomeNote;
 use Illuminate\Http\Request;
 use App\Models\TahdigBooking;
 
