@@ -73,7 +73,7 @@ class SettingController extends Controller
             'password_double_new' => 'required|same:password_new',
         ]);
 
-        if (!Hash::check(
+        if (! Hash::check(
             $request->get('password_old'),
             auth()->user()->password)
         ) {
