@@ -6,45 +6,37 @@
 
     <div class="home">
         @if(!is_null($note))
-        <div class="card mb-3,,,,">
-            <div class="card-body">
-                <h3 class="card-title">
-                    {{ $note->title }}
-                </h3>
-                <div class="card-text mb-0">
-                  {!! $note->content !!}
+            <div class="card mb-3,,,,">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{ $note->title }}
+                    </h3>
+                    <div class="card-text mb-0">
+                        {!! $note->content !!}
+                    </div>
                 </div>
             </div>
-        </div>
         @endif
         <div class="card-columns">
-            {{--<div class="card">--}}
-            {{--@if(!is_null($user->avatar))--}}
-            {{--<img src="{{ asset(Illuminate\Support\Facades\Storage::url($user->avatar)) }}" class="card-img-top">--}}
-            {{--@else--}}
-            {{--<img src="{{ asset('img/default-user-image.png') }}" class="card-img-top img-thumbnail">--}}
-            {{--@endif--}}
-            {{--<div class="card-body">--}}
-            {{--<h5 class="card-title">سلام {{ $user->name }}</h5>--}}
-            {{--<p class="card-text">--}}
-            {{--<a href="{{ url('setting') }}" class="btn btn-outline-primary">--}}
-            {{--تنظیمات--}}
-            {{--</a>--}}
-            {{--<a href="{{ url('logout') }}" class="btn btn-outline-primary">خروج</a>--}}
-            {{--</p>--}}
-            {{--<div>--}}
-            {{--کد پرسنلی: {{ $user->employee_id }}--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--@foreach($notices as $notice)--}}
-                {{--<a href="{{ url('notices/'. $notice->id) }}">--}}
-                    {{--<div class="card bg-dark text-white mb-4">--}}
-                        {{--<img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"--}}
-                             {{--class="card-img">--}}
-                    {{--</div>--}}
-                {{--</a>--}}
-            {{--@endforeach--}}
+            @foreach($notices as $notice)
+                @if($notice->banner)
+                    <a href="{{ url('notices/'. $notice->id) }}">
+                        <div class="card bg-dark text-white mb-4">
+                            <img src="{{ asset(Illuminate\Support\Facades\Storage::url($notice->banner)) }}"
+                                 class="card-img">
+                        </div>
+                    </a>
+                @else
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ $notice->title }}</h4>
+                            <a href="{{ url('notices/'. $notice->id) }}" class="btn btn-outline-secondary btn-sm">
+                                بیشتر
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
             <div class="card">
                 <img src="{{ asset('img/tahdig_3.jpg') }}" class="card-img-top">
                 <div class="card-body">
