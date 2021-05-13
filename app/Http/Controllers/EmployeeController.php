@@ -65,6 +65,6 @@ class EmployeeController extends Controller
             ->pluck('email')
             ->toArray();
 
-        return implode(',',$emails);
+        return implode(',', $emails);
     }
 }

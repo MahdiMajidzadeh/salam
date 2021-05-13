@@ -121,8 +121,8 @@ class UserController extends Controller
     {
         is_allowed('user_management');
 
-        $user                = User::find($request->get('id'));
-        $user->deactivated_at    = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
+        $user                 = User::find($request->get('id'));
+        $user->deactivated_at = Carbon::createFromTimestamp($request->get('date_alt'))->toDateString();
         $user->save();
 
         return redirect()->back();
