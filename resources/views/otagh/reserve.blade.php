@@ -31,9 +31,10 @@
                             @include('otagh.template.dayview_tiles')
                             <div class="dayview-now-marker"></div>
                             <div class="dayview-grid-marker-start"></div>
+                            @forelse($reservations as $reservationDays)
                             <div class="dayview-gridcell-container">
                                 <div class="dayview-gridcell">
-                                    @forelse($reservations as $reservation)
+                                    @forelse($reservationDays as $reservation)
                                         @php
                                             $start = (
                                             (\Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getHour() - 8)*60  +
@@ -56,35 +57,7 @@
                                         @endforeach
                                 </div>
                             </div>
-                            <div class="dayview-gridcell-container">
-                                <div class="dayview-gridcell">
-                                    @forelse($reservations as $reservation)
-                                        @php
-                                            $start = (
-                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getHour() - 8)*60  +
-                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getMinute()
-                                              ) / 15 + 1;
-
-                                            $end = ceil((
-                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getHour() - 8)*60  +
-                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getMinute()
-                                              ) / 15 + 1);
-
-                                        @endphp
-                                        <div class="dayview-cell border-info @if($reservation->user_id == auth()->id()) bg-info text-white @endif" style="grid-row: {{ $start }} / {{ $end }};">
-                                            <div class="dayview-cell-title">
-                                                {{ $reservation->user->name }}
-                                            </div>
-                                            <div class="dayview-cell-time">
-                                                {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->format('%H:%M') }}
-                                                -
-                                                {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->format('%H:%M') }}
-                                            </div>
-                                            <div class="dayview-cell-desc">Description</div>
-                                        </div>
-                                        @endforeach
-                                </div>
-                            </div>
+                            @endforeach
                             <div class="dayview-grid-marker-end"></div>
                         </div>
                     </div>
@@ -97,17 +70,17 @@
                             @csrf
                             <input type="hidden" name="room_id" value="{{ $roomCurrent->id }}">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12 col-md-4">
                                     <div class="form-group">
-                                        <label>زمان شروع: </label>
-                                        <input type="text" class="form-control" id="date_start">
-                                        <input type="hidden" class="form-control" name="date_start_alt"
-                                               id="date_start_alt">
+                                        <label>روز: </label>
+                                        <input type="text" class="form-control" id="date_day">
+                                        <input type="hidden" class="form-control" name="date_day_alt"
+                                               id="date_day_alt">
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-6 col-md-2">
                                     <div class="form-group">
-                                        <label>ساعت:</label>
+                                        <label>ساعت شروع:</label>
                                         <select class="custom-select" name="date_start_hour">
                                             @foreach($hours as $hour)
                                                 <option value="{{ $hour }}">{{ $hour }}</option>
@@ -115,7 +88,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-6 col-md-2">
                                     <div class="form-group">
                                         <label> دقیقه: </label>
                                         <select class="custom-select" name="date_start_minute">
@@ -125,18 +98,9 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
+                                <div class="col-6 col-md-2">
                                     <div class="form-group">
-                                        <label>زمان پایان: </label>
-                                        <input type="text" class="form-control" id="date_end">
-                                        <input type="hidden" class="form-control" name="date_end_alt" id="date_end_alt">
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <label>ساعت:</label>
+                                        <label>ساعت پایان:</label>
                                         <select class="custom-select" name="date_end_hour">
                                             @foreach($hours as $hour)
                                                 <option value="{{ $hour }}">{{ $hour }}</option>
@@ -144,7 +108,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-6 col-md-2">
                                     <div class="form-group">
                                         <label> دقیقه: </label>
                                         <select class="custom-select" name="date_end_minute">
@@ -158,7 +122,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">یادداشت</label>
+                                        <label for="exampleFormControlTextarea1">یادداشت (امکانات و پذیرایی)</label>
                                         <textarea class="form-control" id="exampleFormControlTextarea1"
                                                   rows="3"></textarea>
                                     </div>
@@ -183,9 +147,9 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const d = new Date();
-            // if(d.getHours() < 8 || d.getHours()> 20){
-            //    // $('.dayview-now-marker').hide();
-            // }
+            if(d.getHours() < 8 || d.getHours()> 20){
+               // $('.dayview-now-marker').hide();
+            }
             document.querySelector(".dayview-now-marker").style.top =
                 (document
                         .querySelector(".dayview-gridcell-container")
@@ -199,19 +163,8 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             });
-            $("#date_start").pDatepicker({
-                altField: '#date_start_alt',
-                altFormat: 'X',
-                autoClose: true,
-                format: 'D MMMM YYYY',
-                toolbox: {
-                    calendarSwitch: {
-                        enabled: false
-                    }
-                }
-            });
-            $("#date_end").pDatepicker({
-                altField: '#date_end_alt',
+            $("#date_day").pDatepicker({
+                altField: '#date_day_alt',
                 altFormat: 'X',
                 autoClose: true,
                 format: 'D MMMM YYYY',
@@ -224,4 +177,3 @@
         });
     </script>
 @endpush
-        

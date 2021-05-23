@@ -28,8 +28,11 @@ class OtaghController extends Controller
         $data['reservations'] = RoomReservation::with('user')
             ->where('room_id', $request->get('room'))
             ->where('ended_at', '>', Carbon::now())
-            ->take(10)
-            ->get();
+            ->where('ended_at', '<', Carbon::now()->addDays(7))
+            ->get()
+            ->groupBy(function($item) {
+                return jdf_format($item->started_at, 'Y-m-d');
+            });
 
         return view('otagh.reserve', $data);
     }
@@ -38,12 +41,12 @@ class OtaghController extends Controller
     {
         $data = [
             'start_date' => $this->makeDate(
-                $request->get('date_start_alt'),
+                $request->get('date_day_alt'),
                 $request->get('date_start_hour'),
                 $request->get('date_start_minute')
             ),
             'end_date'   => $this->makeDate(
-                $request->get('date_end_alt'),
+                $request->get('date_day_alt'),
                 $request->get('date_end_hour'),
                 $request->get('date_end_minute') - 1
             ),
