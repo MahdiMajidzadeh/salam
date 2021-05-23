@@ -20,7 +20,77 @@
     </div>
     @if($show)
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-12">
+                <h4 class="font-weight-bold mb-3">اتاق {{ $roomCurrent->name }}</h4>
+            </div>
+            <div class="col-md-12">
+                <div class="dayview-container">
+                    @include('otagh.template.dayview_hour')
+                    <div class="dayview-grid-container">
+                        <div class="dayview-grid">
+                            @include('otagh.template.dayview_tiles')
+                            <div class="dayview-now-marker"></div>
+                            <div class="dayview-grid-marker-start"></div>
+                            <div class="dayview-gridcell-container">
+                                <div class="dayview-gridcell">
+                                    @forelse($reservations as $reservation)
+                                        @php
+                                            $start = (
+                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getHour() - 8)*60  +
+                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getMinute()
+                                              ) / 15 + 1;
+
+                                            $end = ceil((
+                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getHour() - 8)*60  +
+                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getMinute()
+                                              ) / 15 + 1);
+
+                                        @endphp
+                                        <div class="dayview-cell border-info @if($reservation->user_id == auth()->id()) bg-info text-white @endif" style="grid-row: {{ $start }} / {{ $end }};"
+                                             data-toggle="tooltip" data-placement="top" title="{{ jdf_format($reservation->started_at, '%A: %d %B %y %H:%M') }} - {{ jdf_format($reservation->ended_at, '%H:%M') }}">
+                                            <div class="dayview-cell-title">
+                                                {{ $reservation->user->name }}
+                                            </div>
+                                            {{--<div class="dayview-cell-desc">Description</div>--}}
+                                        </div>
+                                        @endforeach
+                                </div>
+                            </div>
+                            <div class="dayview-gridcell-container">
+                                <div class="dayview-gridcell">
+                                    @forelse($reservations as $reservation)
+                                        @php
+                                            $start = (
+                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getHour() - 8)*60  +
+                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->getMinute()
+                                              ) / 15 + 1;
+
+                                            $end = ceil((
+                                            (\Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getHour() - 8)*60  +
+                                             \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->getMinute()
+                                              ) / 15 + 1);
+
+                                        @endphp
+                                        <div class="dayview-cell border-info @if($reservation->user_id == auth()->id()) bg-info text-white @endif" style="grid-row: {{ $start }} / {{ $end }};">
+                                            <div class="dayview-cell-title">
+                                                {{ $reservation->user->name }}
+                                            </div>
+                                            <div class="dayview-cell-time">
+                                                {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->format('%H:%M') }}
+                                                -
+                                                {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->format('%H:%M') }}
+                                            </div>
+                                            <div class="dayview-cell-desc">Description</div>
+                                        </div>
+                                        @endforeach
+                                </div>
+                            </div>
+                            <div class="dayview-grid-marker-end"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
                 <div class="card d-print-none mb-4">
                     <div class="card-body">
                         <form action="{{ url('otagh/reserve') }}" method="post">
@@ -99,30 +169,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-7">
-                <div class="card d-print-none mb-4">
-                    <div class="card-body">
-                        <h4 class="font-weight-bold mb-3">اتاق {{ $roomCurrent->name }}</h4>
-                        @forelse($reservations as $reservation)
-                            <div class="border border-warning p-2 rounded mb-2 @if($reservation->user_id == auth()->id()) bg-warning text-white @endif">
-                                <p class="mb-2">
-                                    {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->format('%A: %d %B %y') }}
-                                </p>
-                                <strong>
-                                    {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->started_at)->format('%H:%M') }}
-                                    تا {{ \Morilog\Jalali\Jalalian::fromDateTime($reservation->ended_at)->format('%H:%M') }}
-                                </strong>
-                                <p class="mb-2">
-                                    {{ $reservation->user->name }}
-                                </p>
-                            </div>
-                        @empty
-                            <p>بدون رزرو</p>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-        </div>
     @endif
 @endsection
 
@@ -135,7 +181,24 @@
     <script src="{{ mix('js/persian-date.min.js') }}"></script>
     <script src="{{ mix('js/persian-datepicker.min.js') }}"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const d = new Date();
+            // if(d.getHours() < 8 || d.getHours()> 20){
+            //    // $('.dayview-now-marker').hide();
+            // }
+            document.querySelector(".dayview-now-marker").style.top =
+                (document
+                        .querySelector(".dayview-gridcell-container")
+                        .getBoundingClientRect().height /
+                    24) *
+                (d.getHours() + 8 + d.getMinutes() / 60) +
+                "px";
+        });
+
         $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
             $("#date_start").pDatepicker({
                 altField: '#date_start_alt',
                 altFormat: 'X',
@@ -161,3 +224,4 @@
         });
     </script>
 @endpush
+        

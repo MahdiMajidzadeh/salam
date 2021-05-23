@@ -30,7 +30,7 @@ class NoticeController extends Controller
     {
         is_allowed('notice_management');
 
-        // validation
+
 
         $notice             = new Notice();
         $notice->title      = $request->get('title');

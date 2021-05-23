@@ -1,0 +1,141 @@
+.dayview-container {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: stretch;
+  flex: 1 1 auto;
+}
+.dayview-timestrings-container {
+  height: auto;
+  overflow-y: hidden;
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  min-width: 40px;
+}
+.dayview-timestring-container {
+  height: 40px;
+  position: relative;
+  padding-inline-end: 8px;
+  text-align: right;
+}
+.dayview-timestring-container:first-child .dayview-timestring {
+  display: none;
+}
+.dayview-timestring {
+  display: block;
+  color: #70757a;
+  font-size: 10px;
+  position: relative;
+  top: -6px;
+}
+.dayview-timestrings {
+  position: relative;
+  box-sizing: border-box;
+  margin-left: auto;
+}
+.dayview-grid-container {
+  flex: 1 1 0;
+  overflow-x: auto;
+  overflow-y: scroll;
+  display: flex;
+  align-items: flex-start;
+}
+.dayview-grid {
+  border-bottom: #dadce0 1px solid;
+  position: relative;
+  min-width: 100%;
+  flex: none;
+  display: inline-flex;
+  vertical-align: top;
+}
+.dayview-grid-tiles {
+  z-index: 1;
+  border-top: #dadce0 1px solid;
+}
+.dayview-grid-tile {
+  height: 40px;
+}
+.dayview-grid-tile:after {
+  content: "";
+  border-bottom: #dadce0 1px solid;
+  position: absolute;
+  width: 100%;
+  margin-top: -1px;
+  z-index: 3;
+  pointer-events: none;
+}
+.dayview-grid-marker-start,
+.dayview-grid-marker-end {
+  width: 8px;
+  border-inline-end: #dadce0 1px solid;
+}
+.dayview-grid-marker-end {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.dayview-gridcell-container {
+  position: relative;
+  padding: 0 12px;
+  box-sizing: border-box;
+  flex: 1 0 auto;
+  width: 129px;
+  min-width: 129px;
+  border-right: white 1px solid;
+  overflow: visible;
+}
+.dayview-gridcell {
+  grid-column-gap: 3px;
+  z-index: 2;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: repeat(48, 10px);
+  /* grid-template-columns: fit-content(100%); */
+}
+.dayview-cell {
+  z-index: 2;
+  border-radius: 5px;
+  /* border: 1px solid darkred; */
+  background-color: #6670bf;
+  padding: 0 3px;
+}
+.dayview-now-marker {
+  position: absolute;
+  z-index: 504;
+  border-top: #ea4335 solid 2px;
+  right: 8px;
+  left: 0;
+  pointer-events: none;
+}
+.dayview-now-marker:after {
+  background: #ea4335;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  height: 12px;
+  margin-inline-start: -6.5px;
+  margin-top: -5px;
+  width: 12px;
+}
+.dayview-cell {
+  padding: 3px;
+  color: white;
+  font-size: 12px;
+  display: flex;
+}
+.dayview-cell-extended {
+  display: block;
+}
+.dayview-cell-desc {
+  display: none;
+}
+.dayview-cell-title,
+.dayview-cell-desc {
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}

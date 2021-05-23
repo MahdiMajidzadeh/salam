@@ -23,6 +23,13 @@ if (! function_exists('jdfw_name')) {
     }
 }
 
+if (! function_exists('jdf_format')) {
+    function jdf_format($date, $format)
+    {
+        return \Morilog\Jalali\Jalalian::fromDateTime($date)->format($format);
+    }
+}
+
 if (! function_exists('allowed')) {
     function allowed($action)
     {
