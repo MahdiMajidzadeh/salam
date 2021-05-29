@@ -32,4 +32,11 @@ class OtaghController extends Controller
 
         return view('admin.otagh.list', $data);
     }
+
+    public function deleteSubmit(Request $request, $id)
+    {
+        RoomReservation::findOrFail($id)->delete();
+
+        return redirect()->back();
+    }
 }

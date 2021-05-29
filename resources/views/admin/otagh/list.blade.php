@@ -37,8 +37,11 @@
                                     {{ $reservation->user->name }}
                                 </p>
                                 <p class="mb-2">
-                                    یادداشت:  {{ $reservation->note ?? '(بدون یادداشت)' }}
+                                    یادداشت: {{ $reservation->note ?? '(بدون یادداشت)' }}
                                 </p>
+                                <button class="btn btn-outline-danger btn-sm delete-btn"
+                                        data-id="{{ $reservation->id }}">حذف
+                                </button>
                             </div>
                         @empty
                             <p>بدون رزرو</p>
@@ -53,34 +56,29 @@
 @push('css')
     <link href="{{ mix('css/persian-datepicker.min.css') }}" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="{{ mix('css/sweetalert2.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('js')
     <script src="{{ mix('js/persian-date.min.js') }}"></script>
     <script src="{{ mix('js/persian-datepicker.min.js') }}"></script>
+    <script src="{{ mix('js/sweetalert2.all.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $("#date_start").pDatepicker({
-                altField: '#date_start_alt',
-                altFormat: 'X',
-                autoClose: true,
-                format: 'D MMMM YYYY',
-                toolbox: {
-                    calendarSwitch: {
-                        enabled: false
+            $('.delete-btn').on('click', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: 'حذف!',
+                    text: 'از حذف این رزرو مطمئن هستین؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'بله',
+                    cancelButtonText: 'نه',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ url('admin/otagh/delete/') }}" +"/"+ $(e.target).data('id');
                     }
-                }
-            });
-            $("#date_end").pDatepicker({
-                altField: '#date_end_alt',
-                altFormat: 'X',
-                autoClose: true,
-                format: 'D MMMM YYYY',
-                toolbox: {
-                    calendarSwitch: {
-                        enabled: false
-                    }
-                }
+                });
             });
         });
     </script>

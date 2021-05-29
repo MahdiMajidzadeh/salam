@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 
     Route::group(['prefix' => 'otagh'], function() {
         Route::get('/list', [C\Admin\OtaghController::class, 'check']);
+        Route::get('/delete/{id}', [C\Admin\OtaghController::class, 'deleteSubmit']);
     });
 
     Route::group(['prefix' => 'foods'], function() {
