@@ -30,7 +30,7 @@ class OtaghController extends Controller
             ->where('ended_at', '>', Carbon::now())
             ->where('ended_at', '<', Carbon::now()->addDays(7))
             ->get()
-            ->groupBy(function($item) {
+            ->groupBy(function ($item) {
                 return jdf_format($item->started_at, 'Y-m-d');
             });
 
