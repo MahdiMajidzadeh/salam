@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Model\Day;
 use Carbon\Carbon;
+use App\Models\Day;
 use Illuminate\Console\Command;
 
 class PortalMakeDays extends Command
@@ -19,14 +19,13 @@ class PortalMakeDays extends Command
 
     public function handle()
     {
-        $max = Day::max('day');
+        $max = new carbon(Day::max('day'));
 
         if (is_null($max)) {
             $max = Carbon::create(2020, 10, 30);
         }
-        $dod = $max;
 
-        while (! $dod->equalTo(new Carbon($this->argument('date')))) {
+        while (! $max->equalTo(new Carbon($this->argument('date')))) {
             $dod                = $max->addDay();
             $day                = new Day();
             $day->day           = $dod;
